@@ -1,0 +1,231 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+d:\Users\Sone\Desktop\MWbalanced-firmware-none\MWbalanced-firmware-none.uvproj
+Project File Date:  11/22/2015
+
+<h2>Output:</h2>
+Build target 'MWbalanced-firmware-none'
+assembling STARTUP.A51...
+compiling isr.c...
+USER\INCLUDES.H(6): warning C318: can't open file 'IAP15W4K61S4.h'
+USER\INCLUDES.H(7): warning C318: can't open file 'UART.h'
+USER\INCLUDES.H(8): warning C318: can't open file 'MPU6050.h'
+USER\INCLUDES.H(9): warning C318: can't open file 'I2C.h'
+USER\INCLUDES.H(10): warning C318: can't open file 'PWM.h'
+USER\INCLUDES.H(11): warning C318: can't open file 'DELAY.h'
+USER\INCLUDES.H(12): warning C318: can't open file 'TIMER.h'
+USER\INCLUDES.H(14): warning C318: can't open file 'LED.h'
+USER\INCLUDES.H(15): warning C318: can't open file 'OutputData.h'
+USER\ISR.C(44): error C202: 'LED0': undefined identifier
+USER\ISR.C(84): error C202: 'LED0': undefined identifier
+compiling main.c...
+USER\INCLUDES.H(6): warning C318: can't open file 'IAP15W4K61S4.h'
+USER\INCLUDES.H(7): warning C318: can't open file 'UART.h'
+USER\INCLUDES.H(8): warning C318: can't open file 'MPU6050.h'
+USER\INCLUDES.H(9): warning C318: can't open file 'I2C.h'
+USER\INCLUDES.H(10): warning C318: can't open file 'PWM.h'
+USER\INCLUDES.H(11): warning C318: can't open file 'DELAY.h'
+USER\INCLUDES.H(12): warning C318: can't open file 'TIMER.h'
+USER\INCLUDES.H(14): warning C318: can't open file 'LED.h'
+USER\INCLUDES.H(15): warning C318: can't open file 'OutputData.h'
+USER\MAIN.C(16): error C202: 'EA': undefined identifier
+USER\MAIN.C(18): error C202: 'CLK_DIV': undefined identifier
+USER\MAIN.C(20): error C202: 'P0M0': undefined identifier
+USER\MAIN.C(21): error C202: 'P0M1': undefined identifier
+USER\MAIN.C(22): error C202: 'P1M0': undefined identifier
+USER\MAIN.C(23): error C202: 'P1M1': undefined identifier
+USER\MAIN.C(24): error C202: 'P2M0': undefined identifier
+USER\MAIN.C(25): error C202: 'P2M1': undefined identifier
+USER\MAIN.C(26): error C202: 'P3M0': undefined identifier
+USER\MAIN.C(27): error C202: 'P3M1': undefined identifier
+USER\MAIN.C(28): error C202: 'P4M0': undefined identifier
+USER\MAIN.C(29): error C202: 'P4M1': undefined identifier
+USER\MAIN.C(30): error C202: 'P5M0': undefined identifier
+USER\MAIN.C(31): error C202: 'P5M1': undefined identifier
+USER\MAIN.C(34): error C202: 'P2M0': undefined identifier
+USER\MAIN.C(35): error C202: 'P2M1': undefined identifier
+USER\MAIN.C(36): error C202: 'P3M0': undefined identifier
+USER\MAIN.C(37): error C202: 'P3M1': undefined identifier
+compiling upstandingcar.c...
+USER\INCLUDES.H(6): warning C318: can't open file 'IAP15W4K61S4.h'
+USER\INCLUDES.H(7): warning C318: can't open file 'UART.h'
+USER\INCLUDES.H(8): warning C318: can't open file 'MPU6050.h'
+USER\INCLUDES.H(9): warning C318: can't open file 'I2C.h'
+USER\INCLUDES.H(10): warning C318: can't open file 'PWM.h'
+USER\INCLUDES.H(11): warning C318: can't open file 'DELAY.h'
+USER\INCLUDES.H(12): warning C318: can't open file 'TIMER.h'
+USER\INCLUDES.H(14): warning C318: can't open file 'LED.h'
+USER\INCLUDES.H(15): warning C318: can't open file 'OutputData.h'
+USER\UPSTANDINGCAR.C(100): warning C206: 'Single_ReadI2C': missing function-prototype
+USER\UPSTANDINGCAR.C(100): error C267: 'Single_ReadI2C': requires ANSI-style prototype
+USER\UPSTANDINGCAR.C(140): error C202: 'GYRO_XOUT_H': undefined identifier
+USER\UPSTANDINGCAR.C(141): error C202: 'ACCEL_YOUT_H': undefined identifier
+USER\UPSTANDINGCAR.C(153): error C202: 'GYRO_XOUT_H': undefined identifier
+USER\UPSTANDINGCAR.C(184): error C202: 'PWM2T1': undefined identifier
+USER\UPSTANDINGCAR.C(185): error C202: 'PWM3T1': undefined identifier
+USER\UPSTANDINGCAR.C(191): error C202: 'PWM2T1': undefined identifier
+USER\UPSTANDINGCAR.C(192): error C202: 'PWM3T1': undefined identifier
+USER\UPSTANDINGCAR.C(201): error C202: 'PWM5T1': undefined identifier
+USER\UPSTANDINGCAR.C(202): error C202: 'PWM4T1': undefined identifier
+USER\UPSTANDINGCAR.C(208): error C202: 'PWM5T1': undefined identifier
+USER\UPSTANDINGCAR.C(209): error C202: 'PWM4T1': undefined identifier
+USER\UPSTANDINGCAR.C(217): error C202: 'PWM2T1': undefined identifier
+USER\UPSTANDINGCAR.C(218): error C202: 'PWM3T1': undefined identifier
+USER\UPSTANDINGCAR.C(219): error C202: 'PWM4T1': undefined identifier
+USER\UPSTANDINGCAR.C(220): error C202: 'PWM5T1': undefined identifier
+USER\UPSTANDINGCAR.C(221): error C202: 'PWM2T2': undefined identifier
+USER\UPSTANDINGCAR.C(222): error C202: 'PWM3T2': undefined identifier
+USER\UPSTANDINGCAR.C(223): error C202: 'PWM5T2': undefined identifier
+USER\UPSTANDINGCAR.C(224): error C202: 'PWM4T2': undefined identifier
+USER\UPSTANDINGCAR.C(266): error C202: 'T4H': undefined identifier
+USER\UPSTANDINGCAR.C(267): error C202: 'T3H': undefined identifier
+USER\UPSTANDINGCAR.C(268): error C202: 'T4T3M': undefined identifier
+USER\UPSTANDINGCAR.C(269): error C202: 'T4H': undefined identifier
+USER\UPSTANDINGCAR.C(270): error C202: 'T3H': undefined identifier
+USER\UPSTANDINGCAR.C(271): error C202: 'T4T3M': undefined identifier
+USER\UPSTANDINGCAR.C(355): error C202: 'LED0': undefined identifier
+compiling i2c.c...
+COMMON\I2C.H(13): warning C318: can't open file 'IAP15W4K61S4.h'
+COMMON\I2C.H(21): error C202: 'P4': undefined identifier
+COMMON\I2C.H(22): error C202: 'P4': undefined identifier
+COMMON\I2C.C(42): error C202: 'SDA': undefined identifier
+COMMON\I2C.C(43): error C202: 'SCL': undefined identifier
+COMMON\I2C.C(45): error C202: 'SDA': undefined identifier
+COMMON\I2C.C(47): error C202: 'SCL': undefined identifier
+COMMON\I2C.C(63): error C202: 'SDA': undefined identifier
+COMMON\I2C.C(64): error C202: 'SCL': undefined identifier
+COMMON\I2C.C(66): error C202: 'SDA': undefined identifier
+COMMON\I2C.C(83): error C202: 'SDA': undefined identifier
+COMMON\I2C.C(84): error C202: 'SCL': undefined identifier
+COMMON\I2C.C(86): error C202: 'SCL': undefined identifier
+COMMON\I2C.C(103): error C202: 'SCL': undefined identifier
+COMMON\I2C.C(105): error C202: 'CY': undefined identifier
+COMMON\I2C.C(106): error C202: 'SCL': undefined identifier
+COMMON\I2C.C(108): error C202: 'CY': undefined identifier
+COMMON\I2C.C(128): error C202: 'SDA': undefined identifier
+COMMON\I2C.C(129): error C202: 'SCL': undefined identifier
+COMMON\I2C.C(131): error C202: 'SCL': undefined identifier
+COMMON\I2C.C(151): error C202: 'SDA': undefined identifier
+COMMON\I2C.C(155): error C202: 'SCL': undefined identifier
+COMMON\I2C.C(157): error C202: 'SDA': undefined identifier
+COMMON\I2C.C(158): error C202: 'SCL': undefined identifier
+compiling led.c...
+COMMON\LED.H(4): warning C318: can't open file 'IAP15W4K61S4.h'
+COMMON\LED.H(6): error C202: 'P4': undefined identifier
+COMMON\LED.H(7): error C202: 'P2': undefined identifier
+COMMON\LED.C(6): error C202: 'LED0': undefined identifier
+COMMON\LED.C(7): error C202: 'LED1': undefined identifier
+compiling mpu6050.c...
+COMMON\I2C.H(13): warning C318: can't open file 'IAP15W4K61S4.h'
+COMMON\I2C.H(21): error C202: 'P4': undefined identifier
+COMMON\I2C.H(22): error C202: 'P4': undefined identifier
+compiling outputdata.c...
+common\outputdata.c(2): warning C318: can't open file 'uart.h'
+COMMON\OUTPUTDATA.C(50): warning C206: 'UART1SendByte': missing function-prototype
+COMMON\OUTPUTDATA.C(50): error C267: 'UART1SendByte': requires ANSI-style prototype
+compiling delay.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+driver\uart.c(2): warning C318: can't open file 'uart.h'
+DRIVER\UART.C(16): error C202: 'SCON': undefined identifier
+DRIVER\UART.C(17): error C202: 'AUXR': undefined identifier
+DRIVER\UART.C(18): error C202: 'T2L': undefined identifier
+DRIVER\UART.C(19): error C202: 'T2H': undefined identifier
+DRIVER\UART.C(22): error C202: 'AUXR': undefined identifier
+DRIVER\UART.C(23): error C202: 'AUXR': undefined identifier
+DRIVER\UART.C(25): error C202: 'TI': undefined identifier
+DRIVER\UART.C(41): error C202: 'S2CON': undefined identifier
+DRIVER\UART.C(42): error C202: 'AUXR': undefined identifier
+DRIVER\UART.C(45): error C202: 'T2L': undefined identifier
+DRIVER\UART.C(46): error C202: 'T2H': undefined identifier
+DRIVER\UART.C(47): error C202: 'AUXR': undefined identifier
+DRIVER\UART.C(70): error C202: 'RI': undefined identifier
+DRIVER\UART.C(71): error C202: 'RI': undefined identifier
+DRIVER\UART.C(72): error C202: 'SBUF': undefined identifier
+DRIVER\UART.C(95): error C202: 'S2CON': undefined identifier
+DRIVER\UART.C(96): error C202: 'S2CON': undefined identifier
+DRIVER\UART.C(97): error C202: 'S2BUF': undefined identifier
+DRIVER\UART.C(113): error C202: 'SBUF': undefined identifier
+DRIVER\UART.C(114): error C202: 'TI': undefined identifier
+DRIVER\UART.C(116): error C202: 'TI': undefined identifier
+DRIVER\UART.C(131): error C202: 'S2BUF': undefined identifier
+DRIVER\UART.C(132): error C202: 'S2CON': undefined identifier
+DRIVER\UART.C(133): error C202: 'S2CON': undefined identifier
+Target not created
+compiling uart.c...
+driver\uart.c - 0 Error(s), 0 Warning(s).
+Build target 'MWbalanced-firmware-none'
+assembling STARTUP.A51...
+compiling isr.c...
+compiling main.c...
+compiling upstandingcar.c...
+compiling i2c.c...
+compiling led.c...
+compiling mpu6050.c...
+compiling outputdata.c...
+compiling delay.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?OUTPUT_DATA?OUTPUTDATA
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PCAINIT?PWM
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMER0INIT?TIMER
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?UART1RECEIVEBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2SENDBYTE?UART
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_DATASYNTHESIS?UPSTANDINGCAR
+    CALLER1: ?C_C51STARTUP
+    CALLER2: ?PR?TIMER1_UPDATE?ISR
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_SINGLE_READI2C?I2C
+    CALLER1: ?C_C51STARTUP
+    CALLER2: ?PR?TIMER1_UPDATE?ISR
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?DELAY5US?I2C
+    CALLER1: ?C_C51STARTUP
+    CALLER2: ?PR?TIMER1_UPDATE?ISR
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_I2C_SENDBYTE?I2C
+    CALLER1: ?C_C51STARTUP
+    CALLER2: ?PR?TIMER1_UPDATE?ISR
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?I2C_SENDACK?I2C
+    CALLER1: ?C_C51STARTUP
+    CALLER2: ?PR?TIMER1_UPDATE?ISR
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   DATA    
+    SEGMENT: ?DT?OUTPUT_DATA?OUTPUTDATA
+    LENGTH:  001DH
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   DATA    
+    SEGMENT: ?DT?OUTPUTDATA
+    LENGTH:  0010H
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  G_UCSPEEDCOUNTCARRY
+    MODULE:  .\output\isr.obj (ISR)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  G_UCSPEEDCOUNTCARRY
+    MODULE:  .\output\isr.obj (ISR)
+    ADDRESS: 0017H
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  G_UCSPEEDCOUNTCARRY
+    MODULE:  .\output\upstandingcar.obj (UPSTANDINGCAR)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  G_UCSPEEDCOUNTCARRY
+    MODULE:  .\output\upstandingcar.obj (UPSTANDINGCAR)
+    ADDRESS: 0D2CH
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  OUTDATA
+    SEGMENT: ?DT?OUTPUTDATA
+Program Size: data=167.2 xdata=13 code=4789
+Target not created

@@ -1,0 +1,54 @@
+C51 COMPILER V9.00   MPU6050                                                               11/22/2015 19:59:43 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MPU6050
+OBJECT MODULE PLACED IN .\output\mpu6050.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE common\mpu6050.c LARGE BROWSE INCDIR(.\common;.\driver;.\user) DEBUG OBJECT
+                    -EXTEND PRINT(.\listing\mpu6050.lst) OBJECT(.\output\mpu6050.obj)
+
+line level    source
+
+   1          
+   2          #include "MPU6050.H"
+   3          
+   4          /***************************************************************
+   5          ** 函数名称: MPU6050Init
+   6          ** 功能描述: MPU6050初始化函数
+   7          ** 输　入:   
+   8          ** 输　出:   
+   9          ** 全局变量: 
+  10          ** 作　者:   喵呜实验室
+  11          ** 淘  宝：  Http://miaowlabs.taobao.com
+  12          ** 日　期:   2014年08月01日
+  13          ***************************************************************/
+  14          void MPU6050Init(void)
+  15          {
+  16   1              Single_WriteI2C(PWR_MGMT_1, 0x00)  ; //解除休眠状态
+  17   1              Single_WriteI2C(SMPLRT_DIV, 0x07)  ; //陀螺仪125hz
+  18   1              //Single_WriteI2C(CONFIG, 0x04)      ; //Accelerometer:21hz 8.5ms ; Gyroscope:20hz 8.3ms
+  19   1              Single_WriteI2C(CONFIG, 0x00);   //0x06
+  20   1              Single_WriteI2C(GYRO_CONFIG, 0x18) ; // ±2000°/s  
+  21   1              Single_WriteI2C(ACCEL_CONFIG, 0x01); // ±2g
+  22   1      }
+  23          
+  24          
+  25          
+  26          
+  27          
+  28          
+  29          
+  30          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     35    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

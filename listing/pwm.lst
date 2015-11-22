@@ -1,0 +1,98 @@
+C51 COMPILER V9.00   PWM                                                                   11/22/2015 19:59:43 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE PWM
+OBJECT MODULE PLACED IN .\output\pwm.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE driver\pwm.c LARGE BROWSE INCDIR(.\common;.\driver;.\user) DEBUG OBJECTEXTE
+                    -ND PRINT(.\listing\pwm.lst) OBJECT(.\output\pwm.obj)
+
+line level    source
+
+   1          
+   2          #include "PWM.h"
+   3          
+   4          /***************************************************************
+   5          ** 函数名称: PWMInit
+   6          ** 功能描述: PWM初始化函数
+   7          ** 输　入:   
+   8          ** 输　出:   
+   9          ** 全局变量: 
+  10          ** 作　者:   喵呜实验室
+  11          ** 淘  宝：  Http://miaowlabs.taobao.com
+  12          ** 日　期:   2014年08月01日
+  13          ***************************************************************/
+  14          void PWMInit()
+  15          {       
+  16   1      //所有与PWM相关的端口，在上电后均为高?输入态，必须在程序中将这些口设置为双向
+  17   1      //口或强推挽模式才可正常输出波形。
+  18   1      //PWM端口设置为强推挽模式
+  19   1      /*      P3M0=0x80;
+  20   1              P3M1=0x00;
+  21   1              P4M0=0x00;
+  22   1              P4M1=0x00;      */
+  23   1      
+  24   1              P_SW2|=0x80;    //使能访问XSFR
+  25   1      
+  26   1              PWMCFG = 0x00;                  //配置PWM的输出初始电平为低电平
+  27   1              PWMCKS = 0x00;                  //选择PWM的时钟为Fosc/(0+1)=33M
+  28   1              PWMIF=0x00; 
+  29   1              PWMFDCR=0x00; 
+  30   1      
+  31   1              PWMC = 20001;                   //单位：脉冲时钟 设置PWM周期(最大值为32767)     PWM频率=33M/10000=3.3k
+  32   1      
+  33   1              PWM2T1 = 20000;
+  34   1              PWM2T2 = 20001;
+  35   1      
+  36   1              PWM3T1 = 20000;                  //设置PWM3第1次反转的PWM计数
+  37   1          PWM3T2 = 20001;                              //设置PWM3第2次反转的PWM计数
+  38   1                                                                              //占空比为(PWM3T2-PWM3T1)/PWMC
+  39   1                                                                              //初始PWM3占空比为100%
+  40   1      
+  41   1              PWM4T1 = 20000;                  //设置PWM4第1次反转的PWM计数
+  42   1          PWM4T2 = 20001;                             //设置PWM4第2次反转的PWM计数
+  43   1                                                                              //占空比为(PWM4T2-PWM4T1)/PWMC
+  44   1                                                                              //初始PWM4占空比为100%
+  45   1              PWM5T1 = 20000;
+  46   1              PWM5T2 = 20001;
+  47   1      
+  48   1              PWM2CR=0x00; 
+  49   1              PWM3CR=0x00;
+  50   1              PWM4CR=0x00; 
+  51   1              PWM5CR=0x00; 
+  52   1      
+  53   1          PWMCR = 0x8f;                   //使能PWM信号
+  54   1         
+C51 COMPILER V9.00   PWM                                                                   11/22/2015 19:59:43 PAGE 2   
+
+  55   1              //P_SW2 &= ~0x80;
+  56   1       }
+  57          
+  58          void PCAInit()
+  59          {
+  60   1              CMOD = 0x04;//选择定时器0的溢出脉冲作为计数源
+  61   1              AUXR1 |= 0x20;  //切换引脚
+  62   1              PCA_PWM0 = 0x00 ;//8位PWM,无中断
+  63   1              PCA_PWM1= 0x00;
+  64   1              CL = 0;         //自由递增计数的16位PCA定时器的值,初始化为0
+  65   1              CH = 0;
+  66   1              CCAP0H = CCAP0L = 0x00; //用于控制占空比，占空比=(255-CCAPnL)/255*100%
+  67   1              CCAP1H = CCAP1L = 0x00; //初始化占空比为50%
+  68   1              CR = 1; //PCA计数器阵列开始                                                                              
+  69   1               //PWM的频率=PCA时钟输入源频率/256
+  70   1      }
+  71          
+  72          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    143    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

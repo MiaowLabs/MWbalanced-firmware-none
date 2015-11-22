@@ -1,0 +1,100 @@
+C51 COMPILER V9.00   MAIN                                                                  11/22/2015 19:59:43 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE user\main.c LARGE BROWSE INCDIR(.\common;.\driver;.\user) DEBUG OBJECTEXTEN
+                    -D PRINT(.\listing\main.lst) OBJECT(.\output\main.obj)
+
+line level    source
+
+   1          
+   2          #include "includes.h"
+   3          
+   4          /***************************************************************
+   5          ** 函数名称:  main
+   6          ** 功能描述: 主函数            
+   7          ** 输　  入:   
+   8          ** 输　  出:   
+   9          ** 全局变量: 
+  10          ** 作　  者: 喵呜实验室
+  11          ** 淘    宝：Http://miaowlabs.taobao.com
+  12          ** 日　  期: 2014年09月02日
+  13          ***************************************************************/
+  14          void main()
+  15          {
+  16   1              DisableInterrupts;//禁止总中断
+  17   1              /*硬件底层初始化*/
+  18   1              CLK_DIV_1();     
+  19   1              //所有I/O口全设为准双向，弱上拉模式
+  20   1              P0M0=0x00;
+  21   1              P0M1=0x00;
+  22   1              P1M0=0x00;
+  23   1              P1M1=0x00;
+  24   1              P2M0=0x00;      
+  25   1              P2M1=0x00;
+  26   1              P3M0=0x00;
+  27   1              P3M1=0x00;      
+  28   1              P4M0=0x00;
+  29   1              P4M1=0x00;
+  30   1              P5M0=0x00;
+  31   1              P5M1=0x00;         
+  32   1         
+  33   1              //设置需要使用的PWM输出口为强推挽模式
+  34   1              P2M0=0x0e;
+  35   1              P2M1=0x00;
+  36   1              P3M0=0x80;
+  37   1              P3M1=0x00;
+  38   1                        
+  39   1      //      Timer0Init();   
+  40   1              Timer1Init();
+  41   1              PWMInit();
+  42   1              Uart1Init();
+  43   1              Uart2Init();
+  44   1              Timer3Timer4Init();
+  45   1      
+  46   1              MPU6050Init();  
+  47   1              CarUpstandInit();
+  48   1              
+  49   1              Delaynms(2000);   //延时0.5s
+  50   1      
+  51   1              GetGyroOffset();
+  52   1              LEDInit();        //指示灯初始化
+  53   1              Delaynms(3000);   //延时
+  54   1                                                                                      
+C51 COMPILER V9.00   MAIN                                                                  11/22/2015 19:59:43 PAGE 2   
+
+  55   1              EnableInterrupts; //允许总中断
+  56   1      
+  57   1              while(1)
+  58   1              {
+  59   2                       
+  60   2              BluetoothControl();
+  61   2              
+  62   2      #if 0  //调试用 预编译命令
+                      OutData[0] = g_fCarSpeed;
+                      OutData[1] = g_fSpeedControlOutOld;
+                      OutData[2] = g_fSpeedControlOut ;
+                      OutData[3] = 100;
+                 
+                      OutPut_Data();
+              
+              #endif  
+  71   2      
+  72   2                                              
+  73   2              }
+  74   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     88    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

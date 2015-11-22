@@ -1,0 +1,77 @@
+C51 COMPILER V9.00   OUTPUTDATA                                                            11/22/2015 19:59:43 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE OUTPUTDATA
+OBJECT MODULE PLACED IN .\output\outputdata.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE common\outputdata.c LARGE BROWSE INCDIR(.\common;.\driver;.\user) DEBUG OBJ
+                    -ECTEXTEND PRINT(.\listing\outputdata.lst) OBJECT(.\output\outputdata.obj)
+
+line level    source
+
+   1          #include "outputdata.h"
+   2          #include "uart.h"
+   3          
+   4          float OutData[4] = { 0 };
+   5          
+   6          unsigned short CRC_CHECK(unsigned char *Buf, unsigned char CRC_CNT)
+   7          {
+   8   1          unsigned short CRC_Temp;
+   9   1          unsigned char i,j;
+  10   1          CRC_Temp = 0xffff;
+  11   1      
+  12   1          for (i=0;i<CRC_CNT; i++){      
+  13   2              CRC_Temp ^= Buf[i];
+  14   2              for (j=0;j<8;j++) {
+  15   3                  if (CRC_Temp & 0x01)
+  16   3                      CRC_Temp = (CRC_Temp >>1 ) ^ 0xa001;
+  17   3                  else
+  18   3                      CRC_Temp = CRC_Temp >> 1;
+  19   3              }
+  20   2          }
+  21   1          return(CRC_Temp);
+  22   1      }
+  23          
+  24          void OutPut_Data(void)
+  25          {
+  26   1        int temp[4] = {0};
+  27   1        unsigned int temp1[4] = {0};
+  28   1        unsigned char databuf[10] = {0};
+  29   1        unsigned char i;
+  30   1        unsigned short CRC16 = 0;
+  31   1        for(i=0;i<4;i++)
+  32   1         {
+  33   2          
+  34   2          temp[i]  = (int)OutData[i];
+  35   2          temp1[i] = (unsigned int)temp[i];
+  36   2          
+  37   2         }
+  38   1         
+  39   1        for(i=0;i<4;i++) 
+  40   1        {
+  41   2          databuf[i*2]   = (unsigned char)(temp1[i]%256);
+  42   2          databuf[i*2+1] = (unsigned char)(temp1[i]/256);
+  43   2        }
+  44   1        
+  45   1        CRC16 = CRC_CHECK(databuf,8);
+  46   1        databuf[8] = CRC16%256;
+  47   1        databuf[9] = CRC16/256;
+  48   1        
+  49   1        for(i=0;i<10;i++)
+  50   1          UART1SendByte(databuf[i]);
+  51   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+C51 COMPILER V9.00   OUTPUTDATA                                                            11/22/2015 19:59:43 PAGE 2   
+
+   CODE SIZE        =    456    ----
+   CONSTANT SIZE    =     26    ----
+   XDATA SIZE       =     16      36
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
