@@ -1,0 +1,36 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\ﬂ˜Œÿ µ—È “\MWbalanced-firmware-none\MWbalanced.uvproj
+Project File Date:  12/02/2015
+
+<h2>Output:</h2>
+compiling main.c...
+APPCODE\INCLUDES.H(8): warning C318: can't open file 'UART.h'
+APPCODE\INCLUDES.H(9): warning C318: can't open file 'MPU6050.h'
+APPCODE\INCLUDES.H(10): warning C318: can't open file 'I2C.h'
+APPCODE\INCLUDES.H(11): warning C318: can't open file 'PWM.h'
+APPCODE\INCLUDES.H(12): warning C318: can't open file 'DELAY.h'
+APPCODE\INCLUDES.H(13): warning C318: can't open file 'TIMER.h'
+APPCODE\INCLUDES.H(15): warning C318: can't open file 'gpio.h'
+APPCODE\INCLUDES.H(16): warning C318: can't open file 'LED.h'
+APPCODE\INCLUDES.H(17): warning C318: can't open file 'OutputData.h'
+APPCODE\INCLUDES.H(18): warning C318: can't open file 'UpstandingCar.h'
+APPCODE\MAIN.C(22): warning C206: 'Timer1Init': missing function-prototype
+APPCODE\MAIN.C(23): warning C206: 'PWMInit': missing function-prototype
+APPCODE\MAIN.C(24): warning C206: 'Uart1Init': missing function-prototype
+APPCODE\MAIN.C(25): warning C206: 'Uart2Init': missing function-prototype
+APPCODE\MAIN.C(26): warning C206: 'Timer3Timer4Init': missing function-prototype
+APPCODE\MAIN.C(28): warning C206: 'MPU6050Init': missing function-prototype
+APPCODE\MAIN.C(29): warning C206: 'CarUpstandInit': missing function-prototype
+APPCODE\MAIN.C(31): warning C206: 'Delaynms': missing function-prototype
+APPCODE\MAIN.C(31): error C267: 'Delaynms': requires ANSI-style prototype
+Appcode\main.c - 1 Error(s), 18 Warning(s).
+compiling main.c...
+APPCODE\INCLUDES.H(18): warning C318: can't open file 'UpstandingCar.h'
+APPCODE\MAIN.C(29): warning C206: 'CarUpstandInit': missing function-prototype
+APPCODE\MAIN.C(33): warning C206: 'GetGyroOffset': missing function-prototype
+APPCODE\MAIN.C(42): warning C206: 'BluetoothControl': missing function-prototype
+Appcode\main.c - 0 Error(s), 4 Warning(s).

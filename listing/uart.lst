@@ -1,10 +1,10 @@
-C51 COMPILER V9.00   UART                                                                  11/22/2015 19:59:44 PAGE 1   
+C51 COMPILER V9.00   UART                                                                  12/06/2015 20:09:31 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE UART
-OBJECT MODULE PLACED IN .\output\uart.obj
-COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE driver\uart.c LARGE BROWSE INCDIR(.\common;.\driver;.\user) DEBUG OBJECTEXT
-                    -END PRINT(.\listing\uart.lst) OBJECT(.\output\uart.obj)
+OBJECT MODULE PLACED IN .\Output\uart.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE Driver\src\uart.c LARGE BROWSE INCDIR(.\Appcode;.\BSP;.\Common;.\Driver;.\S
+                    -tartup;.\Common\inc;.\Driver\inc) DEBUG OBJECTEXTEND PRINT(.\Listing\uart.lst) OBJECT(.\Output\uart.obj)
 
 line level    source
 
@@ -21,135 +21,131 @@ line level    source
   11          ** 淘  宝：  Http://miaowlabs.taobao.com
   12          ** 日　期:   2014年08月01日
   13          ***************************************************************/
-  14          void Uart1Init(void)            //115200bps@33.000MHz//9600bps@33.000MHz
+  14          void Uart1Init(void)            //115200bps@20.000MHz
   15          {
-  16   1          SCON = 0x50;                //8位数据,可变波特率
+  16   1              SCON = 0x50;            //8位数据,可变波特率
   17   1              AUXR |= 0x04;           //定时器2时钟为Fosc,即1T
-  18   1              T2L = 0xA5;             //设定定时初值
-  19   1              T2H = 0xFC;             //设定定时初值
-  20   1              //T2L = 0xB8;           //设定定时初值
-  21   1              //T2H = 0xFF;           //设定定时初值
+  18   1      //      T2L = 0xF7;                     //设定定时初值
+  19   1      //      T2H = 0xFD;                     //设定定时初值
+  20   1              T2L = 0xD5;                     //设定定时初值
+  21   1              T2H = 0xFF;                     //设定定时初值
   22   1              AUXR |= 0x01;           //串口1选择定时器2为波特率发生器
   23   1              AUXR |= 0x10;           //启动定时器2
-  24   1          //EA = 1;
-  25   1              TI = 1;
-  26   1      
-  27   1      }
-  28          
-  29          /***************************************************************
-  30          ** 函数名称: Uart2Init
-  31          ** 功能描述: UART1初始化函数
-  32          ** 输　入:   
-  33          ** 输　出:   
-  34          ** 全局变量: 
-  35          ** 作　者:   喵呜实验室
-  36          ** 淘  宝：  Http://miaowlabs.taobao.com
-  37          ** 日　期:   2014年08月01日
-  38          ***************************************************************/
-  39          void Uart2Init(void)            //115200bps@33.000MHz
-  40          {
-  41   1              S2CON = 0x50;           //8位数据,可变波特率
-  42   1              AUXR |= 0x04;           //定时器2时钟为Fosc,即1T
-  43   1              //T2L = 0xA5;           //设定定时初值
-  44   1              //T2H = 0xFC;           //设定定时初值
-  45   1              T2L = 0xB8;             //设定定时初值
-  46   1              T2H = 0xFF;             //设定定时初值
-  47   1              AUXR |= 0x10;           //启动定时器2
-  48   1      }
-  49          
-  50          /***************************************************************
-  51          ** 函数名称: UART1ReceiveByte
-  52          ** 功能描述: UART1接收函数
-  53          ** 输　入:   
-  54          ** 输　出:   
-C51 COMPILER V9.00   UART                                                                  11/22/2015 19:59:44 PAGE 2   
+  24   1      //      TI = 1;
+  25   1      }
+  26          
+  27          /***************************************************************
+  28          ** 函数名称: Uart2Init
+  29          ** 功能描述: UART1初始化函数
+  30          ** 输　入:   
+  31          ** 输　出:   
+  32          ** 全局变量: 
+  33          ** 作　者:   喵呜实验室
+  34          ** 淘  宝：  Http://miaowlabs.taobao.com
+  35          ** 日　期:   2014年08月01日
+  36          ***************************************************************/
+  37          void Uart2Init(void)            //115200bps@20.000MHz
+  38          {
+  39   1              S2CON = 0x50;           //8位数据,可变波特率
+  40   1              AUXR |= 0x04;           //定时器2时钟为Fosc,即1T
+  41   1              T2L = 0xD5;                     //设定定时初值
+  42   1              T2H = 0xFF;                     //设定定时初值
+  43   1              AUXR |= 0x10;           //启动定时器2
+  44   1      }
+  45          
+  46          /***************************************************************
+  47          ** 函数名称: UART1ReceiveByte
+  48          ** 功能描述: UART1接收函数
+  49          ** 输　入:   
+  50          ** 输　出:   
+  51          ** 全局变量: 
+  52          ** 作　者:   喵呜实验室
+  53          ** 淘  宝：  Http://miaowlabs.taobao.com
+  54          ** 日　期:   2014年08月01日
+C51 COMPILER V9.00   UART                                                                  12/06/2015 20:09:31 PAGE 2   
 
-  55          ** 全局变量: 
-  56          ** 作　者:   喵呜实验室
-  57          ** 淘  宝：  Http://miaowlabs.taobao.com
-  58          ** 日　期:   2014年08月01日
-  59          ***************************************************************/
-  60          unsigned char UART1ReceiveByte(void)
-  61          {
-  62   1          unsigned char xdata ucRxd1; 
-  63   1          /*if(RI == 1)                                            
-  64   1          {
-  65   1            RI = 0;
-  66   1            ucRxd1 = SBUF;
-  67   1            return(ucRxd1);            
-  68   1          }
-  69   1          //return 0;   */
-  70   1              while(RI==0);
-  71   1              RI = 0;
-  72   1              ucRxd1 = SBUF;
-  73   1              return(ucRxd1);
-  74   1      }
-  75          
-  76          /***************************************************************
-  77          ** 函数名称: UART2ReceiveByte
-  78          ** 功能描述: UART2接收函数
-  79          ** 输　入:   
-  80          ** 输　出:   
-  81          ** 全局变量: 
-  82          ** 作　者:   喵呜实验室
-  83          ** 淘  宝：  Http://miaowlabs.taobao.com
-  84          ** 日　期:   2014年08月01日
-  85          ***************************************************************/
-  86          unsigned char UART2ReceiveByte(void)
-  87          {
-  88   1          unsigned char xdata ucRxd2; /*
-  89   1              if ((S2CON & 0x01) == 1)  
-  90   1          {  
-  91   1            S2CON &= 0xFE;  
-  92   1            ucRxd2 = S2BUF;
-  93   1                return(ucRxd2);  
-  94   1          }                              */
-  95   1              while((S2CON & 0x01) == 0);
-  96   1              S2CON &= 0xFE;
-  97   1              ucRxd2 = S2BUF;
-  98   1              return(ucRxd2);
-  99   1      }
- 100          
- 101          /***************************************************************
- 102          ** 函数名称: UART1SendByte
- 103          ** 功能描述: UART1发送函数
- 104          ** 输　入:   
- 105          ** 输　出:   
- 106          ** 全局变量: 
- 107          ** 作　者:   喵呜实验室
- 108          ** 淘  宝：  Http://miaowlabs.taobao.com
- 109          ** 日　期:   2014年08月01日
- 110          ***************************************************************/
- 111          void UART1SendByte(unsigned char TxD1)  
- 112          {   
- 113   1          SBUF=TxD1;  
- 114   1          while(TI == 0);//等待发送完成 
- 115   1          //while(!TI);//等待发送完成 
- 116   1          TI=0;   
-C51 COMPILER V9.00   UART                                                                  11/22/2015 19:59:44 PAGE 3   
+  55          ***************************************************************/
+  56          unsigned char UART1ReceiveByte(void)
+  57          {
+  58   1          unsigned char xdata ucRxd1; 
+  59   1          /*if(RI == 1)                                            
+  60   1          {
+  61   1            RI = 0;
+  62   1            ucRxd1 = SBUF;
+  63   1            return(ucRxd1);            
+  64   1          }
+  65   1          //return 0;   */
+  66   1              while(RI==0);
+  67   1              RI = 0;
+  68   1              ucRxd1 = SBUF;
+  69   1              return(ucRxd1);
+  70   1      }
+  71          
+  72          /***************************************************************
+  73          ** 函数名称: UART2ReceiveByte
+  74          ** 功能描述: UART2接收函数
+  75          ** 输　入:   
+  76          ** 输　出:   
+  77          ** 全局变量: 
+  78          ** 作　者:   喵呜实验室
+  79          ** 淘  宝：  Http://miaowlabs.taobao.com
+  80          ** 日　期:   2014年08月01日
+  81          ***************************************************************/
+  82          unsigned char UART2ReceiveByte(void)
+  83          {
+  84   1          unsigned char xdata ucRxd2; /*
+  85   1              if ((S2CON & 0x01) == 1)  
+  86   1          {  
+  87   1            S2CON &= 0xFE;  
+  88   1            ucRxd2 = S2BUF;
+  89   1                return(ucRxd2);  
+  90   1          }                              */
+  91   1              while((S2CON & 0x01) == 0);
+  92   1              S2CON &= 0xFE;
+  93   1              ucRxd2 = S2BUF;
+  94   1              return(ucRxd2);
+  95   1      }
+  96          
+  97          /***************************************************************
+  98          ** 函数名称: UART1SendByte
+  99          ** 功能描述: UART1发送函数
+ 100          ** 输　入:   
+ 101          ** 输　出:   
+ 102          ** 全局变量: 
+ 103          ** 作　者:   喵呜实验室
+ 104          ** 淘  宝：  Http://miaowlabs.taobao.com
+ 105          ** 日　期:   2014年08月01日
+ 106          ***************************************************************/
+ 107          void UART1SendByte(unsigned char TxD1)  
+ 108          {   
+ 109   1          SBUF=TxD1;  
+ 110   1          while(TI == 0);//等待发送完成 
+ 111   1          //while(!TI);//等待发送完成 
+ 112   1          TI=0;   
+ 113   1      }  
+ 114          
+ 115          /***************************************************************
+ 116          ** 函数名称: UART2SendByte
+C51 COMPILER V9.00   UART                                                                  12/06/2015 20:09:31 PAGE 3   
 
- 117   1      }  
- 118          
- 119          /***************************************************************
- 120          ** 函数名称: UART2SendByte
- 121          ** 功能描述: UART2发送函数
- 122          ** 输　入:   
- 123          ** 输　出:   
- 124          ** 全局变量: 
- 125          ** 作　者:   喵呜实验室
- 126          ** 淘  宝：  Http://miaowlabs.taobao.com
- 127          ** 日　期:   2014年08月01日
- 128          ***************************************************************/
- 129          void UART2SendByte(unsigned char TxD2)  
- 130          {   
- 131   1          S2BUF=TxD2;  
- 132   1          while ((S2CON & 0x02) == 0); //等待发送完成 
- 133   1          S2CON &= 0xFD;    
- 134   1      }   
+ 117          ** 功能描述: UART2发送函数
+ 118          ** 输　入:   
+ 119          ** 输　出:   
+ 120          ** 全局变量: 
+ 121          ** 作　者:   喵呜实验室
+ 122          ** 淘  宝：  Http://miaowlabs.taobao.com
+ 123          ** 日　期:   2014年08月01日
+ 124          ***************************************************************/
+ 125          void UART2SendByte(unsigned char TxD2)  
+ 126          {   
+ 127   1          S2BUF=TxD2;  
+ 128   1          while ((S2CON & 0x02) == 0); //等待发送完成 
+ 129   1          S2CON &= 0xFD;    
+ 130   1      }   
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     75    ----
+   CODE SIZE        =     73    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

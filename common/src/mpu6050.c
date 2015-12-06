@@ -15,8 +15,8 @@ void MPU6050Init(void)
 {
 	Single_WriteI2C(PWR_MGMT_1, 0x00)  ; //½â³ýÐÝÃß×´Ì¬
 	Single_WriteI2C(SMPLRT_DIV, 0x07)  ; //ÍÓÂÝÒÇ125hz
-	//Single_WriteI2C(CONFIG, 0x04)      ; //Accelerometer:21hz 8.5ms ; Gyroscope:20hz 8.3ms
-	Single_WriteI2C(CONFIG, 0x00); 	 //0x06
+	Single_WriteI2C(CONFIG, 0x04)      ; //Accelerometer:21hz 8.5ms ; Gyroscope:20hz 8.3ms
+	//Single_WriteI2C(CONFIG, 0x00); 	 //0x06
 	Single_WriteI2C(GYRO_CONFIG, 0x18) ; // ¡À2000¡ã/s  
 	Single_WriteI2C(ACCEL_CONFIG, 0x01); // ¡À2g
 }

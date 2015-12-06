@@ -1,139 +1,71 @@
-C51 COMPILER V9.00   ISR                                                                   11/22/2015 19:59:42 PAGE 1   
+C51 COMPILER V9.00   ISR                                                                   12/06/2015 20:09:31 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE ISR
-OBJECT MODULE PLACED IN .\output\isr.obj
-COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE user\isr.c LARGE BROWSE INCDIR(.\common;.\driver;.\user) DEBUG OBJECTEXTEND
-                    - PRINT(.\listing\isr.lst) OBJECT(.\output\isr.obj)
+OBJECT MODULE PLACED IN .\Output\isr.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE Appcode\isr.c LARGE BROWSE INCDIR(.\Appcode;.\BSP;.\Common;.\Driver;.\Start
+                    -up;.\Common\inc;.\Driver\inc) DEBUG OBJECTEXTEND PRINT(.\Listing\isr.lst) OBJECT(.\Output\isr.obj)
 
 line level    source
 
-   1          
-   2          #include "includes.h"
-   3          
-   4          
-   5          
-   6          
-   7          /***************************************************************
-   8          ** 函数名称: Timer1_Update
-   9          ** 功能描述: Timer1中断函数
-  10          ** 输　入:   
-  11          ** 输　出:   
-  12          ** 全局变量: 
-  13          ** 作　者:   喵呜实验室
-  14          ** 淘  宝：  Http://miaowlabs.taobao.com
-  15          ** 日　期:   2014年08月01日
-  16          ***************************************************************/
-  17          void Timer1_Update(void) interrupt  3           //125hz
-  18          { 
-  19   1              SampleInputVoltage();
-  20   1              AngleControl(); 
-  21   1      
-  22   1              GetMotorPulse();
-  23   1              g_ucSpeedControlCount++;
-  24   1              if(g_ucSpeedControlCount>=10) //80ms
-  25   1                      {       
-  26   2                              SpeedControl(); 
-  27   2                              g_ucSpeedControlCount=0;
-  28   2                      }
-  29   1              MotorOutput();          
-  30   1              #if 0  //调试用 预编译命令
-                 OutData[0] = g_fCarSpeed;
-                      OutData[1] = g_iLeftMotorPulseSigma;
-                      OutData[2] = g_fSpeedControlOut ;
-                      OutData[3] = g_fCarPosition;
-                 
-                      OutPut_Data();
-              
-              #endif                                           
-  39   1      #if 1  //调试用 
-  40   1              g_ucLEDCount++;
-  41   1              if(g_ucLEDCount >=125) //LED1灯1秒交替闪烁
-  42   1              {
-  43   2                      g_ucLEDCount=0;
-  44   2                      LED0=~LED0;
-  45   2              }
-  46   1      #endif                                   
-  47   1      }
-  48          
-  49          void Timer0_Update(void) interrupt  1
-  50          {
-  51   1          
-  52   1              g_ucSpeedCountCarry++;
-  53   1      //      LED2=~LED2;
-  54   1      }
-C51 COMPILER V9.00   ISR                                                                   11/22/2015 19:59:42 PAGE 2   
+   1          /********************************************************************
+   2          作者：Songyimiao
+   3          建立日期: 20151129
+   4          版本：V2.0
+   5          喵呜实验室版权所有
+   6          /********************************************************************/
+   7          #include "includes.h"
+   8          
+   9          /***************************************************************
+  10          ** 作　  者: Songyimiao
+  11          ** 官    网：http://www.miaowlabs.com
+  12          ** 淘    宝：http://miaowlabs.taobao.com
+  13          ** 日　  期: 2015年11月29日
+  14          ** 函数名称: Timer1_Update
+  15          ** 功能描述: 125hz中断服务函数            
+  16          ** 输　  入:   
+  17          ** 输　  出:   
+  18          ** 备    注: 
+  19          ********************喵呜实验室版权所有**************************
+  20          ***************************************************************/
+  21          void Timer1_Update(void) interrupt  3           //125hz
+  22          { 
+  23   1              
+  24   1                      SampleInputVoltage();
+  25   1                      AngleControl(); 
+  26   1                      GetMotorPulse();
+  27   1                      
+  28   1                      g_ucSpeedControlCount++;
+  29   1                      if(g_ucSpeedControlCount>=10) 
+  30   1                              {       
+  31   2                                      SpeedControl(); 
+  32   2                                      g_ucSpeedControlCount=0;
+  33   2                              }
+  34   1              
+  35   1                      MotorOutput();  
+  36   1                                                       
+  37   1                      g_ucLEDCount++;
+  38   1                      if(g_ucLEDCount >=125) //LED1灯1秒交替闪烁
+  39   1                      {
+  40   2                              g_ucLEDCount=0;
+  41   2                              LED0=~LED0;
+  42   2                      }
+  43   1                               
+  44   1      }
+  45          
+  46          void Timer0_Update(void) interrupt  1
+  47          {
+  48   1          
+  49   1      //      g_ucSpeedCountCarry++;
+  50   1      //      LED2=~LED2;
+  51   1      }
+  52                                           
 
-  55          
-  56          
-  57          
-  58          /***************************************************************
-  59          ** 函数名称: GetLeftMotorPulse
-  60          ** 功能描述: 左电机脉冲捕捉函数
-  61          ** 输　入:   
-  62          ** 输　出:   
-  63          ** 全局变量: 
-  64          ** 作　者:   喵呜实验室
-  65          ** 淘  宝：  Http://miaowlabs.taobao.com
-  66          ** 日　期:   2014年08月01日
-  67          ***************************************************************/
-  68          
-  69          void GetLeftMotorPulse(void) interrupt 2
-  70          {
-  71   1      #if 0
-                 if(LeftMotorDirection == 1)                  //1 
-                 {
-                    g_iLeftMotorPulse++;  //A脉冲低电平则B脉冲加一
-                    //LED0=~LED0;
-                 }     
-                 else 
-                 {
-                    g_iLeftMotorPulse--; 
-                    //LED0=~LED0;
-                 }
-              #else
-  83   1                g_iLeftMotorPulse++;
-  84   1                LED0=~LED0;
-  85   1      #endif  
-  86   1      } 
-  87          
-  88          
-  89          /***************************************************************
-  90          ** 函数名称: GetRightMotorPulse
-  91          ** 功能描述: 右电机脉冲捕捉函数
-  92          ** 输　入:   
-  93          ** 输　出:   
-  94          ** 全局变量: 
-  95          ** 作　者:   喵呜实验室
-  96          ** 淘  宝：  Http://miaowlabs.taobao.com
-  97          ** 日　期:   2014年08月01日
-  98          ***************************************************************/
-  99          /*
- 100          void GetRightMotorPulse(void) interrupt 0
- 101          {
- 102          #if 0
- 103             if(RightMotorDirection == 0)            //0
- 104             {
- 105                g_liRightMotorPulse++;    //A脉冲低电平则B脉冲加一
- 106                          //LED2=~LED2;
- 107             }
- 108             else 
- 109             {
- 110                g_liRightMotorPulse--;
- 111                          //LED2=~LED2;
- 112             }
- 113          #else
- 114                          g_liRightMotorPulse++;
- 115                          //LED2=~LED2;
- 116          #endif
-C51 COMPILER V9.00   ISR                                                                   11/22/2015 19:59:42 PAGE 3   
 
- 117          }
- 118          */                                               
-
+C51 COMPILER V9.00   ISR                                                                   12/06/2015 20:09:31 PAGE 2   
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    152    ----
+   CODE SIZE        =    105    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

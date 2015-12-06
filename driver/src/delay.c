@@ -13,17 +13,18 @@
 ** 淘  宝：  Http://miaowlabs.taobao.com
 ** 日　期:   2014年08月01日
 ***************************************************************/
-void Delay1ms()		//@33.000MHz
+void Delay1ms()		//@20.000MHz
 {
 	unsigned char i, j;
 
-	i = 33;
-	j = 22;
+	i = 20;
+	j = 113;
 	do
 	{
 		while (--j);
 	} while (--i);
 }
+
 
 
 

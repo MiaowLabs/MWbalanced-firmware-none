@@ -1,0 +1,15 @@
+".\Output\isr.obj",
+".\Output\main.obj",
+".\Output\carstand.obj",
+".\Output\delay.obj",
+".\Output\gpio.obj",
+".\Output\pwm.obj",
+".\Output\timer.obj",
+".\Output\uart.obj",
+".\Output\i2c.obj",
+".\Output\led.obj",
+".\Output\mpu6050.obj",
+".\Output\outputdata.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\MWbalanced" 
+PRINT(".\Listing\MWbalanced.m51") RAMSIZE(256) 

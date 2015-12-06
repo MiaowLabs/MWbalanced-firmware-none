@@ -1,10 +1,10 @@
-C51 COMPILER V9.00   I2C                                                                   11/22/2015 19:59:43 PAGE 1   
+C51 COMPILER V9.00   I2C                                                                   12/06/2015 20:09:31 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE I2C
-OBJECT MODULE PLACED IN .\output\i2c.obj
-COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE common\i2c.c LARGE BROWSE INCDIR(.\common;.\driver;.\user) DEBUG OBJECTEXTE
-                    -ND PRINT(.\listing\i2c.lst) OBJECT(.\output\i2c.obj)
+OBJECT MODULE PLACED IN .\Output\i2c.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE Common\src\i2c.c LARGE BROWSE INCDIR(.\Appcode;.\BSP;.\Common;.\Driver;.\St
+                    -artup;.\Common\inc;.\Driver\inc) DEBUG OBJECTEXTEND PRINT(.\Listing\i2c.lst) OBJECT(.\Output\i2c.obj)
 
 line level    source
 
@@ -15,7 +15,7 @@ line level    source
    5          
    6          /***************************************************************
    7          ** 函数名称: Delay5us
-   8          ** 功能描述: 延时5微秒(STC15W4K32S4@33M) 不同的工作环境,需要调整此函数
+   8          ** 功能描述: 延时5微秒(STC15W4K61S4@20M) 不同的工作环境,需要调整此函数
    9                                   此延时函数是使用1T的指令周期进行计算,与传统的12T的MCU不同
   10          ** 输　入:   
   11          ** 输　出:   
@@ -24,16 +24,16 @@ line level    source
   14          ** 淘  宝：  Http://miaowlabs.taobao.com
   15          ** 日　期:   2014年08月01日
   16          ***************************************************************/
-  17          void Delay5us()         //@33.000MHz
+  17          void Delay5us()         //@20.000MHz
   18          {
-  19   1              unsigned char idata i;
+  19   1              unsigned char i;
   20   1      
   21   1              _nop_();
   22   1              _nop_();
-  23   1              _nop_();
-  24   1              i = 38;
-  25   1              while (--i);
-  26   1      }
+  23   1              i = 22;
+  24   1              while (--i);
+  25   1      }
+  26          
   27          
   28          
   29          
@@ -62,7 +62,7 @@ line level    source
   52          ** 函数名称: I2C_Stop
   53          ** 功能描述: I2C停止信号
   54          ** 输　入:   
-C51 COMPILER V9.00   I2C                                                                   11/22/2015 19:59:43 PAGE 2   
+C51 COMPILER V9.00   I2C                                                                   12/06/2015 20:09:31 PAGE 2   
 
   55          ** 输　出:   
   56          ** 全局变量: 
@@ -126,7 +126,7 @@ line level    source
  114          ** 功能描述: 向I2C总线发送一个字节数据
  115          ** 输　入:   
  116          ** 输　出:   
-C51 COMPILER V9.00   I2C                                                                   11/22/2015 19:59:43 PAGE 3   
+C51 COMPILER V9.00   I2C                                                                   12/06/2015 20:09:31 PAGE 3   
 
  117          ** 全局变量: 
  118          ** 作　者:   喵呜实验室
@@ -190,7 +190,7 @@ line level    source
  176          {
  177   1          I2C_Start();                  //起始信号
  178   1          I2C_SendByte(SlaveAddress);   //发送设备地址+写信号
-C51 COMPILER V9.00   I2C                                                                   11/22/2015 19:59:43 PAGE 4   
+C51 COMPILER V9.00   I2C                                                                   12/06/2015 20:09:31 PAGE 4   
 
  179   1          I2C_SendByte(REG_Address);    //内部寄存器地址
  180   1          I2C_SendByte(REG_data);       //内部寄存器数据
@@ -224,12 +224,12 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    204    ----
+   CODE SIZE        =    199    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
-   IDATA SIZE       =   ----       3
+   IDATA SIZE       =   ----       2
    BIT SIZE         =   ----       1
 END OF MODULE INFORMATION.
 

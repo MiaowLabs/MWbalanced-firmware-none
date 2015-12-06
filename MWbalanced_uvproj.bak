@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>MWbalanced-firmware-none</TargetName>
+      <TargetName>MWbalanced</TargetName>
       <ToolsetNumber>0x0</ToolsetNumber>
       <ToolsetName>MCS-51</ToolsetName>
       <TargetOption>
@@ -42,14 +42,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\output\</OutputDirectory>
-          <OutputName>MWbalanced-firmware-none</OutputName>
+          <OutputDirectory>.\Output\</OutputDirectory>
+          <OutputName>MWbalanced</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\listing\</ListingPath>
+          <ListingPath>.\Listing\</ListingPath>
           <HexFormatSelection>0</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -294,7 +294,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\common;.\driver;.\user</IncludePath>
+              <IncludePath>.\Appcode;.\BSP;.\Common;.\Driver;.\Startup;.\Common\inc;.\Driver\inc</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -344,82 +344,117 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>startup</GroupName>
+          <GroupName>Appcode</GroupName>
           <Files>
             <File>
-              <FileName>STARTUP.A51</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\startup\STARTUP.A51</FilePath>
+              <FileName>includes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Appcode\includes.h</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>user</GroupName>
-          <Files>
             <File>
               <FileName>isr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\user\isr.c</FilePath>
+              <FilePath>.\Appcode\isr.c</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\user\main.c</FilePath>
+              <FilePath>.\Appcode\main.c</FilePath>
             </File>
             <File>
-              <FileName>upstandingcar.c</FileName>
+              <FileName>carstand.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\user\upstandingcar.c</FilePath>
+              <FilePath>.\Appcode\carstand.c</FilePath>
+            </File>
+            <File>
+              <FileName>carstand.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Appcode\carstand.h</FilePath>
+            </File>
+            <File>
+              <FileName>UpdateLog.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\UpdateLog.txt</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>common</GroupName>
-          <Files>
-            <File>
-              <FileName>i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\common\i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\common\led.c</FilePath>
-            </File>
-            <File>
-              <FileName>mpu6050.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\common\mpu6050.c</FilePath>
-            </File>
-            <File>
-              <FileName>outputdata.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\common\outputdata.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>driver</GroupName>
+          <GroupName>Driver</GroupName>
           <Files>
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\driver\delay.c</FilePath>
+              <FilePath>.\Driver\src\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\src\gpio.c</FilePath>
             </File>
             <File>
               <FileName>pwm.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\driver\pwm.c</FilePath>
+              <FilePath>.\Driver\src\pwm.c</FilePath>
             </File>
             <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\driver\timer.c</FilePath>
+              <FilePath>.\Driver\src\timer.c</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\driver\uart.c</FilePath>
+              <FilePath>.\Driver\src\uart.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Common</GroupName>
+          <Files>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Common\src\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Common\src\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>mpu6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Common\src\mpu6050.c</FilePath>
+            </File>
+            <File>
+              <FileName>outputdata.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Common\src\outputdata.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>BSP</GroupName>
+          <Files>
+            <File>
+              <FileName>IAP15W4K61S4.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\BSP\IAP15W4K61S4.h</FilePath>
+            </File>
+            <File>
+              <FileName>IOConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\BSP\IOConfig.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Startup</GroupName>
+          <Files>
+            <File>
+              <FileName>STARTUP.A51</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Startup\STARTUP.A51</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,10 +1,10 @@
-C51 COMPILER V9.00   MPU6050                                                               11/22/2015 19:59:43 PAGE 1   
+C51 COMPILER V9.00   MPU6050                                                               12/06/2015 20:09:31 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE MPU6050
-OBJECT MODULE PLACED IN .\output\mpu6050.obj
-COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE common\mpu6050.c LARGE BROWSE INCDIR(.\common;.\driver;.\user) DEBUG OBJECT
-                    -EXTEND PRINT(.\listing\mpu6050.lst) OBJECT(.\output\mpu6050.obj)
+OBJECT MODULE PLACED IN .\Output\mpu6050.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE Common\src\mpu6050.c LARGE BROWSE INCDIR(.\Appcode;.\BSP;.\Common;.\Driver;
+                    -.\Startup;.\Common\inc;.\Driver\inc) DEBUG OBJECTEXTEND PRINT(.\Listing\mpu6050.lst) OBJECT(.\Output\mpu6050.obj)
 
 line level    source
 
@@ -25,8 +25,8 @@ line level    source
   15          {
   16   1              Single_WriteI2C(PWR_MGMT_1, 0x00)  ; //½â³ýÐÝÃß×´Ì¬
   17   1              Single_WriteI2C(SMPLRT_DIV, 0x07)  ; //ÍÓÂÝÒÇ125hz
-  18   1              //Single_WriteI2C(CONFIG, 0x04)      ; //Accelerometer:21hz 8.5ms ; Gyroscope:20hz 8.3ms
-  19   1              Single_WriteI2C(CONFIG, 0x00);   //0x06
+  18   1              Single_WriteI2C(CONFIG, 0x04)      ; //Accelerometer:21hz 8.5ms ; Gyroscope:20hz 8.3ms
+  19   1              //Single_WriteI2C(CONFIG, 0x00);         //0x06
   20   1              Single_WriteI2C(GYRO_CONFIG, 0x18) ; // ¡À2000¡ã/s  
   21   1              Single_WriteI2C(ACCEL_CONFIG, 0x01); // ¡À2g
   22   1      }

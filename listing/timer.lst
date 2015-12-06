@@ -1,10 +1,10 @@
-C51 COMPILER V9.00   TIMER                                                                 11/22/2015 19:59:43 PAGE 1   
+C51 COMPILER V9.00   TIMER                                                                 12/06/2015 20:09:31 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE TIMER
-OBJECT MODULE PLACED IN .\output\timer.obj
-COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE driver\timer.c LARGE BROWSE INCDIR(.\common;.\driver;.\user) DEBUG OBJECTEX
-                    -TEND PRINT(.\listing\timer.lst) OBJECT(.\output\timer.obj)
+OBJECT MODULE PLACED IN .\Output\timer.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE Driver\src\timer.c LARGE BROWSE INCDIR(.\Appcode;.\BSP;.\Common;.\Driver;.\
+                    -Startup;.\Common\inc;.\Driver\inc) DEBUG OBJECTEXTEND PRINT(.\Listing\timer.lst) OBJECT(.\Output\timer.obj)
 
 line level    source
 
@@ -44,31 +44,29 @@ line level    source
   34          ** 淘  宝：  Http://miaowlabs.taobao.com
   35          ** 日　期:   2014年08月01日
   36          ***************************************************************/
-  37          void Timer1Init(void)   //8毫秒@33.000MHz
-  38          {  
-  39   1      
-  40   1              AUXR &= 0xBF;           //定时器时钟12T模式
-  41   1              TMOD &= 0x0F;           //设置定时器模式
-  42   1              TL1 = 0x10;                     //设置定时初值
-  43   1              TH1 = 0xAA;                     //设置定时初值
-  44   1              TF1 = 0;                        //清除TF1标志
-  45   1              TR1 = 1;                        //定时器1开始计时
-  46   1              ET1 = 1;                //允许定时器T1中断         
-  47   1      
-  48   1      }
+  37          void Timer1Init(void)   //8毫秒@20.000MHz
+  38          {
+  39   1              AUXR &= 0xBF;           //定时器时钟12T模式
+  40   1              TMOD &= 0x0F;           //设置定时器模式
+  41   1              TL1 = 0xEB;                     //设置定时初值
+  42   1              TH1 = 0xCB;                     //设置定时初值
+  43   1              TF1 = 0;                        //清除TF1标志
+  44   1              TR1 = 1;                        //定时器1开始计时
+  45   1              ET1 = 1;                //允许定时器T1中断        
+  46   1      }
+  47          
+  48          
   49          
   50          
-  51          
-  52          
-  53          void Timer3Timer4Init(void)             
-  54          {
-C51 COMPILER V9.00   TIMER                                                                 11/22/2015 19:59:43 PAGE 2   
+  51          void Timer3Timer4Init(void)             
+  52          {
+  53   1        T4T3M |= 0xCC;
+  54   1        IE2 &= 0x1F;
+C51 COMPILER V9.00   TIMER                                                                 12/06/2015 20:09:31 PAGE 2   
 
-  55   1        T4T3M |= 0xCC;
-  56   1        IE2 &= 0x1F;
-  57   1      }
-  58          
-  59          
+  55   1      }
+  56          
+  57          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
