@@ -15,7 +15,7 @@
 #define	GYROSCOPE_ANGLE_RATIO 24.0
 /******速度控制相关宏定义******/
 #define CAR_POSITION_SET      0
-#define CAR_SPEED_SET         0
+#define CAR_SPEED_SET         g_iCarSpeedSet//0
 #define MOTOR_LEFT_SPEED_POSITIVE  ((int)g_fLeftMotorOut >0)
 #define MOTOR_RIGHT_SPEED_POSITIVE ((int)g_fRightMotorOut>0)
 #define SPEED_CONTROL_OUT_MAX	MOTOR_OUT_MAX 

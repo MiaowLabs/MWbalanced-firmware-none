@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   I2C                                                                   12/06/2015 20:09:31 PAGE 1   
+C51 COMPILER V9.00   I2C                                                                   12/06/2015 22:13:42 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE I2C
@@ -62,7 +62,7 @@ line level    source
   52          ** 函数名称: I2C_Stop
   53          ** 功能描述: I2C停止信号
   54          ** 输　入:   
-C51 COMPILER V9.00   I2C                                                                   12/06/2015 20:09:31 PAGE 2   
+C51 COMPILER V9.00   I2C                                                                   12/06/2015 22:13:42 PAGE 2   
 
   55          ** 输　出:   
   56          ** 全局变量: 
@@ -126,7 +126,7 @@ line level    source
  114          ** 功能描述: 向I2C总线发送一个字节数据
  115          ** 输　入:   
  116          ** 输　出:   
-C51 COMPILER V9.00   I2C                                                                   12/06/2015 20:09:31 PAGE 3   
+C51 COMPILER V9.00   I2C                                                                   12/06/2015 22:13:42 PAGE 3   
 
  117          ** 全局变量: 
  118          ** 作　者:   喵呜实验室
@@ -190,7 +190,7 @@ line level    source
  176          {
  177   1          I2C_Start();                  //起始信号
  178   1          I2C_SendByte(SlaveAddress);   //发送设备地址+写信号
-C51 COMPILER V9.00   I2C                                                                   12/06/2015 20:09:31 PAGE 4   
+C51 COMPILER V9.00   I2C                                                                   12/06/2015 22:13:42 PAGE 4   
 
  179   1          I2C_SendByte(REG_Address);    //内部寄存器地址
  180   1          I2C_SendByte(REG_data);       //内部寄存器数据

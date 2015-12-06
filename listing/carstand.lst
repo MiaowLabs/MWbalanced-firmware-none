@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 20:32:10 PAGE 1   
+C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 22:13:41 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE CARSTAND
@@ -62,7 +62,7 @@ line level    source
   52          ** 函数名称: DriversInit
   53          ** 功能描述: 底层驱动初始化            
   54          ** 输　  入:   
-C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 20:32:10 PAGE 2   
+C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 22:13:41 PAGE 2   
 
   55          ** 输　  出:   
   56          ** 备    注: 
@@ -126,7 +126,7 @@ line level    source
  114          ** 备    注: 
  115          ********************喵呜实验室版权所有**************************
  116          ***************************************************************/
-C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 20:32:10 PAGE 3   
+C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 22:13:41 PAGE 3   
 
  117          int DataSynthesis(unsigned char REG_Address)    
  118          {
@@ -190,7 +190,7 @@ line level    source
  176          ** 淘    宝：http://miaowlabs.taobao.com
  177          ** 日　  期: 2015年11月29日
  178          ** 函数名称: GyroRevise
-C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 20:32:10 PAGE 4   
+C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 22:13:41 PAGE 4   
 
  179          ** 功能描述: 陀螺仪校正函数            
  180          ** 输　  入:   
@@ -254,7 +254,7 @@ line level    source
  238   2                      PWM3T1=20000;
  239   2                      PWM2T1=iLeftMotorValue;  
  240   2          }
-C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 20:32:10 PAGE 5   
+C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 22:13:41 PAGE 5   
 
  241   1          else 
  242   1          {   
@@ -318,7 +318,7 @@ line level    source
  300   1              if(g_fRightMotorOut < MOTOR_OUT_MIN)    g_fRightMotorOut = MOTOR_OUT_MIN;
  301   1      
  302   1          SetMotorVoltageAndDirection(g_fLeftMotorOut,g_fRightMotorOut);
-C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 20:32:10 PAGE 6   
+C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 22:13:41 PAGE 6   
 
  303   1      }
  304          
@@ -382,7 +382,7 @@ line level    source
  362   1              if((int)g_fCarPosition < SPEED_CONTROL_OUT_MIN)    g_fCarPosition = SPEED_CONTROL_OUT_MIN;
  363   1                                                              
  364   1              g_fSpeedControlOut = (CAR_SPEED_SET - g_fCarSpeed) * g_fcSpeed_P + \
-C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 20:32:10 PAGE 7   
+C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 22:13:41 PAGE 7   
 
  365   1              (CAR_POSITION_SET - g_fCarPosition) * g_fcSpeed_I; 
  366   1      
@@ -440,13 +440,13 @@ line level    source
  417   1              ucBluetoothValue = UART2ReceiveByte();          
  418   1              switch (ucBluetoothValue)
  419   1              {
- 420   2                case 0x02 : g_iCarSpeedSet =   1500 ;  break;    //前进
- 421   2                case 0x01 : g_iCarSpeedSet = (-1500);  break;    //后退
+ 420   2                case 0x02 : g_iCarSpeedSet =   40 ;  break;      //前进
+ 421   2                case 0x01 : g_iCarSpeedSet = (-40);  break;      //后退
  422   2                case 0x03 : g_fBluetoothDirection =   5000 ;  break;//左转
  423   2                case 0x04 : g_fBluetoothDirection = (-5000);  break;//右转
  424   2                case 0x05 : g_fBluetoothSpeed =   130 ; break ;
  425   2                case 0x06 : g_fBluetoothSpeed = (-130); break ;
-C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 20:32:10 PAGE 8   
+C51 COMPILER V9.00   CARSTAND                                                              12/06/2015 22:13:41 PAGE 8   
 
  426   2                case 0x07 : g_fBluetoothDirection =   15000 ;  break;
  427   2                case 0x08 : g_fBluetoothDirection = (-15000);  break;
@@ -457,7 +457,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   2096    ----
+   CODE SIZE        =   2107    ----
    CONSTANT SIZE    =     16    ----
    XDATA SIZE       =     81      17
    PDATA SIZE       =   ----    ----

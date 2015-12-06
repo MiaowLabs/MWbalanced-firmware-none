@@ -417,8 +417,8 @@ void BluetoothControl(void)
 	ucBluetoothValue = UART2ReceiveByte();		
 	switch (ucBluetoothValue)
 	{
-	  case 0x02 : g_iCarSpeedSet =   1500 ;  break;	   //前进
-	  case 0x01 : g_iCarSpeedSet = (-1500);  break;	   //后退
+	  case 0x02 : g_iCarSpeedSet =   40 ;  break;	   //前进
+	  case 0x01 : g_iCarSpeedSet = (-40);  break;	   //后退
 	  case 0x03 : g_fBluetoothDirection =   5000 ;  break;//左转
 	  case 0x04 : g_fBluetoothDirection = (-5000);  break;//右转
 	  case 0x05 : g_fBluetoothSpeed =   130 ; break ;
