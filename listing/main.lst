@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   MAIN                                                                  12/06/2015 22:13:41 PAGE 1   
+C51 COMPILER V9.00   MAIN                                                                  01/17/2016 13:55:37 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
@@ -25,7 +25,7 @@ line level    source
   15          ** 功能描述: 主函数            
   16          ** 输　  入:   
   17          ** 输　  出:   
-  18          ** 备    注: 
+  18          ** 备    注: 启动方式：直接扶起开机即可。
   19          ********************喵呜实验室版权所有**************************
   20          ***************************************************************/
   21          void main()
@@ -33,20 +33,20 @@ line level    source
   23   1              DisableInterrupts;//禁止总中断
   24   1      
   25   1              CLK_DIV_1();      //设置MCU工作频率为内部RC时钟
-  26   1              DriversInit();  
-  27   1              MPU6050Init();  
-  28   1              CarStandInit();
+  26   1              DriversInit();    //芯片底层驱动初始化
+  27   1              MPU6050Init();    //MPU6050初始化
+  28   1              CarStandInit();   //直立小车功能函数初始化
   29   1              
-  30   1              Delaynms(1000);  //延时1s
-  31   1              ON_LED0;
-  32   1              Delaynms(3000);  //延时3s
+  30   1              Delaynms(100);    //延时
+  31   1              ON_LED0;                  //灯亮
+  32   1              Delaynms(100);    //延时
   33   1                                                                              
   34   1              EnableInterrupts;//允许总中断    
   35   1      
   36   1              while(1)
   37   1              { 
   38   2                       
-  39   2              BluetoothControl();
+  39   2              BluetoothControl();     //蓝牙控制函数
   40   2                                                       
   41   2      #if DEBUG_UART  //调试启用 预编译命令
               
@@ -62,7 +62,7 @@ line level    source
   52   1      }
 
 
-C51 COMPILER V9.00   MAIN                                                                  12/06/2015 22:13:41 PAGE 2   
+C51 COMPILER V9.00   MAIN                                                                  01/17/2016 13:55:37 PAGE 2   
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =     37    ----

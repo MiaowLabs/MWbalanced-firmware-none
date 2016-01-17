@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   TIMER                                                                 12/06/2015 22:13:41 PAGE 1   
+C51 COMPILER V9.00   TIMER                                                                 01/17/2016 13:55:38 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE TIMER
@@ -12,8 +12,8 @@ line level    source
    2          #include "timer.h"
    3          
    4          /***************************************************************
-   5          ** 函数名称: Timer0Init
-   6          ** 功能描述: 计数器0初始化函数-对外部脉冲计数
+   5          ** 函数名称: Timer1Init
+   6          ** 功能描述: 定时器1初始化函数
    7          ** 输　入:   
    8          ** 输　出:   
    9          ** 全局变量: 
@@ -21,56 +21,40 @@ line level    source
   11          ** 淘  宝：  Http://miaowlabs.taobao.com
   12          ** 日　期:   2014年08月01日
   13          ***************************************************************/
-  14          void Timer0Init(void)           
+  14          void Timer1Init(void)   //8毫秒@20.000MHz
   15          {
-  16   1              //      AUXR |= 0x80;  //定时器0为1T模式
-  17   1              AUXR &= 0x7f;  //定时器0为12T模式
-  18   1              TMOD = 0x00;  //设置定时器为模式0-16位自动重装载)
-  19   1              TL0 = 0x95 ;  //初始化计时值 65429 33M/12/(65536-65429)/2=12800HZ
-  20   1              TH0 = 0xff ;
-  21   1              TF0 = 0; 
-  22   1              TR0 = 1;  //定时器0开始计时
-  23   1              //ET0 = 1;  //中断使能
-  24   1      }
+  16   1              AUXR &= 0xBF;           //定时器时钟12T模式
+  17   1              TMOD &= 0x0F;           //设置定时器模式
+  18   1              TL1 = 0xEB;                     //设置定时初值
+  19   1              TH1 = 0xCB;                     //设置定时初值
+  20   1              TF1 = 0;                        //清除TF1标志
+  21   1              TR1 = 1;                        //定时器1开始计时
+  22   1              ET1 = 1;                //允许定时器T1中断        
+  23   1      }
+  24          
   25          
-  26          
-  27          /***************************************************************
-  28          ** 函数名称: Timer1Init
-  29          ** 功能描述: 定时器1初始化函数
-  30          ** 输　入:   
-  31          ** 输　出:   
-  32          ** 全局变量: 
-  33          ** 作　者:   喵呜实验室
-  34          ** 淘  宝：  Http://miaowlabs.taobao.com
-  35          ** 日　期:   2014年08月01日
-  36          ***************************************************************/
-  37          void Timer1Init(void)   //8毫秒@20.000MHz
+  26          /***************************************************************
+  27          ** 函数名称: Timer3Timer4Init
+  28          ** 功能描述: 计数器3/计数器4初始化函数-对外部脉冲计数
+  29          ** 输　入:   
+  30          ** 输　出:   
+  31          ** 全局变量: 
+  32          ** 作　者:   喵呜实验室
+  33          ** 淘  宝：  Http://miaowlabs.taobao.com
+  34          ** 日　期:   2014年08月01日
+  35          ***************************************************************/
+  36          
+  37          void Timer3Timer4Init(void)             
   38          {
-  39   1              AUXR &= 0xBF;           //定时器时钟12T模式
-  40   1              TMOD &= 0x0F;           //设置定时器模式
-  41   1              TL1 = 0xEB;                     //设置定时初值
-  42   1              TH1 = 0xCB;                     //设置定时初值
-  43   1              TF1 = 0;                        //清除TF1标志
-  44   1              TR1 = 1;                        //定时器1开始计时
-  45   1              ET1 = 1;                //允许定时器T1中断        
-  46   1      }
-  47          
-  48          
-  49          
-  50          
-  51          void Timer3Timer4Init(void)             
-  52          {
-  53   1        T4T3M |= 0xCC;
-  54   1        IE2 &= 0x1F;
-C51 COMPILER V9.00   TIMER                                                                 12/06/2015 22:13:41 PAGE 2   
-
-  55   1      }
-  56          
-  57          
+  39   1        T4T3M |= 0xCC;
+  40   1        IE2 &= 0x1F;
+  41   1      }
+  42          
+  43          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     43    ----
+   CODE SIZE        =     26    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
@@ -78,6 +62,8 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
+
+C51 COMPILER V9.00   TIMER                                                                 01/17/2016 13:55:38 PAGE 2   
 
 
 C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

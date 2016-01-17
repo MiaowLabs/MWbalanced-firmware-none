@@ -15,7 +15,7 @@
 ** 功能描述: 主函数            
 ** 输　  入:   
 ** 输　  出:   
-** 备    注: 
+** 备    注: 启动方式：直接扶起开机即可。
 ********************喵呜实验室版权所有**************************
 ***************************************************************/
 void main()
@@ -23,20 +23,20 @@ void main()
 	DisableInterrupts;//禁止总中断
 
 	CLK_DIV_1();	  //设置MCU工作频率为内部RC时钟
-	DriversInit();	
-	MPU6050Init();	
-	CarStandInit();
+	DriversInit();	  //芯片底层驱动初始化
+	MPU6050Init();	  //MPU6050初始化
+	CarStandInit();	  //直立小车功能函数初始化
 	
-	Delaynms(1000);	 //延时1s
-	ON_LED0;
-	Delaynms(3000);	 //延时3s
+	Delaynms(100);	  //延时
+	ON_LED0;		  //灯亮
+	Delaynms(100);	  //延时
 									
 	EnableInterrupts;//允许总中断	 
 
 	while(1)
 	{ 
 		 
-	BluetoothControl();
+	BluetoothControl();	//蓝牙控制函数
 						 
 #if DEBUG_UART  //调试启用 预编译命令
 

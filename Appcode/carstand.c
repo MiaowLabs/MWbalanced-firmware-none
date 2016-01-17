@@ -139,35 +139,13 @@ int DataSynthesis(unsigned char REG_Address)
 ***************************************************************/
 void SampleInputVoltage(void)
 {	
-#if 0 
-    /*
-	N次均值滤波，此处N取20。
-	会降低频响，N值要适当，不宜过大过小。
-	*/	
-	unsigned char ucValue;   
-	for(ucValue = 0 ; ucValue < 20 ; ucValue ++)
-	{
-		g_iAccelInputVoltage_Y_Axis  = DataSynthesis(ACCEL_YOUT_H);//加速度Y轴
-		g_iGyroInputVoltage_X_Axis = DataSynthesis(GYRO_XOUT_H);//陀螺仪X轴
-	
-		g_liAccSum += g_iAccelInputVoltage_Y_Axis;
-		g_liGyroSum += g_iGyroInputVoltage_X_Axis;			
-						
-	} 	
 
-	g_iAccelInputVoltage_Y_Axis = g_liAccSum  / 20 ;
-    g_iGyroInputVoltage_X_Axis  = g_liGyroSum / 20 ;
-
-	g_liAccSum  = 0;	  /*滤波完全局变量要清零，下次调用才不会出错*/
-    g_liGyroSum = 0;
-
-#else 	/*不作任何滤波处理*/
-
-		g_iGyroInputVoltage_X_Axis   = DataSynthesis(GYRO_XOUT_H) ; //陀螺仪X轴
-        g_iAccelInputVoltage_Y_Axis  = DataSynthesis(ACCEL_YOUT_H); //加速度Y轴
+	/*此处不作任何滤波处理*/
+	g_iGyroInputVoltage_X_Axis   = DataSynthesis(GYRO_XOUT_H) ; //陀螺仪X轴
+	g_iAccelInputVoltage_Y_Axis  = DataSynthesis(ACCEL_YOUT_H); //加速度Y轴
 		
 
-#endif	
+	
 }
 
 /***************************************************************
@@ -182,6 +160,7 @@ void SampleInputVoltage(void)
 ** 备    注: 
 ********************喵呜实验室版权所有**************************
 ***************************************************************/
+/*
 void GyroRevise()
 {
 	long int tempsum;
@@ -193,7 +172,7 @@ void GyroRevise()
 	g_iGyroOffset = tempsum/200;
 	tempsum=0;
 }
-
+*/
 /***************************************************************
 ** 作　  者: Songyimiao
 ** 官    网：http://www.miaowlabs.com
@@ -346,23 +325,23 @@ void GetMotorPulse(void)
 void SpeedControl(void)
 {  
 	
-	g_fCarSpeed = (g_iLeftMotorPulseSigma  + g_iRightMotorPulseSigma ) * 0.5;
+	float fP, fDelta;
+	float fI;
+	
+	g_fCarSpeed = (g_iLeftMotorPulseSigma  + g_iRightMotorPulseSigma ) / 2;
     g_iLeftMotorPulseSigma = g_iRightMotorPulseSigma = 0;	  //全局变量 注意及时清零
+		   														 
+	fDelta = CAR_SPEED_SET;
+	fDelta -= g_fCarSpeed;
+	fP = fDelta * g_fcSpeed_P;
+	fI = fDelta * g_fcSpeed_I;
+	g_fCarPosition += fI;
 
-	/*低通滤波*/
-    g_fCarSpeed = g_fCarSpeedOld * 0.2 + g_fCarSpeed * 0.8 ;
-	g_fCarSpeedOld = g_fCarSpeed;	   														 
-
-	//g_fCarSpeed *= CAR_SPEED_CONSTANT;	 //单位：转/秒
-	g_fCarPosition += g_fCarSpeed; 		 //路程  即速度积分
-	//g_fCarPosition += g_fBluetoothSpeed;
-
-		/*积分上限设限*/			  
+	/*积分上限设限*/			  
 	if((int)g_fCarPosition > SPEED_CONTROL_OUT_MAX)    g_fCarPosition = SPEED_CONTROL_OUT_MAX;
 	if((int)g_fCarPosition < SPEED_CONTROL_OUT_MIN)    g_fCarPosition = SPEED_CONTROL_OUT_MIN;
 							
-	g_fSpeedControlOut = (CAR_SPEED_SET - g_fCarSpeed) * g_fcSpeed_P + \
-	(CAR_POSITION_SET - g_fCarPosition) * g_fcSpeed_I; 
+	g_fSpeedControlOut = fP + g_fCarPosition; 
 
 }
 

@@ -42,11 +42,4 @@ void Timer1_Update(void) interrupt  3		//125hz
    		}
 			 
 }
-
-void Timer0_Update(void) interrupt  1
-{
-    
-//	g_ucSpeedCountCarry++;
-//	LED2=~LED2;
-}
 				 
