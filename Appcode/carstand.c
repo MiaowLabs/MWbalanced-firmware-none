@@ -38,7 +38,7 @@ unsigned char g_ucSpeedControlCount ;
 /*-----角度环和速度环PID控制参数-----*/
 float code g_fcAngle_P = 1000.0;//1300
 float code g_fcAngle_D = 25.0;//25	
-float code g_fcSpeed_P = 200.0 ; //200
+float code g_fcSpeed_P = 150.0 ; //200
 float code g_fcSpeed_I = 0.08;		   
 /******蓝牙控制参数******/
 float xdata g_fBluetoothSpeed;

@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   CARSTAND                                                              01/17/2016 13:55:38 PAGE 1   
+C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE CARSTAND
@@ -48,7 +48,7 @@ line level    source
   38          /*-----½Ç¶È»·ºÍËÙ¶È»·PID¿ØÖÆ²ÎÊý-----*/
   39          float code g_fcAngle_P = 1000.0;//1300
   40          float code g_fcAngle_D = 25.0;//25      
-  41          float code g_fcSpeed_P = 200.0 ; //200
+  41          float code g_fcSpeed_P = 150.0 ; //200
   42          float code g_fcSpeed_I = 0.08;             
   43          /******À¶ÑÀ¿ØÖÆ²ÎÊý******/
   44          float xdata g_fBluetoothSpeed;
@@ -62,7 +62,7 @@ line level    source
   52          ** º¯ÊýÃû³Æ: DriversInit
   53          ** ¹¦ÄÜÃèÊö: µ×²ãÇý¶¯³õÊ¼»¯            
   54          ** Êä¡¡  Èë:   
-C51 COMPILER V9.00   CARSTAND                                                              01/17/2016 13:55:38 PAGE 2   
+C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 2   
 
   55          ** Êä¡¡  ³ö:   
   56          ** ±¸    ×¢: 
@@ -126,7 +126,7 @@ line level    source
  114          ** ±¸    ×¢: 
  115          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
  116          ***************************************************************/
-C51 COMPILER V9.00   CARSTAND                                                              01/17/2016 13:55:38 PAGE 3   
+C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 3   
 
  117          int DataSynthesis(unsigned char REG_Address)    
  118          {
@@ -190,7 +190,7 @@ line level    source
  176          /***************************************************************
  177          ** ×÷¡¡  Õß: Songyimiao
  178          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
-C51 COMPILER V9.00   CARSTAND                                                              01/17/2016 13:55:38 PAGE 4   
+C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 4   
 
  179          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
  180          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
@@ -254,7 +254,7 @@ line level    source
  238   1          {   
  239   2                      iRighttMotorValue = 20000 - iRighttMotorValue;
  240   2      
-C51 COMPILER V9.00   CARSTAND                                                              01/17/2016 13:55:38 PAGE 5   
+C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 5   
 
  241   2                      PWM4T1=iRighttMotorValue;
  242   2                      PWM5T1=20000;
@@ -318,7 +318,7 @@ line level    source
  300   1              g_iLeftMotorPulse  = (T3H<<8) + T3L;
  301   1              T4T3M&= 0x77;
  302   1              T4H=T4L=0;
-C51 COMPILER V9.00   CARSTAND                                                              01/17/2016 13:55:38 PAGE 6   
+C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 6   
 
  303   1              T3H=T3L=0;
  304   1              T4T3M |= 0xCC;
@@ -382,7 +382,7 @@ line level    source
  362   1              g_fGravityAngle = (float)(g_iAccelInputVoltage_Y_Axis - GRAVITY_OFFSET) / 16384.0f;//È¥³ýÁãµãÆ«ÒÆ,¼ÆËãµÃµ
              -½½Ç¶È£¨»¡¶È£©
  363   1              g_fGravityAngle = g_fGravityAngle * 57.2957795f ;// 180/3.1415926535898 »¡¶È×ª»»Îª¶È,
-C51 COMPILER V9.00   CARSTAND                                                              01/17/2016 13:55:38 PAGE 7   
+C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 7   
 
  364   1              g_fGyroAngleSpeed = (g_iGyroInputVoltage_X_Axis - GYRO_OFFSET) / GYROSCOPE_ANGLE_RATIO ;// 16.4;
  365   1              
@@ -434,7 +434,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1937    ----
+   CODE SIZE        =   1945    ----
    CONSTANT SIZE    =     16    ----
    XDATA SIZE       =     81      23
    PDATA SIZE       =   ----    ----

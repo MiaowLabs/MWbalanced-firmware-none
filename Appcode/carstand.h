@@ -10,7 +10,7 @@
 /******角度控制相关宏定义******/
 #define	CAR_ANGLE_SET	      0
 #define CAR_ANGULARSPEED_SET  0
-#define GRAVITY_OFFSET   (-2000)      			//加速度零点偏移值 
+#define GRAVITY_OFFSET   (-1000)      			//加速度零点偏移值 
 #define GYRO_OFFSET      0//g_iGyroOffset      //陀螺仪零点偏移值 
 #define	GYROSCOPE_ANGLE_RATIO 24.0
 /******速度控制相关宏定义******/
@@ -22,7 +22,7 @@
 #define SPEED_CONTROL_OUT_MIN	MOTOR_OUT_MIN
 
 /******电机控制相关宏定义******/
-#define MOTOR_OUT_DEAD_VAL       0//200 	   //死区值200
+#define MOTOR_OUT_DEAD_VAL       400 	   //死区值
 #define MOTOR_OUT_MAX           20000	   //占空比正最大值
 #define MOTOR_OUT_MIN         (-20000)   //占空比负最大值		   
 
