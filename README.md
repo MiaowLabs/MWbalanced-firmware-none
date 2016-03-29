@@ -12,22 +12,28 @@ MWbalancedSTC15-2.0两轮自平衡小车对应的控制代码@外部晶振20M, �
 
 角度环PD调试指南视频：[http://v.youku.com/v_show/id_XMTQ0MTYwNzY4NA==.html?from=y1.7-1.2](http://v.youku.com/v_show/id_XMTQ0MTYwNzY4NA==.html?from=y1.7-1.2)
 
-更多教程在喵呜百科：[http://miaowlabs.com/wiki-MWbalanced.html](http://miaowlabs.com/wiki-MWbalanced.html)
+**更多教程在喵呜百科**：[http://miaowlabs.com/wiki-MWbalanced.html](http://miaowlabs.com/wiki-MWbalanced.html)
 
-气氛良好的技术交流Q群：喵呜实验室自平衡小车 153337261
+气氛良好的技术交流**Q群**：喵呜实验室自平衡小车 153337261
 
 更新记录
 
 上传MWbalancedSTC15二代源代码；
+下一步整理代码，添加注释；
+
 ---20160329 by songyimiao
 
 
 将工作频率从33M降至20M；
+
 整理代码，删除冗余部分；
+
 添加注释；
+
 ---20151205 by songyimiao
 
-修改所有小车启动轮子可能出现疯转BUG；
+修改小车启动轮子可能出现疯转BUG；
+
 添加、修正部分注释；
 
 ---20160117 by songyimiao
