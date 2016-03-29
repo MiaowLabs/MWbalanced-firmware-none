@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 1   
+C51 COMPILER V9.00   CARSTAND                                                              03/29/2016 23:03:25 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE CARSTAND
@@ -62,7 +62,7 @@ line level    source
   52          ** 作　  者: Songyimiao
   53          ** 官    网：http://www.miaowlabs.com
   54          ** 淘    宝：http://miaowlabs.taobao.com
-C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 2   
+C51 COMPILER V9.00   CARSTAND                                                              03/29/2016 23:03:25 PAGE 2   
 
   55          ** 日　  期: 2015年11月29日
   56          ** 函数名称: DriversInit
@@ -126,7 +126,7 @@ line level    source
  114          ** 官    网：http://www.miaowlabs.com
  115          ** 淘    宝：http://miaowlabs.taobao.com
  116          ** 日　  期: 2015年11月29日
-C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 3   
+C51 COMPILER V9.00   CARSTAND                                                              03/29/2016 23:03:25 PAGE 3   
 
  117          ** 函数名称: DataSynthesis
  118          ** 功能描述: 数据合成函数            
@@ -190,7 +190,7 @@ line level    source
  176   2              }
  177   1              g_iGyroOffset = (int)(tempsum/500);
  178   1              tempsum=0;
-C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 4   
+C51 COMPILER V9.00   CARSTAND                                                              03/29/2016 23:03:25 PAGE 4   
 
  179   1      }
  180          
@@ -254,7 +254,7 @@ line level    source
  238   2              AIN2 = 0; 
  239   2                      BIN1 = 0;                                     //右电机前进      角度为负  速度为正
  240   2              BIN2 = 0;   
-C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 5   
+C51 COMPILER V9.00   CARSTAND                                                              03/29/2016 23:03:25 PAGE 5   
 
  241   2              }
  242   1      
@@ -318,7 +318,7 @@ line level    source
  298   1              T4T3M&= 0x77;
  299   1              T4H=T4L=0;
  300   1              T3H=T3L=0;
-C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 6   
+C51 COMPILER V9.00   CARSTAND                                                              03/29/2016 23:03:25 PAGE 6   
 
  301   1              T4T3M |= 0xCC;
  302   1      
@@ -382,7 +382,7 @@ line level    source
  360          /***************************************************************
  361          ** 作　  者: Songyimiao
  362          ** 官    网：http://www.miaowlabs.com
-C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 7   
+C51 COMPILER V9.00   CARSTAND                                                              03/29/2016 23:03:25 PAGE 7   
 
  363          ** 淘    宝：http://miaowlabs.taobao.com
  364          ** 日　  期: 2015年11月29日
@@ -446,7 +446,7 @@ line level    source
  422   2                case 0x03 : g_fBluetoothDirection =   200 ;  break;//左转
  423   2                case 0x04 : g_fBluetoothDirection = (-200);  break;//右转
  424   2                case 0x05 : g_iCarSpeedSet =   20 ; break ;
-C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 8   
+C51 COMPILER V9.00   CARSTAND                                                              03/29/2016 23:03:25 PAGE 8   
 
  425   2                case 0x06 : g_iCarSpeedSet = (-20); break ;
  426   2                case 0x07 : g_fBluetoothDirection =   400 ;  break;
