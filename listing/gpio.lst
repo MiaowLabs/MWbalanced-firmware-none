@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   GPIO                                                                  01/18/2016 00:06:06 PAGE 1   
+C51 COMPILER V9.00   GPIO                                                                  03/09/2016 22:43:42 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE GPIO
@@ -35,8 +35,8 @@ line level    source
   25   1              P0M1=0x00;
   26   1              P1M0=0x00;
   27   1              P1M1=0x00;
-  28   1              P2M0=0x00;      
-  29   1              P2M1=0x00;
+  28   1              //P2M0=0x00;      
+  29   1              //P2M1=0x00;
   30   1              P3M0=0x00;
   31   1              P3M1=0x00;      
   32   1              P4M0=0x00;
@@ -45,21 +45,25 @@ line level    source
   35   1              P5M1=0x00;         
   36   1         
   37   1              //设置需要使用的PWM输出口为强推挽模式
-  38   1              P2M0=0x0e;
+  38   1              P2M0=0x0E;
   39   1              P2M1=0x00;
-  40   1              P3M0=0x80;
-  41   1              P3M1=0x00;
-  42   1      }
+  40   1              //P3M0=0x80;
+  41   1              //P3M1=0x00;
+  42   1      
+  43   1      
+  44   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     36    ----
+   CODE SIZE        =     27    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
+C51 COMPILER V9.00   GPIO                                                                  03/09/2016 22:43:42 PAGE 2   
+
 END OF MODULE INFORMATION.
 
 

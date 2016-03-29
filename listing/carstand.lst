@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 1   
+C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE CARSTAND
@@ -25,331 +25,333 @@ line level    source
   15          float g_fLeftMotorOut;
   16          float g_fRightMotorOut;
   17          /******½Ç¶È¿ØÖÆ²ÎÊý******/
-  18          int   g_iAccelInputVoltage_Y_Axis ;     //¼ÓËÙ¶ÈYÖáÊý¾Ý
-  19          int   g_iGyroInputVoltage_X_Axis  ;     //ÍÓÂÝÒÇXÖáÊý¾Ý
-  20          long int  g_liAccSum;
-  21          long int  g_liGyroSum;
-  22          float g_fCarAngle;                              //³µÄ£Çã½Ç
-  23          float g_fGyroAngleSpeed;                        //½ÇËÙ¶È                        
-  24          float g_fGyroscopeAngleIntegral;        //½ÇËÙ¶È»ý·ÖÖµ
-  25          float g_fGravityAngle;                          //¼ÓËÙ¶È³õ²½¼ÆËãµÃµ½µÄÇã½Ç
-  26          int g_iGyroOffset;
-  27          /******ËÙ¶È¿ØÖÆ²ÎÊý******/
-  28          int   g_iLeftMotorPulse;
-  29          int   g_iRightMotorPulse;
-  30          int   g_iLeftMotorPulseSigma;
-  31          int   g_iRightMotorPulseSigma;
-  32          float g_fCarSpeed;
-  33          float g_fCarSpeedOld;
-  34          float g_fCarPosition;
-  35          unsigned char g_ucSpeedControlPeriod ;
-  36          unsigned char g_ucSpeedControlCount ;
-  37          
-  38          /*-----½Ç¶È»·ºÍËÙ¶È»·PID¿ØÖÆ²ÎÊý-----*/
-  39          float code g_fcAngle_P = 1000.0;//1300
-  40          float code g_fcAngle_D = 25.0;//25      
-  41          float code g_fcSpeed_P = 150.0 ; //200
-  42          float code g_fcSpeed_I = 0.08;             
-  43          /******À¶ÑÀ¿ØÖÆ²ÎÊý******/
-  44          float xdata g_fBluetoothSpeed;
-  45          float xdata g_fBluetoothDirection;
-  46          
-  47          /***************************************************************
-  48          ** ×÷¡¡  Õß: Songyimiao
-  49          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
-  50          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
-  51          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
-  52          ** º¯ÊýÃû³Æ: DriversInit
-  53          ** ¹¦ÄÜÃèÊö: µ×²ãÇý¶¯³õÊ¼»¯            
-  54          ** Êä¡¡  Èë:   
-C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 2   
+  18          int   g_iAccelInputVoltage_X_Axis ;     //¼ÓËÙ¶ÈXÖáÊý¾Ý
+  19          int   g_iGyroInputVoltage_Y_Axis  ;     //ÍÓÂÝÒÇYÖáÊý¾Ý
+  20          int   g_iGyroInputVoltage_Z_Axis  ;     //ÍÓÂÝÒÇYÖáÊý¾Ý
+  21          long int  g_liAccSum;
+  22          long int  g_liGyroSum;
+  23          float g_fCarAngle;                              //³µÄ£Çã½Ç
+  24          float g_fGyroAngleSpeed;                        //½ÇËÙ¶È                        
+  25          float g_fGyroscopeAngleIntegral;        //½ÇËÙ¶È»ý·ÖÖµ
+  26          float g_fGravityAngle;                          //¼ÓËÙ¶È³õ²½¼ÆËãµÃµ½µÄÇã½Ç
+  27          int g_iGyroOffset;
+  28          /******ËÙ¶È¿ØÖÆ²ÎÊý******/
+  29          int   g_iLeftMotorPulse;
+  30          int   g_iRightMotorPulse;
+  31          int   g_iLeftMotorPulseSigma;
+  32          int   g_iRightMotorPulseSigma;
+  33          float g_fCarSpeed;
+  34          float g_fCarSpeedOld;
+  35          float g_fCarPosition;
+  36          unsigned char g_ucSpeedControlPeriod ;
+  37          unsigned char g_ucSpeedControlCount ;
+  38          
+  39          /*-----½Ç¶È»·ºÍËÙ¶È»·PID¿ØÖÆ²ÎÊý-----*/
+  40          float code g_fcAngle_P = 90.0;  //  85
+  41          float code g_fcAngle_D = 3.0;   // 2.8  
+  42          float code g_fcSpeed_P = 12.0 ; //  15
+  43          float code g_fcSpeed_I = 1.4;   // 1.7
+  44          float code g_fcDirection_P = 5.0;                  
+  45          /******À¶ÑÀ¿ØÖÆ²ÎÊý******/
+  46          float xdata g_fBluetoothSpeed;
+  47          float xdata g_fBluetoothDirection;
+  48          
+  49          float xdata g_fDirectionDeviation;
+  50          
+  51          /***************************************************************
+  52          ** ×÷¡¡  Õß: Songyimiao
+  53          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
+  54          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
+C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 2   
 
-  55          ** Êä¡¡  ³ö:   
-  56          ** ±¸    ×¢: 
-  57          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
-  58          ***************************************************************/
-  59          void DriversInit(void)
-  60          {
-  61   1      
-  62   1              GPIOInit();
-  63   1              Timer1Init();
-  64   1              PWMInit();
-  65   1              Uart1Init();
-  66   1              Uart2Init();
-  67   1              Timer3Timer4Init();
-  68   1      
-  69   1      }
-  70          
-  71          /***************************************************************
-  72          ** ×÷¡¡  Õß: Songyimiao
-  73          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
-  74          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
-  75          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
-  76          ** º¯ÊýÃû³Æ: CarStandInit
-  77          ** ¹¦ÄÜÃèÊö: Ö±Á¢²ÎÊý³õÊ¼»¯            
-  78          ** Êä¡¡  Èë:   
-  79          ** Êä¡¡  ³ö:   
-  80          ** ±¸    ×¢: 
-  81          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
-  82          ***************************************************************/
-  83          void CarStandInit()
-  84          {
-  85   1              g_iAccelInputVoltage_Y_Axis = g_iGyroInputVoltage_X_Axis = 0;
-  86   1              g_iLeftMotorPulse = g_iRightMotorPulse = 0;
-  87   1      
-  88   1              g_iCarSpeedSet=0;
-  89   1              g_fCarSpeed    = 0;
-  90   1              g_fCarPosition = 0;
-  91   1              g_fCarAngle    = 0;
-  92   1              g_fGyroAngleSpeed = 0;
-  93   1              g_fGravityAngle   = 0;
-  94   1              g_fGyroscopeAngleIntegral = 0;
-  95   1      
-  96   1              g_fAngleControlOut = g_fSpeedControlOut = 0;
-  97   1      
-  98   1              g_fLeftMotorOut    = g_fRightMotorOut   = 0;
-  99   1              g_fBluetoothSpeed  = g_fBluetoothDirection = 0;
- 100   1      
- 101   1          g_ucLEDCount = 0;
- 102   1              g_uiStartCount= 0;
- 103   1      }
- 104          
- 105          /***************************************************************
- 106          ** ×÷¡¡  Õß: Songyimiao
- 107          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
- 108          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
- 109          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
- 110          ** º¯ÊýÃû³Æ: DataSynthesis
- 111          ** ¹¦ÄÜÃèÊö: Êý¾ÝºÏ³Éº¯Êý            
- 112          ** Êä¡¡  Èë:   
- 113          ** Êä¡¡  ³ö:   
- 114          ** ±¸    ×¢: 
- 115          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
- 116          ***************************************************************/
-C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 3   
+  55          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
+  56          ** º¯ÊýÃû³Æ: DriversInit
+  57          ** ¹¦ÄÜÃèÊö: µ×²ãÇý¶¯³õÊ¼»¯            
+  58          ** Êä¡¡  Èë:   
+  59          ** Êä¡¡  ³ö:   
+  60          ** ±¸    ×¢: 
+  61          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
+  62          ***************************************************************/
+  63          void DriversInit(void)
+  64          {
+  65   1      
+  66   1              GPIOInit();
+  67   1              Timer1Init();
+  68   1              PWMInit();
+  69   1              Uart1Init();
+  70   1              Uart2Init();
+  71   1              Timer3Timer4Init();
+  72   1      
+  73   1      }
+  74          
+  75          /***************************************************************
+  76          ** ×÷¡¡  Õß: Songyimiao
+  77          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
+  78          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
+  79          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
+  80          ** º¯ÊýÃû³Æ: CarStandInit
+  81          ** ¹¦ÄÜÃèÊö: Ö±Á¢²ÎÊý³õÊ¼»¯            
+  82          ** Êä¡¡  Èë:   
+  83          ** Êä¡¡  ³ö:   
+  84          ** ±¸    ×¢: 
+  85          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
+  86          ***************************************************************/
+  87          void CarStandInit()
+  88          {
+  89   1              g_iAccelInputVoltage_X_Axis = g_iGyroInputVoltage_Y_Axis = 0;
+  90   1              g_iLeftMotorPulse = g_iRightMotorPulse = 0;
+  91   1              g_iLeftMotorPulseSigma = g_iRightMotorPulseSigma = 0;
+  92   1              g_iCarSpeedSet = 0;
+  93   1      
+  94   1              g_iCarSpeedSet=0;
+  95   1              g_fCarSpeed    = 0;
+  96   1              g_fCarSpeedOld = 0;
+  97   1              g_fCarPosition = 0;
+  98   1              g_fCarAngle    = 0;
+  99   1              g_fGyroAngleSpeed = 0;
+ 100   1              g_fGravityAngle   = 0;
+ 101   1              g_fGyroscopeAngleIntegral = 0;
+ 102   1      
+ 103   1              g_fAngleControlOut = g_fSpeedControlOut = 0;
+ 104   1      
+ 105   1              g_fLeftMotorOut    = g_fRightMotorOut   = 0;
+ 106   1              g_fBluetoothSpeed  = g_fBluetoothDirection = 0;
+ 107   1      
+ 108   1          g_ucLEDCount = 0;                           
+ 109   1              g_uiStartCount= 0;
+ 110   1      }
+ 111          
+ 112          /***************************************************************
+ 113          ** ×÷¡¡  Õß: Songyimiao
+ 114          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
+ 115          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
+ 116          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
+C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 3   
 
- 117          int DataSynthesis(unsigned char REG_Address)    
- 118          {
- 119   1              char idata uiHighByte; /*¸ß°ËÎ»*/
- 120   1              char idata ucLowByte; /*µÍ°ËÎ»*/
- 121   1      
- 122   1              uiHighByte = Single_ReadI2C(REG_Address)  ;
- 123   1              ucLowByte  = Single_ReadI2C(REG_Address+1);
- 124   1      
- 125   1              return ((uiHighByte << 8) + ucLowByte);   /*·µ»ØºÏ³ÉÊý¾Ý*/
- 126   1      }
- 127          
- 128          /***************************************************************
- 129          ** ×÷¡¡  Õß: Songyimiao
- 130          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
- 131          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
- 132          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
- 133          ** º¯ÊýÃû³Æ: SampleInputVoltage
- 134          ** ¹¦ÄÜÃèÊö: MPU6050²ÉÑùº¯Êý            
- 135          ** Êä¡¡  Èë:   
- 136          ** Êä¡¡  ³ö:   
- 137          ** ±¸    ×¢: 
- 138          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
- 139          ***************************************************************/
- 140          void SampleInputVoltage(void)
- 141          {       
- 142   1      
- 143   1              /*´Ë´¦²»×÷ÈÎºÎÂË²¨´¦Àí*/
- 144   1              g_iGyroInputVoltage_X_Axis   = DataSynthesis(GYRO_XOUT_H) ; //ÍÓÂÝÒÇXÖá
- 145   1              g_iAccelInputVoltage_Y_Axis  = DataSynthesis(ACCEL_YOUT_H); //¼ÓËÙ¶ÈYÖá
- 146   1                      
- 147   1      
- 148   1              
- 149   1      }
- 150          
- 151          /***************************************************************
- 152          ** ×÷¡¡  Õß: Songyimiao
- 153          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
- 154          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
- 155          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
- 156          ** º¯ÊýÃû³Æ: GyroRevise
- 157          ** ¹¦ÄÜÃèÊö: ÍÓÂÝÒÇÐ£Õýº¯Êý            
- 158          ** Êä¡¡  Èë:   
- 159          ** Êä¡¡  ³ö:   
- 160          ** ±¸    ×¢: 
- 161          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
- 162          ***************************************************************/
- 163          /*
- 164          void GyroRevise()
- 165          {
- 166                  long int tempsum;
- 167                  int temp;
- 168                  for(temp=0;temp<200;temp++)
- 169                  {
- 170                          tempsum += DataSynthesis(GYRO_XOUT_H) ;
- 171                  }
- 172                  g_iGyroOffset = tempsum/200;
- 173                  tempsum=0;
- 174          }
- 175          */
- 176          /***************************************************************
- 177          ** ×÷¡¡  Õß: Songyimiao
- 178          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
-C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 4   
+ 117          ** º¯ÊýÃû³Æ: DataSynthesis
+ 118          ** ¹¦ÄÜÃèÊö: Êý¾ÝºÏ³Éº¯Êý            
+ 119          ** Êä¡¡  Èë:   
+ 120          ** Êä¡¡  ³ö:   
+ 121          ** ±¸    ×¢: 
+ 122          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
+ 123          ***************************************************************/
+ 124          int DataSynthesis(unsigned char REG_Address)    
+ 125          {
+ 126   1              char idata uiHighByte; /*¸ß°ËÎ»*/
+ 127   1              char idata ucLowByte; /*µÍ°ËÎ»*/
+ 128   1      
+ 129   1              uiHighByte = Single_ReadI2C(REG_Address)  ;
+ 130   1              ucLowByte  = Single_ReadI2C(REG_Address+1);
+ 131   1      
+ 132   1              return ((uiHighByte << 8) + ucLowByte);   /*·µ»ØºÏ³ÉÊý¾Ý*/
+ 133   1      }
+ 134          
+ 135          /***************************************************************
+ 136          ** ×÷¡¡  Õß: Songyimiao
+ 137          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
+ 138          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
+ 139          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
+ 140          ** º¯ÊýÃû³Æ: SampleInputVoltage
+ 141          ** ¹¦ÄÜÃèÊö: MPU6050²ÉÑùº¯Êý            
+ 142          ** Êä¡¡  Èë:   
+ 143          ** Êä¡¡  ³ö:   
+ 144          ** ±¸    ×¢: 
+ 145          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
+ 146          ***************************************************************/
+ 147          void SampleInputVoltage(void)
+ 148          {       
+ 149   1      
+ 150   1              g_iGyroInputVoltage_Y_Axis   = DataSynthesis(GYRO_YOUT_H) ; //ÍÓÂÝÒÇYÖá
+ 151   1          g_iAccelInputVoltage_X_Axis  = DataSynthesis(ACCEL_XOUT_H); //¼ÓËÙ¶ÈXÖá     
+ 152   1              
+ 153   1              g_iGyroInputVoltage_Z_Axis   = DataSynthesis(GYRO_ZOUT_H) ; //ÍÓÂÝÒÇYÖá 
+ 154   1      
+ 155   1      }
+ 156          
+ 157          /***************************************************************
+ 158          ** ×÷¡¡  Õß: Songyimiao
+ 159          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
+ 160          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
+ 161          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
+ 162          ** º¯ÊýÃû³Æ: GyroRevise
+ 163          ** ¹¦ÄÜÃèÊö: ÍÓÂÝÒÇÐ£Õýº¯Êý            
+ 164          ** Êä¡¡  Èë:   
+ 165          ** Êä¡¡  ³ö:   
+ 166          ** ±¸    ×¢: 
+ 167          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
+ 168          ***************************************************************/
+ 169          void GetGyroRevise()
+ 170          {
+ 171   1              long int tempsum;
+ 172   1              int temp;
+ 173   1              for(temp=0;temp<500;temp++)
+ 174   1              {
+ 175   2                      tempsum += DataSynthesis(GYRO_YOUT_H) ;
+ 176   2              }
+ 177   1              g_iGyroOffset = (int)(tempsum/500);
+ 178   1              tempsum=0;
+C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 4   
 
- 179          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
- 180          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
- 181          ** º¯ÊýÃû³Æ: SetMotorVoltageAndDirection
- 182          ** ¹¦ÄÜÃèÊö: µç»úÉèÖÃº¯Êý            
- 183          ** Êä¡¡  Èë:   
- 184          ** Êä¡¡  ³ö:   
- 185          ** ±¸    ×¢: 
- 186          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
- 187          ***************************************************************/
- 188          void SetMotorVoltageAndDirection(float fLeftVoltage,float fRightVoltage)
- 189          {
- 190   1              int  iLeftMotorValue;
- 191   1              int  iRighttMotorValue;
- 192   1              
- 193   1      #if IF_CAR_FALL          /*ÅÐ¶Ï³µÁ¾ÊÇ·ñµøµ¹*/
-              
-                      if(g_fCarAngle > 30 || g_fCarAngle < (-30))
-                      {
-                              PWM2T1=20000;
-                              PWM3T1=20000;
-                              PWM4T1=20000;
-                              PWM5T1=20000;
-                              PWM2T2=1;
-                              PWM3T2=1;
-                              PWM5T2=1;
-                              PWM4T2=1;
-                      }
-              
-              #endif
- 208   1              iLeftMotorValue = (int) fLeftVoltage;
- 209   1              iRighttMotorValue = (int) fRightVoltage;
+ 179   1      }
+ 180          
+ 181          /***************************************************************
+ 182          ** ×÷¡¡  Õß: Songyimiao
+ 183          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
+ 184          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
+ 185          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
+ 186          ** º¯ÊýÃû³Æ: SetMotorVoltageAndDirection
+ 187          ** ¹¦ÄÜÃèÊö: µç»úÉèÖÃº¯Êý            
+ 188          ** Êä¡¡  Èë:   
+ 189          ** Êä¡¡  ³ö:   
+ 190          ** ±¸    ×¢: 
+ 191          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
+ 192          ***************************************************************/
+ 193          void SetMotorVoltageAndDirection(int iLeftVoltage,int iRightVoltage)
+ 194          {
+ 195   1              int iLeftMotorValue;
+ 196   1              int iRighttMotorValue;  
+ 197   1      
+ 198   1          if(iLeftVoltage<0)
+ 199   1          {   
+ 200   2            AIN1 = 1;                               //ÓÒµç»úÇ°½ø      ½Ç¶ÈÎª¸º  ËÙ¶ÈÎªÕý
+ 201   2            AIN2 = 0;
+ 202   2            iLeftMotorValue = (-iLeftVoltage);
+ 203   2          }
+ 204   1          else 
+ 205   1          {   
+ 206   2            AIN1 = 0;                               //ÓÒµç»úºóÍË  ½Ç¶ÈÎªÕý  ËÙ¶ÈÎª¸º
+ 207   2            AIN2 = 1; 
+ 208   2            iLeftMotorValue = iLeftVoltage;
+ 209   2          }
  210   1      
- 211   1          if(iLeftMotorValue<0)
- 212   1          {        
- 213   2                      iLeftMotorValue *= (-1);
- 214   2      
- 215   2                      iLeftMotorValue = 20000 - iLeftMotorValue ;
- 216   2      
- 217   2                      PWM3T1=20000;
- 218   2                      PWM2T1=iLeftMotorValue;  
- 219   2          }
- 220   1          else 
- 221   1          {   
- 222   2                      iLeftMotorValue = 20000 - iLeftMotorValue ;
- 223   2      
- 224   2                      PWM3T1=iLeftMotorValue;
- 225   2                      PWM2T1=20000;
- 226   2          }
- 227   1      
- 228   1          if(iRighttMotorValue<0)
- 229   1          {   
- 230   2                      iRighttMotorValue *= (-1);
- 231   2      
- 232   2                      iRighttMotorValue = 20000 - iRighttMotorValue;
- 233   2      
- 234   2                      PWM4T1=20000;
- 235   2                      PWM5T1=iRighttMotorValue;
- 236   2          }
- 237   1          else
- 238   1          {   
- 239   2                      iRighttMotorValue = 20000 - iRighttMotorValue;
- 240   2      
-C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 5   
+ 211   1          if(iRightVoltage<0)
+ 212   1          {   
+ 213   2            BIN1 = 1;                               //×óµç»úÇ°½ø  ½Ç¶ÈÎª¸º  ËÙ¶ÈÎªÕý
+ 214   2            BIN2 = 0;
+ 215   2            iRighttMotorValue = (-iRightVoltage);
+ 216   2          }
+ 217   1          else
+ 218   1          {   
+ 219   2            BIN1 = 0;                               //×óµç»úºóÍË  ½Ç¶ÈÎªÕý  ËÙ¶ÈÎª¸º
+ 220   2            BIN2 = 1; 
+ 221   2            iRighttMotorValue = iRightVoltage;
+ 222   2          }
+ 223   1      
+ 224   1          //if(iLeftMotorValue   == 0)        CCAP0H=255;
+ 225   1          //if(iRighttMotorValue == 0)        CCAP1H=255;
+ 226   1      
+ 227   1              iLeftMotorValue   = (1000 - iLeftMotorValue)  ;    
+ 228   1              iRighttMotorValue = (1000 - iRighttMotorValue);
+ 229   1              
+ 230   1              PWM3T1 = iLeftMotorValue  ;  
+ 231   1              PWM4T1 = iRighttMotorValue;  
+ 232   1      
+ 233   1              #if IF_CAR_FALL          /*ÅÐ¶Ï³µÁ¾ÊÇ·ñµøµ¹£¬µ÷ÊÔÓÃ*/
+ 234   1      
+ 235   1              if(g_fCarAngle > 30 || g_fCarAngle < (-30))
+ 236   1              {
+ 237   2                      AIN1 = 0;                                     //ÓÒµç»úÇ°½ø      ½Ç¶ÈÎª¸º  ËÙ¶ÈÎªÕý
+ 238   2              AIN2 = 0; 
+ 239   2                      BIN1 = 0;                                     //ÓÒµç»úÇ°½ø      ½Ç¶ÈÎª¸º  ËÙ¶ÈÎªÕý
+ 240   2              BIN2 = 0;   
+C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 5   
 
- 241   2                      PWM4T1=iRighttMotorValue;
- 242   2                      PWM5T1=20000;
- 243   2          }
+ 241   2              }
+ 242   1      
+ 243   1      #endif
  244   1      
- 245   1         
- 246   1      
- 247   1      }
- 248          
- 249          /***************************************************************
- 250          ** ×÷¡¡  Õß: Songyimiao
- 251          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
- 252          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
- 253          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
- 254          ** º¯ÊýÃû³Æ: MotorOutput
- 255          ** ¹¦ÄÜÃèÊö: µç»úÊä³öº¯Êý            
- 256          ** Êä¡¡  Èë:   
- 257          ** Êä¡¡  ³ö:   
- 258          ** ±¸    ×¢: ½«Ö±Á¢¿ØÖÆ¡¢ËÙ¶È¿ØÖÆ¡¢·½Ïò¿ØÖÆµÄÊä³öÁ¿½øÐÐµþ¼Ó,²¢¼Ó
- 259                                   ÈëËÀÇø³£Á¿£¬¶ÔÊä³ö±¥ºÍ×÷³ö´¦Àí¡£
- 260          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
- 261          ***************************************************************/
- 262          void MotorOutput(void)
- 263          {
- 264   1      
- 265   1              g_fLeftMotorOut = g_fAngleControlOut - g_fSpeedControlOut + g_fBluetoothDirection ;
- 266   1              g_fRightMotorOut = g_fAngleControlOut - g_fSpeedControlOut - g_fBluetoothDirection ;
- 267   1                              
- 268   1              
- 269   1              /*Ôö¼ÓËÀÇø³£Êý*/
- 270   1              if(g_fLeftMotorOut>0)       g_fLeftMotorOut  += MOTOR_OUT_DEAD_VAL;
- 271   1              else if(g_fLeftMotorOut<0)  g_fLeftMotorOut  -= MOTOR_OUT_DEAD_VAL;
- 272   1              if(g_fRightMotorOut>0)      g_fRightMotorOut += MOTOR_OUT_DEAD_VAL;
- 273   1              else if(g_fRightMotorOut<0) g_fRightMotorOut -= MOTOR_OUT_DEAD_VAL;
- 274   1      
- 275   1              /*Êä³ö±¥ºÍ´¦Àí£¬·ÀÖ¹³¬³öPWM·¶Î§*/       
- 276   1              if(g_fLeftMotorOut  > MOTOR_OUT_MAX)    g_fLeftMotorOut  = MOTOR_OUT_MAX;
- 277   1              if(g_fLeftMotorOut  < MOTOR_OUT_MIN)    g_fLeftMotorOut  = MOTOR_OUT_MIN;
- 278   1              if(g_fRightMotorOut > MOTOR_OUT_MAX)    g_fRightMotorOut = MOTOR_OUT_MAX;
- 279   1              if(g_fRightMotorOut < MOTOR_OUT_MIN)    g_fRightMotorOut = MOTOR_OUT_MIN;
- 280   1      
- 281   1          SetMotorVoltageAndDirection(g_fLeftMotorOut,g_fRightMotorOut);
- 282   1      }
- 283          
- 284          
- 285          /***************************************************************
- 286          ** ×÷¡¡  Õß: Songyimiao
- 287          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
- 288          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
- 289          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
- 290          ** º¯ÊýÃû³Æ: GetMotorPulse
- 291          ** ¹¦ÄÜÃèÊö: ²¶»ñµç»úÂö³åº¯Êý            
- 292          ** Êä¡¡  Èë:   
- 293          ** Êä¡¡  ³ö:   
- 294          ** ±¸    ×¢: 
- 295          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
- 296          ***************************************************************/
- 297          void GetMotorPulse(void)
- 298          {
- 299   1              g_iRightMotorPulse = (T4H<<8) + T4L;
- 300   1              g_iLeftMotorPulse  = (T3H<<8) + T3L;
- 301   1              T4T3M&= 0x77;
- 302   1              T4H=T4L=0;
-C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 6   
+ 245   1      }
+ 246          /***************************************************************
+ 247          ** ×÷¡¡  Õß: Songyimiao
+ 248          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
+ 249          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
+ 250          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
+ 251          ** º¯ÊýÃû³Æ: MotorOutput
+ 252          ** ¹¦ÄÜÃèÊö: µç»úÊä³öº¯Êý            
+ 253          ** Êä¡¡  Èë:   
+ 254          ** Êä¡¡  ³ö:   
+ 255          ** ±¸    ×¢: ½«Ö±Á¢¿ØÖÆ¡¢ËÙ¶È¿ØÖÆ¡¢·½Ïò¿ØÖÆµÄÊä³öÁ¿½øÐÐµþ¼Ó,²¢¼Ó
+ 256                                   ÈëËÀÇø³£Á¿£¬¶ÔÊä³ö±¥ºÍ×÷³ö´¦Àí¡£
+ 257          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
+ 258          ***************************************************************/
+ 259          void MotorOutput(void)
+ 260          {
+ 261   1      
+ 262   1              g_fLeftMotorOut = g_fAngleControlOut - g_fSpeedControlOut + g_fBluetoothDirection + g_fDirectionDeviation
+             -;
+ 263   1              g_fRightMotorOut = g_fAngleControlOut - g_fSpeedControlOut - g_fBluetoothDirection - g_fDirectionDeviatio
+             -n;
+ 264   1                              
+ 265   1              
+ 266   1              /*Ôö¼ÓËÀÇø³£Êý*/
+ 267   1              if(g_fLeftMotorOut>0)       g_fLeftMotorOut  += MOTOR_OUT_DEAD_VAL;
+ 268   1              else if(g_fLeftMotorOut<0)  g_fLeftMotorOut  -= MOTOR_OUT_DEAD_VAL;
+ 269   1              if(g_fRightMotorOut>0)      g_fRightMotorOut += MOTOR_OUT_DEAD_VAL;
+ 270   1              else if(g_fRightMotorOut<0) g_fRightMotorOut -= MOTOR_OUT_DEAD_VAL;
+ 271   1      
+ 272   1              /*Êä³ö±¥ºÍ´¦ÀíÊÇ±£Ö¤Êä³öÁ¿²»»á³¬³öPWMµÄÂúÁ¿³Ì·¶Î§¡£*/   
+ 273   1              if(g_fLeftMotorOut  > MOTOR_OUT_MAX)    g_fLeftMotorOut  = MOTOR_OUT_MAX;
+ 274   1              if(g_fLeftMotorOut  < MOTOR_OUT_MIN)    g_fLeftMotorOut  = MOTOR_OUT_MIN;
+ 275   1              if(g_fRightMotorOut > MOTOR_OUT_MAX)    g_fRightMotorOut = MOTOR_OUT_MAX;
+ 276   1              if(g_fRightMotorOut < MOTOR_OUT_MIN)    g_fRightMotorOut = MOTOR_OUT_MIN;
+ 277   1      
+ 278   1          SetMotorVoltageAndDirection(g_fLeftMotorOut,g_fRightMotorOut);
+ 279   1      }
+ 280          
+ 281          
+ 282          /***************************************************************
+ 283          ** ×÷¡¡  Õß: Songyimiao
+ 284          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
+ 285          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
+ 286          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
+ 287          ** º¯ÊýÃû³Æ: GetMotorPulse
+ 288          ** ¹¦ÄÜÃèÊö: ²¶»ñµç»úÂö³åº¯Êý            
+ 289          ** Êä¡¡  Èë:   
+ 290          ** Êä¡¡  ³ö:   
+ 291          ** ±¸    ×¢: 
+ 292          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
+ 293          ***************************************************************/
+ 294          void GetMotorPulse(void)
+ 295          {
+ 296   1              g_iRightMotorPulse = (T4H<<8) + T4L;
+ 297   1              g_iLeftMotorPulse  = (T3H<<8) + T3L;
+ 298   1              T4T3M&= 0x77;
+ 299   1              T4H=T4L=0;
+ 300   1              T3H=T3L=0;
+C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 6   
 
- 303   1              T3H=T3L=0;
- 304   1              T4T3M |= 0xCC;
- 305   1      
- 306   1              if(!MOTOR_LEFT_SPEED_POSITIVE)  g_iLeftMotorPulse  = -g_iLeftMotorPulse ; 
- 307   1              if(!MOTOR_RIGHT_SPEED_POSITIVE) g_iRightMotorPulse = -g_iRightMotorPulse;
- 308   1      
- 309   1              g_iLeftMotorPulseSigma += g_iLeftMotorPulse;
- 310   1              g_iRightMotorPulseSigma += g_iRightMotorPulse;
- 311   1      }
- 312          
- 313          /***************************************************************
- 314          ** ×÷¡¡  Õß: Songyimiao
- 315          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
- 316          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
- 317          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
- 318          ** º¯ÊýÃû³Æ: SpeedControl
- 319          ** ¹¦ÄÜÃèÊö: ËÙ¶È»·¿ØÖÆº¯Êý           
- 320          ** Êä¡¡  Èë:   
- 321          ** Êä¡¡  ³ö:   
- 322          ** ±¸    ×¢: 
- 323          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
- 324          ***************************************************************/
- 325          void SpeedControl(void)
- 326          {  
- 327   1              
- 328   1              float fP, fDelta;
- 329   1              float fI;
- 330   1              
- 331   1              g_fCarSpeed = (g_iLeftMotorPulseSigma  + g_iRightMotorPulseSigma ) / 2;
- 332   1          g_iLeftMotorPulseSigma = g_iRightMotorPulseSigma = 0;         //È«¾Ö±äÁ¿ ×¢Òâ¼°Ê±ÇåÁã
+ 301   1              T4T3M |= 0xCC;
+ 302   1      
+ 303   1              if(!MOTOR_LEFT_SPEED_POSITIVE)  g_iLeftMotorPulse  = -g_iLeftMotorPulse ; 
+ 304   1              if(!MOTOR_RIGHT_SPEED_POSITIVE) g_iRightMotorPulse = -g_iRightMotorPulse;
+ 305   1              
+ 306   1              g_iLeftMotorPulseSigma += g_iLeftMotorPulse;
+ 307   1              g_iRightMotorPulseSigma += g_iRightMotorPulse;    
+ 308   1      }
+ 309          
+ 310          /***************************************************************
+ 311          ** ×÷¡¡  Õß: Songyimiao
+ 312          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
+ 313          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
+ 314          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
+ 315          ** º¯ÊýÃû³Æ: SpeedControl
+ 316          ** ¹¦ÄÜÃèÊö: ËÙ¶È»·¿ØÖÆº¯Êý           
+ 317          ** Êä¡¡  Èë:   
+ 318          ** Êä¡¡  ³ö:   
+ 319          ** ±¸    ×¢: 
+ 320          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
+ 321          ***************************************************************/
+ 322          void SpeedControl(void)
+ 323          {  
+ 324   1              float fP, fDelta;
+ 325   1              float fI;
+ 326   1              
+ 327   1              g_fCarSpeed = (float)(g_iLeftMotorPulseSigma  + g_iRightMotorPulseSigma ) * 0.5f;
+ 328   1          g_iLeftMotorPulseSigma = g_iRightMotorPulseSigma = 0;         //È«¾Ö±äÁ¿ ×¢Òâ¼°Ê±ÇåÁã
+ 329   1      
+ 330   1              /*µÍÍ¨ÂË²¨*/ 
+ 331   1          g_fCarSpeed = (float)(g_fCarSpeedOld * 0.2f + g_fCarSpeed * 0.8f) ;
+ 332   1              g_fCarSpeedOld = g_fCarSpeed;
  333   1                                                                                                                                       
  334   1              fDelta = CAR_SPEED_SET;
  335   1              fDelta -= g_fCarSpeed;
@@ -360,83 +362,117 @@ line level    source
  340   1              /*»ý·ÖÉÏÏÞÉèÏÞ*/                          
  341   1              if((int)g_fCarPosition > SPEED_CONTROL_OUT_MAX)    g_fCarPosition = SPEED_CONTROL_OUT_MAX;
  342   1              if((int)g_fCarPosition < SPEED_CONTROL_OUT_MIN)    g_fCarPosition = SPEED_CONTROL_OUT_MIN;
- 343   1                                                              
- 344   1              g_fSpeedControlOut = fP + g_fCarPosition; 
- 345   1      
- 346   1      }
- 347          
- 348          /***************************************************************
- 349          ** ×÷¡¡  Õß: Songyimiao
- 350          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
- 351          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
- 352          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
- 353          ** º¯ÊýÃû³Æ: AngleControl
- 354          ** ¹¦ÄÜÃèÊö: ½Ç¶È»·¿ØÖÆº¯Êý           
- 355          ** Êä¡¡  Èë:   
- 356          ** Êä¡¡  ³ö:   
- 357          ** ±¸    ×¢: 
- 358          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
- 359          ***************************************************************/
- 360          void AngleControl(void)  
- 361          {  
- 362   1              g_fGravityAngle = (float)(g_iAccelInputVoltage_Y_Axis - GRAVITY_OFFSET) / 16384.0f;//È¥³ýÁãµãÆ«ÒÆ,¼ÆËãµÃµ
-             -½½Ç¶È£¨»¡¶È£©
- 363   1              g_fGravityAngle = g_fGravityAngle * 57.2957795f ;// 180/3.1415926535898 »¡¶È×ª»»Îª¶È,
-C51 COMPILER V9.00   CARSTAND                                                              01/18/2016 00:06:06 PAGE 7   
+ 343   1              g_fCarPosition += g_fBluetoothSpeed;
+ 344   1      
+ 345   1              g_fSpeedControlOut = fP + g_fCarPosition;
+ 346   1              /*
+ 347   1              //g_fCarSpeed *= CAR_SPEED_CONSTANT;     //µ¥Î»£º×ª/Ãë
+ 348   1              g_fCarPosition += g_fCarSpeed;           //Â·³Ì  ¼´ËÙ¶È»ý·Ö
+ 349   1              g_fCarPosition += g_fBluetoothSpeed;
+ 350   1              
+ 351   1              //»ý·ÖÉÏÏÞÉèÏÞ                    
+ 352   1              if((int)g_fCarPosition > SPEED_CONTROL_OUT_MAX)    g_fCarPosition = SPEED_CONTROL_OUT_MAX;
+ 353   1              if((int)g_fCarPosition < SPEED_CONTROL_OUT_MIN)    g_fCarPosition = SPEED_CONTROL_OUT_MIN;
+ 354   1                                                              
+ 355   1              g_fSpeedControlOut = (CAR_SPEED_SET - g_fCarSpeed) * g_fcSpeed_P + \
+ 356   1              (CAR_POSITION_SET - g_fCarPosition) * g_fcSpeed_I;  
+ 357   1              */
+ 358   1      }
+ 359          
+ 360          /***************************************************************
+ 361          ** ×÷¡¡  Õß: Songyimiao
+ 362          ** ¹Ù    Íø£ºhttp://www.miaowlabs.com
+C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 7   
 
- 364   1              g_fGyroAngleSpeed = (g_iGyroInputVoltage_X_Axis - GYRO_OFFSET) / GYROSCOPE_ANGLE_RATIO ;// 16.4;
- 365   1              
- 366   1              g_fCarAngle = 0.99*(g_fCarAngle + g_fGyroAngleSpeed * 0.008f) + 0.01*g_fGravityAngle;//»¥²¹ÂË²¨
- 367   1      
- 368   1              g_fAngleControlOut = (CAR_ANGLE_SET - g_fCarAngle)* g_fcAngle_P + \
- 369   1              (CAR_ANGULARSPEED_SET - g_fGyroAngleSpeed )* g_fcAngle_D ;         
- 370   1               
- 371   1      }
- 372          
- 373          /***************************************************************
- 374          ** º¯ÊýÃû³Æ: BluetoothControl
- 375          ** ¹¦ÄÜÃèÊö: À¶ÑÀ¿ØÖÆº¯Êý
- 376                       ÊÖ»ú·¢ËÍÄÚÈÝ
- 377                                   ÉÏ£º00000010    ÏÂ£º00000001
- 378                       ×ó£º00000011    ÓÒ£º00000100
- 379                       Í£Ö¹£º00000000
- 380                       ¹¦ÄÜ¼ü£¨¿É×Ô±àÏÂÎ»»ú³ÌÐòÀ©Õ¹£©£º
- 381                       A:00000101      B:00000110
- 382                       C:00000111      D:00001000
- 383          ** Êä¡¡Èë:   
- 384          ** Êä¡¡³ö:   
- 385          ** È«¾Ö±äÁ¿: 
- 386          ** ×÷¡¡Õß:   ß÷ÎØÊµÑéÊÒ
- 387          ** ÌÔ  ±¦£º  Http://miaowlabs.taobao.com
- 388          ** ÈÕ¡¡ÆÚ:   2014Äê08ÔÂ01ÈÕ
- 389          ***************************************************************/
- 390          void BluetoothControl(void)      
- 391          {
- 392   1              unsigned char xdata ucBluetoothValue;
- 393   1      
- 394   1              LED0=~LED0;
- 395   1      
- 396   1              ucBluetoothValue = UART2ReceiveByte();          
- 397   1              switch (ucBluetoothValue)
- 398   1              {
- 399   2                case 0x02 : g_iCarSpeedSet =   40 ;  break;      //Ç°½ø
- 400   2                case 0x01 : g_iCarSpeedSet = (-40);  break;      //ºóÍË
- 401   2                case 0x03 : g_fBluetoothDirection =   5000 ;  break;//×ó×ª
- 402   2                case 0x04 : g_fBluetoothDirection = (-5000);  break;//ÓÒ×ª
- 403   2                case 0x05 : g_fBluetoothSpeed =   130 ; break ;
- 404   2                case 0x06 : g_fBluetoothSpeed = (-130); break ;
- 405   2                case 0x07 : g_fBluetoothDirection =   15000 ;  break;
- 406   2                case 0x08 : g_fBluetoothDirection = (-15000);  break;
- 407   2                default : g_fBluetoothSpeed = 0; g_fBluetoothDirection = 0;g_iCarSpeedSet=0;break;
- 408   2              }
- 409   1              
- 410   1      }
+ 363          ** ÌÔ    ±¦£ºhttp://miaowlabs.taobao.com
+ 364          ** ÈÕ¡¡  ÆÚ: 2015Äê11ÔÂ29ÈÕ
+ 365          ** º¯ÊýÃû³Æ: AngleControl
+ 366          ** ¹¦ÄÜÃèÊö: ½Ç¶È»·¿ØÖÆº¯Êý           
+ 367          ** Êä¡¡  Èë:   
+ 368          ** Êä¡¡  ³ö:   
+ 369          ** ±¸    ×¢: 
+ 370          ********************ß÷ÎØÊµÑéÊÒ°æÈ¨ËùÓÐ**************************
+ 371          ***************************************************************/
+ 372          void AngleControl(void)  
+ 373          {  
+ 374   1              //È¥³ýÁãµãÆ«ÒÆ,¼ÆËãµÃµ½¼ÓËÙ¶È´«¸ÐÆ÷µÄ½Ç¶È£¨»¡¶È£©
+ 375   1              g_fGravityAngle = (float)(g_iAccelInputVoltage_X_Axis - GRAVITY_OFFSET) / 16384.0f;
+ 376   1              // 57.2957795=180/3.1415926535898 »¡¶È×ª»»Îª¶È
+ 377   1              g_fGravityAngle = g_fGravityAngle * 57.2957795f ;
+ 378   1      
+ 379   1              g_fGyroAngleSpeed = (g_iGyroInputVoltage_Y_Axis - GYRO_OFFSET) / GYROSCOPE_ANGLE_RATIO *(-1);
+ 380   1              //»¥²¹ÂË²¨
+ 381   1              g_fCarAngle = 0.99f*(g_fCarAngle + g_fGyroAngleSpeed * 0.008f) + 0.01f * g_fGravityAngle;
+ 382   1              //½Ç¶È»·PID¿ØÖÆ
+ 383   1              g_fAngleControlOut = (CAR_ANGLE_SET - g_fCarAngle)* g_fcAngle_P + \
+ 384   1              (CAR_ANGULARSPEED_SET - g_fGyroAngleSpeed )* g_fcAngle_D ;         
+ 385   1               
+ 386   1      }
+ 387          
+ 388          /***************************************************************
+ 389          ** º¯ÊýÃû³Æ: BluetoothControl
+ 390          ** ¹¦ÄÜÃèÊö: À¶ÑÀ¿ØÖÆº¯Êý
+ 391                       ÊÖ»ú·¢ËÍÄÚÈÝ
+ 392                                   Ç°½ø£º0x01    ºóÍË£º0x02
+ 393                       ×ó£º  0x03    ÓÒ£º  0x04
+ 394                       Í£Ö¹£º0x10
+ 395                       ¹¦ÄÜ¼ü£¨¿É×Ô±àÏÂÎ»»ú³ÌÐòÀ©Õ¹£©£º
+ 396                       ×ó×ÔÐý£º0x07
+ 397                                   ÓÒ×ÔÐý£º0x08
+ 398                                   ¸ü¿ìµØÇ°½ø£º0x09  ¸üÂýµØÇ°½ø£º0x0A
+ 399                                   ¸üÂýµØºóÍË£º0x0B  ¸üÂýµØºóÍË£º0x0C   Ñ²ÏßÆô¶¯£º0x0D
+ 400          ** Êä¡¡Èë:   
+ 401          ** Êä¡¡³ö:   
+ 402          ** È«¾Ö±äÁ¿: 
+ 403          ** ×÷¡¡Õß:   ß÷ÎØÊµÑéÊÒ
+ 404          ** ÌÔ  ±¦£º  Http://miaowlabs.taobao.com
+ 405          ** ÈÕ¡¡ÆÚ:   2014Äê08ÔÂ01ÈÕ
+ 406          ***************************************************************/
+ 407          void BluetoothControl(void)      
+ 408          {
+ 409   1              unsigned char xdata ucBluetoothValue;
+ 410   1      
+ 411   1              //LED0=~LED0;
+ 412   1      
+ 413   1              ucBluetoothValue = UART2ReceiveByte();          
+ 414   1                      
+ 415   1              switch (ucBluetoothValue)
+ 416   1              {
+ 417   2                //case 0x02 : g_iCarSpeedSet =   50 ;  break;    //ºóÍË
+ 418   2                //case 0x01 : g_iCarSpeedSet = (-50);  break;    //Ç°½ø
+ 419   2      
+ 420   2                case 0x02 : g_fBluetoothSpeed =   40 ;  break;           //ºóÍË
+ 421   2                case 0x01 : g_fBluetoothSpeed = (-40);  break;           //Ç°½ø
+ 422   2                case 0x03 : g_fBluetoothDirection =   200 ;  break;//×ó×ª
+ 423   2                case 0x04 : g_fBluetoothDirection = (-200);  break;//ÓÒ×ª
+ 424   2                case 0x05 : g_iCarSpeedSet =   20 ; break ;
+C51 COMPILER V9.00   CARSTAND                                                              03/09/2016 22:43:42 PAGE 8   
+
+ 425   2                case 0x06 : g_iCarSpeedSet = (-20); break ;
+ 426   2                case 0x07 : g_fBluetoothDirection =   400 ;  break;
+ 427   2                case 0x08 : g_fBluetoothDirection = (-400);  break;
+ 428   2                case 0x0D : g_iCarSpeedSet = 8;  break;          //Ç°½ø
+ 429   2                default : g_fBluetoothSpeed = 0; g_fBluetoothDirection = 0;g_iCarSpeedSet=0;break;
+ 430   2              }
+ 431   1      }
+ 432          
+ 433          void EliminateDirectionDeviation(void)
+ 434          {
+ 435   1              int Delta=0;
+ 436   1      
+ 437   1              //Delta = g_iGyroInputVoltage_Z_Axis - 0;
+ 438   1              Delta = g_iLeftMotorPulseSigma - g_iRightMotorPulseSigma;
+ 439   1      
+ 440   1              g_fDirectionDeviation = Delta * g_fcDirection_P * (-1);
+ 441   1      
+ 442   1      
+ 443   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1945    ----
-   CONSTANT SIZE    =     16    ----
-   XDATA SIZE       =     81      23
+   CODE SIZE        =   2327    ----
+   CONSTANT SIZE    =     20    ----
+   XDATA SIZE       =     87      23
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----       2

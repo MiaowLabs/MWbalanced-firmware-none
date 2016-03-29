@@ -9,7 +9,6 @@
 #ifndef  __I2C_H__
 #define  __I2C_H__
 
-#include "IAP15W4K61S4.h"
 #include "IOConfig.h"
 	
 #include <math.h>    //Keil library  

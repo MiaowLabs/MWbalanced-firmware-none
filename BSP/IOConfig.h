@@ -17,11 +17,11 @@ MCU硬件相关
 #define	DisableInterrupts	EA=0
 #define	EnableInterrupts	EA=1
 
-#define DEBUG_UART  0
+#define DEBUG_UART  1
 
-#define IF_CAR_FALL 0
+#define IF_CAR_FALL 1
 
-#define CLK_DIV_1() CLK_DIV &= 0x38 /*主时钟频率/1，不分频，等于内部RC时钟*/
+#define CLK_DIV_1() CLK_DIV &= 0x38 /*主时钟频率/1，不分频，等于外部晶振频率@20M*/
 /*
 	  CLKS2 CLKS1 CLKS0         分频后CPU实际工作时钟
 	    0     0     0        外部晶体时钟或内部R/C振荡时钟
@@ -35,13 +35,17 @@ MCU硬件相关
 */	
 
 //LED
-sbit LED0 = P4^4;
-sbit LED1 = P2^0;
+sbit LED0 = P3^7;
+sbit LED1 = P4^1;
 
 //IIC
-sbit SCL  = P4^6;			//I2C时钟引脚定义
-sbit SDA  = P4^5;			//I2C数据引脚定义
+sbit SCL  = P5^3;			//I2C时钟引脚定义
+sbit SDA  = P0^6;			//I2C数据引脚定义
 
+sbit AIN1 = P2^0;
+sbit AIN2 = P4^4;
+sbit BIN1 = P4^3;
+sbit BIN2 = P4^2;
 
 
 #endif 
