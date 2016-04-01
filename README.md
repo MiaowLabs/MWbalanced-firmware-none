@@ -1,10 +1,10 @@
 #MWbalanced-firmware-none
 
-MWbalanced control source code with no RTOS.
+MWbalancedSTC15 control source code with no RTOS.
 
-这是MWbalanced两轮自平衡小车控制代码，未使用实时操作系统。
+这是MWbalancedSTC15两轮自平衡小车控制代码，未使用实时操作系统。
 
-**为初学而生，使用简单的8051内核单片机（型号STC15W4K61S2）作为控制芯片。**
+**MWbalancedSTC15为初学而生，使用简单的8051内核单片机（型号STC15W4K61S2）作为控制芯片。**
 
 使用Keil C51进行编译开发。更详细的开发操作，见喵呜百科的开发指南。
 

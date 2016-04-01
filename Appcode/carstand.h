@@ -8,23 +8,23 @@
 #define _CARSTAND_H_
 
 /******角度控制相关宏定义******/
-#define	CAR_ANGLE_SET	      0
-#define CAR_ANGULARSPEED_SET  0
+#define	CAR_ANGLE_SET	      0					//角度预设值
+#define CAR_ANGULARSPEED_SET  0					//角速度预设值
 #define GRAVITY_OFFSET   (2000)      			//加速度零点偏移值 
-#define GYRO_OFFSET      0//g_iGyroOffset      //陀螺仪零点偏移值 
-#define	GYROSCOPE_ANGLE_RATIO 30.5//20.5
+#define GYRO_OFFSET      0      				//陀螺仪零点偏移值 
+#define	GYROSCOPE_ANGLE_RATIO 30.5		        //陀螺仪比例因子
 /******速度控制相关宏定义******/
-#define CAR_POSITION_SET  0
-#define CAR_SPEED_SET         g_iCarSpeedSet//0
-#define MOTOR_LEFT_SPEED_POSITIVE  ((int)g_fLeftMotorOut >0)
-#define MOTOR_RIGHT_SPEED_POSITIVE ((int)g_fRightMotorOut>0)
-#define SPEED_CONTROL_OUT_MAX	MOTOR_OUT_MAX 
+#define CAR_POSITION_SET  0						//路程预设值
+#define CAR_SPEED_SET     g_iCarSpeedSet	    //速度预设值
+#define MOTOR_LEFT_SPEED_POSITIVE  ((int)g_fLeftMotorOut >0)   //左轮速度方向判断
+#define MOTOR_RIGHT_SPEED_POSITIVE ((int)g_fRightMotorOut>0)   //右轮速度方向判断
+#define SPEED_CONTROL_OUT_MAX	MOTOR_OUT_MAX 	
 #define SPEED_CONTROL_OUT_MIN	MOTOR_OUT_MIN
-#define CAR_SPEED_CONSTANT		0.7575f////(1000.0/SPEED_CONTROL_PERIOD/(float)OPTICAL_ENCODE_CONSTANT)
+
 /******电机控制相关宏定义******/
-#define MOTOR_OUT_DEAD_VAL       0//300	   //死区值200
-#define MOTOR_OUT_MAX           1000	   //占空比正最大值
-#define MOTOR_OUT_MIN         (-1000)   //占空比负最大值		   
+#define MOTOR_OUT_DEAD_VAL       0	   //死区值
+#define MOTOR_OUT_MAX           1000   //占空比正最大值
+#define MOTOR_OUT_MIN         (-1000)  //占空比负最大值		   
 
 
 extern unsigned int xdata g_uiStartCount;

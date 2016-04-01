@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   MAIN                                                                  03/29/2016 23:03:25 PAGE 1   
+C51 COMPILER V9.00   MAIN                                                                  04/02/2016 00:01:47 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
@@ -32,45 +32,39 @@ line level    source
   22          {
   23   1              DisableInterrupts;//禁止总中断
   24   1      
-  25   1              CLK_DIV_1();      //设置MCU工作频率为内部RC时钟
-  26   1              DriversInit();  
-  27   1              MPU6050Init();  
-  28   1              CarStandInit();
+  25   1              CLK_DIV_1();      //设置MCU工作频率为外部晶振频率
+  26   1              DriversInit();    //MCU底层驱动初始化
+  27   1              MPU6050Init();    //MPU6050配置初始化
+  28   1              CarStandInit();   //应用程序变量初始化
   29   1              
-  30   1              Delaynms(200);   //延时1s
-  31   1              //GetGyroRevise();
-  32   1              ON_LED0;
-  33   1              //Delaynms(2000);        //延时1s
-  34   1              //Delaynms(200);         //延时3s
-  35   1                                                                              
-  36   1              EnableInterrupts;//允许总中断    
-  37   1      
-  38   1              while(1)
-  39   1              { 
-  40   2                      BluetoothControl();
-  41   2              
-  42   2      #if 0//DEBUG_UART  //调试启用 预编译命令
-                      
-                      OutData[0] = g_fCarAngle;
-                      OutData[1] = g_fGyroAngleSpeed;
-                      OutData[2] = g_fGravityAngle ;
-                      OutData[3] = 45;  
-              /*      OutData[0] = g_fCarSpeed;
-                      OutData[1] = g_fCarPosition;
-                      OutData[2] = g_iLeftMotorPulseSigma ;
-                      OutData[3] = g_iLeftMotorPulse;  */
-                      OutPut_Data();          
-                                        
-              #endif                  
-C51 COMPILER V9.00   MAIN                                                                  03/29/2016 23:03:25 PAGE 2   
-
-  55   2                                              
-  56   2              }
-  57   1      }
+  30   1              Delaynms(200);    //延时200ms 
+  31   1              ON_LED0;                  //绿灯亮起，表示初始化完毕
+  32   1              
+  33   1              EnableInterrupts; //允许总中断   
+  34   1      
+  35   1              while(1)
+  36   1              { 
+  37   2                      BluetoothControl();     //
+  38   2              
+  39   2      #if DEBUG_UART  //调试启用 预编译命令  若要观察波形进行调试，需将DEBUG_UART设置成1
+  40   2              
+  41   2                      OutData[0] = g_fCarAngle;
+  42   2                      OutData[1] = g_fGyroAngleSpeed;
+  43   2                      OutData[2] = g_fGravityAngle ;
+  44   2                      OutData[3] = 45;  
+  45   2      
+  46   2                      OutPut_Data();          
+  47   2                                
+  48   2      #endif                  
+  49   2                                              
+  50   2              }
+  51   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     30    ----
+C51 COMPILER V9.00   MAIN                                                                  04/02/2016 00:01:47 PAGE 2   
+
+   CODE SIZE        =    103    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

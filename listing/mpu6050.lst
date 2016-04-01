@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   MPU6050                                                               03/29/2016 23:03:25 PAGE 1   
+C51 COMPILER V9.00   MPU6050                                                               04/02/2016 00:01:48 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE MPU6050
@@ -26,10 +26,10 @@ line level    source
   16   1              Single_WriteI2C(PWR_MGMT_1, 0x00)  ; //½â³ýÐÝÃß×´Ì¬
   17   1              Single_WriteI2C(SMPLRT_DIV, 0x07)  ; //ÍÓÂÝÒÇ125hz
   18   1              Single_WriteI2C(CONFIG, 0x04)      ; //Accelerometer:21hz 8.5ms ; Gyroscope:20hz 8.3ms
-  19   1              //Single_WriteI2C(CONFIG, 0x00);         //0x06
-  20   1              Single_WriteI2C(GYRO_CONFIG, 0x18) ; // ¡À2000¡ã/s  
-  21   1              Single_WriteI2C(ACCEL_CONFIG, 0x01); // ¡À2g
-  22   1      }
+  19   1              Single_WriteI2C(GYRO_CONFIG, 0x18) ; //¡À2000¡ã/s  
+  20   1              Single_WriteI2C(ACCEL_CONFIG, 0x01); //¡À2g
+  21   1      }
+  22          
   23          
   24          
   25          
@@ -37,7 +37,6 @@ line level    source
   27          
   28          
   29          
-  30          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

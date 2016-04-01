@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   PWM                                                                   03/29/2016 23:03:25 PAGE 1   
+C51 COMPILER V9.00   PWM                                                                   04/02/2016 00:01:47 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE PWM
@@ -62,7 +62,7 @@ line level    source
   52   1              CL = 0;         //自由递增计数的16位PCA定时器的值,初始化为0
   53   1              CH = 0;
   54   1              CCAP0H = CCAP0L = 0x00; //用于控制占空比，占空比=(255-CCAPnL)/255*100%
-C51 COMPILER V9.00   PWM                                                                   03/29/2016 23:03:25 PAGE 2   
+C51 COMPILER V9.00   PWM                                                                   04/02/2016 00:01:47 PAGE 2   
 
   55   1              CCAP1H = CCAP1L = 0x00; //初始化占空比为50%
   56   1              CR = 1; //PCA计数器阵列开始                                                                              
