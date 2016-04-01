@@ -414,11 +414,13 @@ void BluetoothControl(void)
 		
 	switch (ucBluetoothValue)
 	{
-	  //case 0x02 : g_iCarSpeedSet =   50 ;  break;	   //后退
-	  //case 0x01 : g_iCarSpeedSet = (-50);  break;	   //前进
 
-	  case 0x02 : g_fBluetoothSpeed =   40 ;  break;	   //后退
-	  case 0x01 : g_fBluetoothSpeed = (-40);  break;	   //前进
+	  case 0x02 : g_fBluetoothSpeed =   40 ;  break;//后退
+	  case 0x01 : g_fBluetoothSpeed = (-40);  break;//前进
+	  case 0x09 : g_fBluetoothSpeed =   60;   break;
+	  case 0x0A : g_fBluetoothSpeed = (-60);  break;
+	  case 0x0B : g_fBluetoothSpeed =   20;  break;
+	  case 0x0C : g_fBluetoothSpeed = (-20);  break;
 	  case 0x03 : g_fBluetoothDirection =   200 ;  break;//左转
 	  case 0x04 : g_fBluetoothDirection = (-200);  break;//右转
 	  case 0x05 : g_iCarSpeedSet =   20 ; break ;
@@ -434,7 +436,6 @@ void EliminateDirectionDeviation(void)
 {
 	int Delta=0;
 
-	//Delta = g_iGyroInputVoltage_Z_Axis - 0;
 	Delta = g_iLeftMotorPulseSigma - g_iRightMotorPulseSigma;
 
 	g_fDirectionDeviation = Delta * g_fcDirection_P * (-1);

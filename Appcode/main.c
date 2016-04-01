@@ -22,34 +22,28 @@ void main()
 {
 	DisableInterrupts;//禁止总中断
 
-	CLK_DIV_1();	  //设置MCU工作频率为内部RC时钟
-	DriversInit();	
-	MPU6050Init();	
-	CarStandInit();
+	CLK_DIV_1();	  //设置MCU工作频率为外部晶振频率
+	DriversInit();	  //MCU底层驱动初始化
+	MPU6050Init();	  //MPU6050配置初始化
+	CarStandInit();	  //应用程序变量初始化
 	
-	Delaynms(200);	 //延时1s
-	//GetGyroRevise();
-	ON_LED0;
-	//Delaynms(2000);	 //延时1s
-	//Delaynms(200);	 //延时3s
-									
-	EnableInterrupts;//允许总中断	 
+	Delaynms(200);	  //延时200ms 
+	ON_LED0;		  //绿灯亮起，表示初始化完毕
+	
+	EnableInterrupts; //允许总中断	 
 
 	while(1)
 	{ 
-		BluetoothControl();
+		BluetoothControl();	//
 	
-#if 0//DEBUG_UART  //调试启用 预编译命令
+#if DEBUG_UART  //调试启用 预编译命令  若要观察波形进行调试，需将DEBUG_UART设置成1
 	
-   	OutData[0] = g_fCarAngle;
-   	OutData[1] = g_fGyroAngleSpeed;
-   	OutData[2] = g_fGravityAngle ;
-   	OutData[3] = 45;  
-/*	OutData[0] = g_fCarSpeed;
-   	OutData[1] = g_fCarPosition;
-   	OutData[2] = g_iLeftMotorPulseSigma ;
-   	OutData[3] = g_iLeftMotorPulse;  */
-   	OutPut_Data();		
+   		OutData[0] = g_fCarAngle;
+   		OutData[1] = g_fGyroAngleSpeed;
+   		OutData[2] = g_fGravityAngle ;
+   		OutData[3] = 45;  
+
+   		OutPut_Data();		
 		 	  
 #endif	 		
 					

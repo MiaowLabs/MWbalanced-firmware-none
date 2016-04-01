@@ -35,16 +35,7 @@ void Timer1_Update(void) interrupt  3		//125hz
 			}
 	
 		MotorOutput();	
-#if 0//DEBUG_UART  //µ˜ ‘∆Ù”√ ‘§±‡“Î√¸¡Ó
-	
-   	OutData[0] = g_fCarAngle;
-   	OutData[1] = g_fGyroAngleSpeed;
-   	OutData[2] = g_fGravityAngle ;
-   	OutData[3] = 45;  
-
-   	OutPut_Data();		
-		 	  
-#endif	 		
+ 		
   		g_ucLEDCount++;
    		if(g_ucLEDCount >=125) //LED1µ∆1√ÎΩªÃÊ…¡À∏
    		{
