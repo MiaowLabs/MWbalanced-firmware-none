@@ -1,14 +1,18 @@
-#MWbalanced-firmware-none
+# MWbalanced-firmware-none
 
 MWbalancedSTC15 control source code with no RTOS.
 
 这是MWbalancedSTC15两轮自平衡小车控制代码，未使用实时操作系统。
 
-**MWbalancedSTC15为初学而生，使用简单的8051内核单片机（型号STC15W4K61S2）作为控制芯片。**
+本代码对于喵呜实验室MWbalancedSTC15第二版硬件。
 
-使用Keil C51进行编译开发。更详细的开发操作，见喵呜百科的开发指南。
+### 开源项目
 
-MWbalancedSTC15-2.0两轮自平衡小车对应的控制代码@外部晶振20M, 其他硬件版本可能需要重新调整PID参数。
+**MWbalancedSTC15为初学而生，选用8051内核单片机（型号STC15W4K61S2）作为控制芯片,使用Keil C51进行编译开发。**
+
+MWbalancedSTC15是喵呜实验室的开源项目之一，更详细的开发操作，见[喵呜百科](http://miaowlabs.com/wiki-MWbalanced.html)。
+
+MWbalancedSTC15两轮自平衡小车对应的控制代码@外部晶振20M, 其他硬件版本可能需要重新调整PID参数。
 
 角度环PD调试指南视频：[http://v.youku.com/v_show/id_XMTQ0MTYwNzY4NA==.html?from=y1.7-1.2](http://v.youku.com/v_show/id_XMTQ0MTYwNzY4NA==.html?from=y1.7-1.2)
 
@@ -16,7 +20,7 @@ MWbalancedSTC15-2.0两轮自平衡小车对应的控制代码@外部晶振20M, �
 
 气氛良好的技术交流**Q群**：喵呜实验室自平衡小车 153337261
 
-更新记录
+### 更新记录
 
 上传MWbalancedSTC15二代源代码；
 下一步整理代码，添加注释；

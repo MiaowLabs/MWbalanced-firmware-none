@@ -34,9 +34,9 @@ void main()
 
 	while(1)
 	{ 
-		BluetoothControl();	//
+		BluetoothControl();	//蓝牙控制函数
 	
-#if DEBUG_UART  //调试启用 预编译命令  若要观察波形进行调试，需将DEBUG_UART设置成1
+#if DEBUG_UART  //调试启用 预编译命令  若要观察波形进行调试，需将DEBUG_UART设置成1并注释蓝牙控制函数
 	
    		OutData[0] = g_fCarAngle;
    		OutData[1] = g_fGyroAngleSpeed;

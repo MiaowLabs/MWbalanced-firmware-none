@@ -43,7 +43,6 @@ extern float g_fCarPosition;
 extern float g_fGyroscopeAngleIntegral;
 extern int g_iGyroOffset;
 extern int g_iLeftMotorPulseSigma  ;
-
 extern float g_fAngleControlOut;
 extern float g_fLeftMotorOut;
 

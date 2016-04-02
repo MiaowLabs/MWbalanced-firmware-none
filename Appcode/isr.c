@@ -21,23 +21,23 @@
 void Timer1_Update(void) interrupt  3		//125hz
 { 
 	
-		SampleInputVoltage();
-		AngleControl();
+		SampleInputVoltage();		//采集数据函数
+		AngleControl();				//直立控制函数
 			
-		GetMotorPulse();
+		GetMotorPulse();			//采集脉冲函数
 		
 		g_ucSpeedControlCount++;
 		if(g_ucSpeedControlCount>=10) 
 			{	
-				EliminateDirectionDeviation();
-				SpeedControl();					
+				EliminateDirectionDeviation();	  //纠正方向函数
+				SpeedControl();					  //速度控制函数
 				g_ucSpeedControlCount=0;
 			}
 	
-		MotorOutput();	
+		MotorOutput();							  //电机输出函数
  		
   		g_ucLEDCount++;
-   		if(g_ucLEDCount >=125) //LED1灯1秒交替闪烁
+   		if(g_ucLEDCount >=125) 	                  //指示灯1秒交替闪烁
    		{
 			g_ucLEDCount=0;
 	 		LED0=~LED0;

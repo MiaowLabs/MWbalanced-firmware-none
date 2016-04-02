@@ -18,8 +18,7 @@ float g_fRightMotorOut;
 int   g_iAccelInputVoltage_X_Axis ;	//加速度X轴数据
 int   g_iGyroInputVoltage_Y_Axis  ;	//陀螺仪Y轴数据
 int   g_iGyroInputVoltage_Z_Axis  ;	//陀螺仪Y轴数据
-long int  g_liAccSum;
-long int  g_liGyroSum;
+
 float g_fCarAngle;         			//车模倾角
 float g_fGyroAngleSpeed;			//角速度      			
 float g_fGyroscopeAngleIntegral;	//角速度积分值
@@ -221,9 +220,6 @@ void SetMotorVoltageAndDirection(int iLeftVoltage,int iRightVoltage)
       iRighttMotorValue = iRightVoltage;
     }
 
-    //if(iLeftMotorValue   == 0)	CCAP0H=255;
-    //if(iRighttMotorValue == 0)	CCAP1H=255;
-
 	iLeftMotorValue   = (1000 - iLeftMotorValue)  ;	   
 	iRighttMotorValue = (1000 - iRighttMotorValue);
 	
@@ -260,8 +256,7 @@ void MotorOutput(void)
 {
 
 	g_fLeftMotorOut = g_fAngleControlOut - g_fSpeedControlOut + g_fBluetoothDirection + g_fDirectionDeviation;
-	g_fRightMotorOut = g_fAngleControlOut - g_fSpeedControlOut - g_fBluetoothDirection - g_fDirectionDeviation;
-			
+	g_fRightMotorOut = g_fAngleControlOut - g_fSpeedControlOut - g_fBluetoothDirection - g_fDirectionDeviation;			
 	
 	/*增加死区常数*/
 	if(g_fLeftMotorOut>0)       g_fLeftMotorOut  += MOTOR_OUT_DEAD_VAL;
@@ -343,18 +338,7 @@ void SpeedControl(void)
 	g_fCarPosition += g_fBluetoothSpeed;
 
 	g_fSpeedControlOut = fP + g_fCarPosition;
-	/*
-	//g_fCarSpeed *= CAR_SPEED_CONSTANT;	 //单位：转/秒
-	g_fCarPosition += g_fCarSpeed; 		 //路程  即速度积分
-	g_fCarPosition += g_fBluetoothSpeed;
-	
-	//积分上限设限			  
-	if((int)g_fCarPosition > SPEED_CONTROL_OUT_MAX)    g_fCarPosition = SPEED_CONTROL_OUT_MAX;
-	if((int)g_fCarPosition < SPEED_CONTROL_OUT_MIN)    g_fCarPosition = SPEED_CONTROL_OUT_MIN;
-							
-	g_fSpeedControlOut = (CAR_SPEED_SET - g_fCarSpeed) * g_fcSpeed_P + \
-	(CAR_POSITION_SET - g_fCarPosition) * g_fcSpeed_I;  
-	*/
+
 }
 
 /***************************************************************
