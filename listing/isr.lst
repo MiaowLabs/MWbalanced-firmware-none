@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   ISR                                                                   04/02/2016 20:41:11 PAGE 1   
+C51 COMPILER V9.00   ISR                                                                   04/08/2016 15:00:51 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE ISR
@@ -39,35 +39,39 @@ line level    source
   29   1                      g_ucSpeedControlCount++;
   30   1                      if(g_ucSpeedControlCount>=10) 
   31   1                              {       
-  32   2                                      EliminateDirectionDeviation();    //纠正方向函数
+  32   2                                      EliminateDirectionDeviation();    //短距离直线纠正控制函数
   33   2                                      SpeedControl();                                   //速度控制函数
-  34   2                                      g_ucSpeedControlCount=0;
-  35   2                              }
-  36   1              
-  37   1                      MotorOutput();                                                    //电机输出函数
-  38   1                      
-  39   1                      g_ucLEDCount++;
-  40   1                      if(g_ucLEDCount >=125)                    //指示灯1秒交替闪烁
-  41   1                      {
-  42   2                              g_ucLEDCount=0;
-  43   2                              LED0=~LED0;
-  44   2                      }
-  45   1                               
-  46   1      }
-  47          
-  48          void Timer0_Update(void) interrupt  1
-  49          {
-  50   1          
-  51   1      //      g_ucSpeedCountCarry++;
-  52   1      //      LED2=~LED2;
-  53   1      }
-  54                                           
-C51 COMPILER V9.00   ISR                                                                   04/02/2016 20:41:11 PAGE 2   
+  34   2                                      if(g_ucIRFlag==1)                                 //一键启动循迹-由APP控制
+  35   2                                      {
+  36   3                                              DirectionControl();                       //红外循迹方向控制函数
+  37   3                                      }       
+  38   2                                      g_ucSpeedControlCount=0;
+  39   2                              }
+  40   1              
+  41   1                      MotorOutput();                                                    //电机输出函数
+  42   1                      
+  43   1                      g_ucLEDCount++;
+  44   1                      if(g_ucLEDCount >=125)                    //指示灯1秒交替闪烁
+  45   1                      {
+  46   2                              g_ucLEDCount=0;
+  47   2                              LED0=~LED0;
+  48   2                      }
+  49   1                               
+  50   1      }
+  51          
+  52          void Timer0_Update(void) interrupt  1
+  53          {
+  54   1          
+C51 COMPILER V9.00   ISR                                                                   04/08/2016 15:00:51 PAGE 2   
 
+  55   1      //      g_ucSpeedCountCarry++;
+  56   1      //      LED2=~LED2;
+  57   1      }
+  58                                           
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    108    ----
+   CODE SIZE        =    118    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

@@ -8,6 +8,7 @@
 
 unsigned int xdata g_uiStartCount;
 unsigned char xdata g_ucLEDCount;
+unsigned char xdata g_ucIRFlag = 0;
 /******电机控制参数******/
 int   g_iCarSpeedSet;
 float g_fSpeedControlOut;
@@ -36,16 +37,18 @@ unsigned char g_ucSpeedControlPeriod ;
 unsigned char g_ucSpeedControlCount ;
 
 /*-----角度环和速度环PID控制参数-----*/
-float code g_fcAngle_P = 90.0;  //  85
-float code g_fcAngle_D = 3.0;   // 2.8	
-float code g_fcSpeed_P = 12.0 ; //  15
-float code g_fcSpeed_I = 1.4;   // 1.7
-float code g_fcDirection_P = 5.0;		   
+float code g_fcAngle_P = 90.0;  	 //角度环P参数
+float code g_fcAngle_D = 3.0;   	 //角度环D参数
+float code g_fcSpeed_P = 14.5 ; 	 //速度环P参数
+float code g_fcSpeed_I = 1.4;   	 //速度环D参数
+float code g_fcDirection_P = 300.0;	 //方向环P参数
+float code g_fcEliminate_P= 5.0;	 //短距离纠正方向环P参数  
 /******蓝牙控制参数******/
 float xdata g_fBluetoothSpeed;
 float xdata g_fBluetoothDirection;
 
 float xdata g_fDirectionDeviation;
+float xdata g_fDirectionControlOut;
 
 /***************************************************************
 ** 作　  者: Songyimiao
@@ -106,6 +109,8 @@ void CarStandInit()
 
     g_ucLEDCount = 0;				
 	g_uiStartCount= 0;
+
+	g_fDirectionDeviation = 0;
 }
 
 /***************************************************************
@@ -332,11 +337,12 @@ void SpeedControl(void)
 	fI = fDelta * g_fcSpeed_I;
 	g_fCarPosition += fI;
 
-	/*积分上限设限*/			  
-	if((int)g_fCarPosition > SPEED_CONTROL_OUT_MAX)    g_fCarPosition = SPEED_CONTROL_OUT_MAX;
-	if((int)g_fCarPosition < SPEED_CONTROL_OUT_MIN)    g_fCarPosition = SPEED_CONTROL_OUT_MIN;
 	g_fCarPosition += g_fBluetoothSpeed;
 
+	/*积分上限设限*/			  
+	if((int)g_fCarPosition > SPEED_CONTROL_OUT_MAX)    g_fCarPosition = SPEED_CONTROL_OUT_MAX;
+	if((int)g_fCarPosition < SPEED_CONTROL_OUT_MIN)    g_fCarPosition = SPEED_CONTROL_OUT_MIN;	
+	
 	g_fSpeedControlOut = fP + g_fCarPosition;
 
 }
@@ -416,13 +422,64 @@ void BluetoothControl(void)
 	}
 }
 
+/***************************************************************
+** 作　  者: Songyimiao
+** 官    网：http://www.miaowlabs.com
+** 淘    宝：http://miaowlabs.taobao.com
+** 日　  期: 
+** 函数名称: EliminateDirectionDeviation
+** 功能描述: 短距离直线纠正控制函数           
+** 输　  入:   
+** 输　  出:   
+** 备    注: 
+********************喵呜实验室版权所有**************************
+***************************************************************/
+
 void EliminateDirectionDeviation(void)
 {
 	int Delta=0;
 
 	Delta = g_iLeftMotorPulseSigma - g_iRightMotorPulseSigma;
 
-	g_fDirectionDeviation = Delta * g_fcDirection_P * (-1);
+	g_fDirectionDeviation = Delta * g_fcEliminate_P * (-1);
 
 
+}
+
+
+/***************************************************************
+** 作　  者: Songyimiao
+** 官    网：http://www.miaowlabs.com
+** 淘    宝：http://miaowlabs.taobao.com
+** 日　  期: 20160408
+** 函数名称: DirectionControl
+** 功能描述: 红外循迹方向控制函数           
+** 输　  入:   
+** 输　  出:   
+** 备    注: 
+********************喵呜实验室版权所有**************************
+***************************************************************/
+void DirectionControl(void)
+{ 
+  int iLeft,iRight;
+  
+  iLeft = LeftIR;
+  iRight = RightIR;
+
+  if(iLeft==0&&iRight==1)
+  {
+  	g_fDirectionControlOut = g_fcDirection_P;	
+  }
+  else if(iLeft==1&&iRight==0)
+  {
+  	g_fDirectionControlOut = (-1) * g_fcDirection_P;	
+  }
+  else if(iLeft==0&&iRight==0)
+  {
+  	g_fDirectionControlOut = 0;	
+  }
+  else if(iLeft==1&&iRight==1)
+  {
+  	g_fDirectionControlOut = 0;	
+  }
 }

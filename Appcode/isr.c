@@ -29,8 +29,12 @@ void Timer1_Update(void) interrupt  3		//125hz
 		g_ucSpeedControlCount++;
 		if(g_ucSpeedControlCount>=10) 
 			{	
-				EliminateDirectionDeviation();	  //纠正方向函数
+				EliminateDirectionDeviation();	  //短距离直线纠正控制函数
 				SpeedControl();					  //速度控制函数
+				if(g_ucIRFlag==1)				  //一键启动循迹-由APP控制
+				{
+					DirectionControl();			  //红外循迹方向控制函数
+				}	
 				g_ucSpeedControlCount=0;
 			}
 	

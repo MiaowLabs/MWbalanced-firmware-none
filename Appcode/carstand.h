@@ -26,7 +26,7 @@
 #define MOTOR_OUT_MAX           1000   //占空比正最大值
 #define MOTOR_OUT_MIN         (-1000)  //占空比负最大值		   
 
-
+extern unsigned char xdata g_ucIRFlag;
 extern unsigned int xdata g_uiStartCount;
 extern unsigned char xdata g_ucLEDCount;
 extern int g_iLeftMotorPulse;
@@ -46,7 +46,7 @@ extern int g_iLeftMotorPulseSigma  ;
 extern float g_fAngleControlOut;
 extern float g_fLeftMotorOut;
 
-
+void DirectionControl(void);
 void EliminateDirectionDeviation(void);
 void DriversInit(void);
 void SampleInputVoltage(void);
