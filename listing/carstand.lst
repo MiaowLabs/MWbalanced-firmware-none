@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 15:00:51 PAGE 1   
+C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 22:52:02 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE CARSTAND
@@ -52,7 +52,7 @@ line level    source
   42          float code g_fcSpeed_P = 14.5 ;          //速度环P参数
   43          float code g_fcSpeed_I = 1.4;            //速度环D参数
   44          float code g_fcDirection_P = 300.0;      //方向环P参数
-  45          float code g_fcEliminate_P= 5.0;         //短距离纠正方向环P参数  
+  45          float code g_fcEliminate_P= 0.0;         //短距离纠正方向环P参数  
   46          /******蓝牙控制参数******/
   47          float xdata g_fBluetoothSpeed;
   48          float xdata g_fBluetoothDirection;
@@ -62,7 +62,7 @@ line level    source
   52          
   53          /***************************************************************
   54          ** 作　  者: Songyimiao
-C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 15:00:51 PAGE 2   
+C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 22:52:02 PAGE 2   
 
   55          ** 官    网：http://www.miaowlabs.com
   56          ** 淘    宝：http://miaowlabs.taobao.com
@@ -126,7 +126,7 @@ line level    source
  114   1      }
  115          
  116          /***************************************************************
-C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 15:00:51 PAGE 3   
+C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 22:52:02 PAGE 3   
 
  117          ** 作　  者: Songyimiao
  118          ** 官    网：http://www.miaowlabs.com
@@ -190,7 +190,7 @@ line level    source
  176   1              int temp;
  177   1              for(temp=0;temp<500;temp++)
  178   1              {
-C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 15:00:51 PAGE 4   
+C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 22:52:02 PAGE 4   
 
  179   2                      tempsum += DataSynthesis(GYRO_YOUT_H) ;
  180   2              }
@@ -254,7 +254,7 @@ line level    source
  238   2                      AIN1 = 0;                                     //右电机前进      角度为负  速度为正
  239   2              AIN2 = 0; 
  240   2                      BIN1 = 0;                                     //右电机前进      角度为负  速度为正
-C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 15:00:51 PAGE 5   
+C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 22:52:02 PAGE 5   
 
  241   2              BIN2 = 0;   
  242   2              }
@@ -318,7 +318,7 @@ line level    source
  298   1              T4T3M&= 0x77;
  299   1              T4H=T4L=0;
  300   1              T3H=T3L=0;
-C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 15:00:51 PAGE 6   
+C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 22:52:02 PAGE 6   
 
  301   1              T4T3M |= 0xCC;
  302   1      
@@ -382,7 +382,7 @@ line level    source
  360          ********************喵呜实验室版权所有**************************
  361          ***************************************************************/
  362          void AngleControl(void)  
-C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 15:00:51 PAGE 7   
+C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 22:52:02 PAGE 7   
 
  363          {  
  364   1              //去除零点偏移,计算得到加速度传感器的角度（弧度）
@@ -446,7 +446,7 @@ line level    source
  422   2              }
  423   1      }
  424          
-C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 15:00:51 PAGE 8   
+C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 22:52:02 PAGE 8   
 
  425          /***************************************************************
  426          ** 作　  者: Songyimiao
@@ -510,7 +510,7 @@ line level    source
  484   2        }
  485   1      }
 
-C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 15:00:51 PAGE 9   
+C51 COMPILER V9.00   CARSTAND                                                              04/08/2016 22:52:02 PAGE 9   
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

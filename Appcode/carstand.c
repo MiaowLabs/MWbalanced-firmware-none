@@ -42,7 +42,7 @@ float code g_fcAngle_D = 3.0;   	 //角度环D参数
 float code g_fcSpeed_P = 14.5 ; 	 //速度环P参数
 float code g_fcSpeed_I = 1.4;   	 //速度环D参数
 float code g_fcDirection_P = 300.0;	 //方向环P参数
-float code g_fcEliminate_P= 5.0;	 //短距离纠正方向环P参数  
+float code g_fcEliminate_P= 0.0;	 //短距离纠正方向环P参数  
 /******蓝牙控制参数******/
 float xdata g_fBluetoothSpeed;
 float xdata g_fBluetoothDirection;

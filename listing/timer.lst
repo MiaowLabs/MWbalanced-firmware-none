@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   TIMER                                                                 04/08/2016 15:00:51 PAGE 1   
+C51 COMPILER V9.00   TIMER                                                                 04/08/2016 22:52:03 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE TIMER
@@ -62,7 +62,7 @@ line level    source
   52          {
   53   1        T4T3M |= 0xCC;
   54   1        IE2 &= 0x1F;
-C51 COMPILER V9.00   TIMER                                                                 04/08/2016 15:00:51 PAGE 2   
+C51 COMPILER V9.00   TIMER                                                                 04/08/2016 22:52:03 PAGE 2   
 
   55   1      }
   56          

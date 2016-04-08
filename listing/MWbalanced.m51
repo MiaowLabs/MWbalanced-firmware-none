@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        04/08/2016  15:00:52  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        04/08/2016  22:52:04  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  .\Output\MWbalanced (ISR)
                     0020H.1   0000H.7                *** GAP ***
             IDATA   0021H     0001H     UNIT         ?STACK
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 2
 
 
             * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
@@ -119,7 +119,7 @@ LINK MAP OF MODULE:  .\Output\MWbalanced (ISR)
             CODE    15E2H     0008H     UNIT         ?PR?_UART1SENDBYTE?UART
             CODE    15EAH     0007H     UNIT         ?PR?TIMER3TIMER4INIT?TIMER
             CODE    15F1H     0007H     UNIT         ?PR?DELAY5US?I2C
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 3
 
 
             CODE    15F8H     0005H     UNIT         ?PR?LEDINIT?LED
@@ -179,7 +179,7 @@ SEGMENT                                             BIT_GROUP          IDATA_GRO
 
 ?PR?ELIMINATEDIRECTIONDEVIATION?CARSTAND         -----    -----      -----    -----      -----    -----
   +--> ?CO?CARSTAND
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 4
 
 
 
@@ -239,7 +239,7 @@ SEGMENT                                             BIT_GROUP          IDATA_GRO
 
 
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 5
 
 
 SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
@@ -299,7 +299,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
 
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 6
 
 
   D:0080H         PUBLIC        P0
@@ -359,7 +359,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   D:00F8H         PUBLIC        P7
   X:000DH         PUBLIC        g_ucSpeedControlCount
   B:00A0H.0       PUBLIC        AIN1
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 7
 
 
   X:000EH         PUBLIC        g_fLeftMotorOut
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   X:004CH         PUBLIC        g_iGyroInputVoltage_Y_Axis
   X:004EH         PUBLIC        g_iGyroInputVoltage_Z_Axis
   X:0050H         PUBLIC        g_fDirectionControlOut
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 8
 
 
   C:1567H         PUBLIC        DriversInit
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   C:1424H         LINE#         159
   -------         ENDPROC       SAMPLEINPUTVOLTAGE
   -------         PROC          GETGYROREVISE
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 9
 
 
   -------         DO            
@@ -539,7 +539,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   C:0E3FH         LINE#         241
   C:0E41H         LINE#         242
   C:0E41H         LINE#         246
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 10
 
 
   -------         ENDPROC       _SETMOTORVOLTAGEANDDIRECTION
@@ -599,7 +599,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   C:0B71H         LINE#         362
   C:0B71H         LINE#         363
   C:0B71H         LINE#         365
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 11
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 11
 
 
   C:0B92H         LINE#         367
@@ -659,7 +659,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   C:100AH         LINE#         473
   C:101AH         LINE#         474
   C:101AH         LINE#         475
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 12
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 12
 
 
   C:102FH         LINE#         476
@@ -719,7 +719,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   D:00B1H         PUBLIC        P3M1
   D:00A0H         PUBLIC        P2
   D:00CAH         PUBLIC        P5M0
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 13
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 13
 
 
   D:00B3H         PUBLIC        P4M1
@@ -779,7 +779,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   B:00D8H.6       PUBLIC        CR
   D:00F7H         PUBLIC        PWMFDCR
   D:00EBH         PUBLIC        CCAP1L
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 14
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 14
 
 
   D:00B8H         PUBLIC        IP
@@ -839,7 +839,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   D:00F8H         PUBLIC        P7
   C:15EAH         PUBLIC        Timer3Timer4Init
   D:00A8H         PUBLIC        IE
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 15
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 15
 
 
   D:00B8H         PUBLIC        IP
@@ -899,7 +899,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   D:0080H         PUBLIC        P0
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 16
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 16
 
 
   D:00B0H         PUBLIC        P3
@@ -959,7 +959,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   C:0008H         LINE#         68
   C:000AH         LINE#         69
   C:000AH         LINE#         70
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 17
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 17
 
 
   -------         ENDPROC       UART1RECEIVEBYTE
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   C:1470H         PUBLIC        _I2C_SendByte
   C:15B7H         PUBLIC        I2C_Stop
   C:1425H         PUBLIC        I2C_RecvByte
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 18
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 18
 
 
   B:0080H.6       PUBLIC        SDA
@@ -1079,7 +1079,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   C:001AH         LINE#         108
   C:001AH         LINE#         109
   -------         ENDPROC       I2C_RECVACK
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 19
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 19
 
 
   -------         PROC          _I2C_SENDBYTE
@@ -1139,7 +1139,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   -------         ENDDO         
   C:13D4H         LINE#         195
   C:13D6H         LINE#         196
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 20
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 20
 
 
   C:13D6H         LINE#         198
@@ -1199,7 +1199,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   D:0088H         PUBLIC        TCON
   C:144DH         PUBLIC        MPU6050Init
   D:00D0H         PUBLIC        PSW
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 21
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 21
 
 
   -------         PROC          MPU6050INIT
@@ -1259,7 +1259,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   -------         ENDPROC       _CRC_CHECK
   -------         PROC          OUTPUT_DATA
   -------         DO            
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 22
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 22
 
 
   X:0060H         SYMBOL        temp
@@ -1319,7 +1319,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 23
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 23
 
 
   C:10F4H         LINE#         133
@@ -1379,7 +1379,7 @@ SYMBOL TABLE OF MODULE:  .\Output\MWbalanced (ISR)
   -------         ENDMOD        ?C?LNEG
 
   -------         MODULE        ?C?LLDCODE
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  15:00:52  PAGE 24
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/08/2016  22:52:04  PAGE 24
 
 
   C:052AH         PUBLIC        ?C?LLDCODE
