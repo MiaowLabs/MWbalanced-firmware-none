@@ -1,0 +1,53 @@
+C51 COMPILER V9.00   ADC                                                                   04/15/2016 10:09:58 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE ADC
+OBJECT MODULE PLACED IN .\Output\adc.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE Driver\src\adc.c LARGE BROWSE INCDIR(.\Appcode;.\BSP;.\Common;.\Driver;.\St
+                    -artup;.\Common\inc;.\Driver\inc) DEBUG OBJECTEXTEND PRINT(.\Listing\adc.lst) OBJECT(.\Output\adc.obj)
+
+line level    source
+
+   1          
+   2          #include "adc.h"
+   3           #include "intrins.h"
+   4          
+   5          void ADCInit(void)
+   6          {
+   7   1          P1ASF |= 0x20;                  //P1.5口作为模拟功能A/D使用
+   8   1          ADC_RES = 0;                    //清除结果寄存器
+   9   1          ADC_CONTR = 0x80;                           //20M/540=37kHz转换速度
+  10   1      
+  11   1      }
+  12          
+  13          /*----------------------------
+  14          读取ADC结果
+  15          ----------------------------*/
+  16          unsigned char GetADCResult(void)
+  17          {
+  18   1      
+  19   1          ADC_CONTR = 0x8D;
+  20   1          _nop_();                        //等待4个NOP
+  21   1          _nop_();
+  22   1          _nop_();
+  23   1          _nop_();
+  24   1          while (!(ADC_CONTR & 0x10));//等待ADC转换完成
+  25   1          ADC_CONTR &= ~0x10;         //Close ADC
+  26   1      
+  27   1          return ADC_RES;                 //返回ADC结果
+  28   1      
+  29   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     28    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

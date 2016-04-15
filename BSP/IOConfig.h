@@ -17,7 +17,7 @@ MCUÓ²¼þÏà¹Ø
 #define	DisableInterrupts	EA=0
 #define	EnableInterrupts	EA=1
 
-#define DEBUG_UART  1
+#define DEBUG_UART  0
 
 #define IF_CAR_FALL 1
 

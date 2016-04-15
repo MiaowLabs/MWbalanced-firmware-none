@@ -45,6 +45,9 @@ extern int g_iGyroOffset;
 extern int g_iLeftMotorPulseSigma  ;
 extern float g_fAngleControlOut;
 extern float g_fLeftMotorOut;
+extern float g_fPower;
+extern unsigned char xdata g_ucRxd2;
+extern unsigned char xdata g_ucUart2Flag;
 
 void DirectionControl(void);
 void EliminateDirectionDeviation(void);
@@ -57,5 +60,6 @@ void BluetoothControl(void);
 void GetMotorPulse(void);
 void GetGyroRevise(void);
 void MotorOutput(void);
+void BatteryChecker();
 
 #endif

@@ -49,10 +49,30 @@ void Timer1_Update(void) interrupt  3		//125hz
 			 
 }
 
+
+
 void Timer0_Update(void) interrupt  1
 {
     
-//	g_ucSpeedCountCarry++;
-//	LED2=~LED2;
 }
 				 
+/*----------------------------
+UART2 中断服务程序
+-----------------------------*/
+void Uart2() interrupt 8 using 1
+{
+    if (S2CON & 0x01)
+    {
+        S2CON &= ~0x01;         //清除S2RI位
+        g_ucRxd2 = S2BUF;              
+    }
+	g_ucUart2Flag = 1;
+	
+	/*
+    if (S2CON & S2TI)
+    {
+        S2CON &= ~S2TI;         //清除S2TI位
+        busy = 0;               //清忙标志
+    }
+	*/
+}

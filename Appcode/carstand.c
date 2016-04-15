@@ -50,6 +50,11 @@ float xdata g_fBluetoothDirection;
 float xdata g_fDirectionDeviation;
 float xdata g_fDirectionControlOut;
 
+float xdata g_fPower;
+
+unsigned char xdata g_ucRxd2;
+unsigned char xdata g_ucUart2Flag;
+
 /***************************************************************
 ** 作　  者: Songyimiao
 ** 官    网：http://www.miaowlabs.com
@@ -71,7 +76,7 @@ void DriversInit(void)
 	Uart1Init();
 	Uart2Init();
 	Timer3Timer4Init();
-
+	ADCInit();
 }
 
 /***************************************************************
@@ -111,6 +116,10 @@ void CarStandInit()
 	g_uiStartCount= 0;
 
 	g_fDirectionDeviation = 0;
+
+	g_fPower = 0;
+
+	g_ucRxd2 = g_ucUart2Flag = 0;
 }
 
 /***************************************************************
@@ -396,20 +405,18 @@ void AngleControl(void)
 ***************************************************************/
 void BluetoothControl(void)	 
 {
-	unsigned char xdata ucBluetoothValue;
+	unsigned char xdata ucBluetoothValue = 0;
 
-	//LED0=~LED0;
-
-	ucBluetoothValue = UART2ReceiveByte();		
+	ucBluetoothValue = g_ucRxd2;		
 		
-	switch (ucBluetoothValue)
+	switch(ucBluetoothValue)
 	{
 
 	  case 0x02 : g_fBluetoothSpeed =   40 ;  break;//后退
-	  case 0x01 : g_fBluetoothSpeed = (-40);  break;//前进
-	  case 0x09 : g_fBluetoothSpeed =   60;   break;
-	  case 0x0A : g_fBluetoothSpeed = (-60);  break;
-	  case 0x0B : g_fBluetoothSpeed =   20;  break;
+	  case 0x01 : g_fBluetoothSpeed = (-40);  break;//前进	  
+	  //case 0x09 : g_fBluetoothSpeed =   60;   break;//更快后退
+	  //case 0x0A : g_fBluetoothSpeed = (-60);  break;//更快前进
+	  case 0x0B : g_fBluetoothSpeed =   20;   break;
 	  case 0x0C : g_fBluetoothSpeed = (-20);  break;
 	  case 0x03 : g_fBluetoothDirection =   200 ;  break;//左转
 	  case 0x04 : g_fBluetoothDirection = (-200);  break;//右转
@@ -482,4 +489,28 @@ void DirectionControl(void)
   {
   	g_fDirectionControlOut = 0;	
   }
+}
+
+/***************************************************************
+** 作　  者: Songyimiao
+** 官    网：http://www.miaowlabs.com
+** 淘    宝：http://miaowlabs.taobao.com
+** 日　  期: 20160415
+** 函数名称: BatteryChecker
+** 功能描述: 电量检测（若电量不足，将亮起红灯）           
+** 输　  入:   
+** 输　  出:   
+** 备    注: 
+********************喵呜实验室版权所有**************************
+***************************************************************/
+void BatteryChecker()
+{
+
+	g_fPower = GetADCResult();	 				//max8.4*510/(1000+510)/3.3*256=220
+	g_fPower = g_fPower / 220* 8400;	 		 
+	if((int)g_fPower <= 7400)						//low7.4/3=2.47v
+	{
+		ON_LED1;
+	}
+
 }

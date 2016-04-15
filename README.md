@@ -6,6 +6,12 @@ MWbalancedSTC15 control source code with no RTOS.
 
 本代码对于喵呜实验室MWbalancedSTC15第二版硬件。
 
+### 愿景
+
+希望有更多的人参与到代码的开发和维护中来。
+
+Hope to have more people involved in the development and maintenance of the code fo MWbalanced.
+
 ### 开源项目
 
 **MWbalancedSTC15为初学而生，选用8051内核单片机（型号STC15W4K61S2）作为控制芯片,使用Keil C51进行编译开发。**
@@ -22,6 +28,10 @@ MWbalancedSTC15两轮自平衡小车对应的控制代码@外部晶振20M, 其�
 
 ### 更新记录
 
+加入电量检测功能（若电量不足，亮红灯警告）；
+
+---20160415 by songyimiao
+
 添加注释；
 
 ---20160402 by songyimiao
@@ -31,7 +41,6 @@ MWbalancedSTC15两轮自平衡小车对应的控制代码@外部晶振20M, 其�
 下一步:整理代码，添加注释；
 
 ---20160329 by songyimiao
-
 
 将工作频率从33M降至20M；
 

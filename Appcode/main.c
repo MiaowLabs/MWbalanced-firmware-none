@@ -28,21 +28,26 @@ void main()
 	CarStandInit();	  //应用程序变量初始化
 	
 	Delaynms(200);	  //延时200ms 
-	ON_LED0;		  //绿灯亮起，表示初始化完毕
+	ON_LED0;		  //指示灯亮起，表示初始化完毕
 	
-	EnableInterrupts; //允许总中断	 
+	EnableInterrupts; //使能总中断	 
 
 	while(1)
 	{ 
-		BluetoothControl();	//蓝牙控制函数
-	
-#if DEBUG_UART  //调试启用 预编译命令  若要观察波形进行调试，需将DEBUG_UART设置成1并注释蓝牙控制函数
+		if(g_ucUart2Flag>=1)
+		{
+			BluetoothControl();	//蓝牙控制函数
+			g_ucUart2Flag = 0;
+		}
+		BatteryChecker();
+
+#if DEBUG_UART  //调试启用 预编译命令 
+//若要观察波形进行调试，需将DEBUG_UART设置成1，该版本不需要注释蓝牙控制函数
 	
    		OutData[0] = g_fCarAngle;
    		OutData[1] = g_fGyroAngleSpeed;
    		OutData[2] = g_fGravityAngle ;
-   		OutData[3] = 45;  
-
+   		OutData[3] = g_ucRxd2;
    		OutPut_Data();		
 		 	  
 #endif	 		

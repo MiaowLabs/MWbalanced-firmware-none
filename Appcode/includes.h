@@ -21,6 +21,7 @@
 #include "delay.h"
 #include "timer.h"
 #include "gpio.h"
+#include "adc.h"
 
 //通用头文件
 #include "mpu6050.h"
