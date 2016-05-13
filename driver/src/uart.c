@@ -1,6 +1,6 @@
 
 #include <uart.h>   
-
+#include "string.h"
 /***************************************************************
 ** 函数名称: Uart1Init
 ** 功能描述: UART1初始化函数
@@ -19,7 +19,7 @@ void Uart1Init(void)		//9600bps@20.000MHz
 	T2H = 0xFD;			//设定定时初值
 	AUXR |= 0x01;		//串口1选择定时器2为波特率发生器
 	AUXR |= 0x10;		//启动定时器2
-//	TI = 1;
+//	TI = 1;				
 }
 
 /***************************************************************
@@ -126,4 +126,24 @@ void UART2SendByte(unsigned char TxD2)
     S2BUF=TxD2;  
     while ((S2CON & 0x02) == 0); //等待发送完成 
     S2CON &= 0xFD;    
+}
+
+/***************************************************************
+** 函数名称: UART2SendStr
+** 功能描述: UART2发送字符串
+** 输　入:   
+** 输　出:   
+** 全局变量: 
+** 作　者:   喵呜实验室
+** 淘  宝：  Http://miaowlabs.taobao.com
+** 日　期:   2016年05月04日
+***************************************************************/ 
+void UART2SendStr(char *str)
+{
+	unsigned char len=0;
+	unsigned char i=0;
+
+	len = strlen(str);
+	for(i=0; i<len; i++)
+		UART2SendByte(*(str+i));
 }   

@@ -406,6 +406,11 @@
               <FileType>1</FileType>
               <FilePath>.\Driver\src\adc.c</FilePath>
             </File>
+            <File>
+              <FileName>isp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\src\isp.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -435,6 +440,11 @@
               <FileName>outputdata.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Common\src\outputdata.c</FilePath>
+            </File>
+            <File>
+              <FileName>UltraSonic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Common\src\UltraSonic.c</FilePath>
             </File>
           </Files>
         </Group>

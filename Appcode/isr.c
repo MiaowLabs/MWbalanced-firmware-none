@@ -26,6 +26,16 @@ void Timer1_Update(void) interrupt  3		//125hz
 			
 		GetMotorPulse();			//采集脉冲函数
 		
+		/*该定时中断周期8ms，前面部分函数运行约3ms，因此两次中断之间间隔约5ms，最大稳定测距距离约70cm*/
+		TrigCnt++;
+		if(TrigCnt>=10)	//每中断10次触发一次超声波测距动作，触发间隔80ms
+		{
+			TrigCnt = 0;
+			UltraTrig();
+		}
+
+	    UltraControl();	//红外控制
+
 		g_ucSpeedControlCount++;
 		if(g_ucSpeedControlCount>=10) 
 			{	

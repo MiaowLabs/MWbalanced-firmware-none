@@ -6,11 +6,13 @@
 ".\Output\timer.obj",
 ".\Output\uart.obj",
 ".\Output\adc.obj",
+".\Output\isp.obj",
 ".\Output\delay.obj",
 ".\Output\i2c.obj",
 ".\Output\led.obj",
 ".\Output\mpu6050.obj",
 ".\Output\outputdata.obj",
+".\Output\UltraSonic.obj",
 ".\Output\STARTUP.obj" 
 TO ".\Output\MWbalanced" 
 PRINT(".\Listing\MWbalanced.m51") RAMSIZE(256) 

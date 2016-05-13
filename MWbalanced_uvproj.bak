@@ -382,11 +382,6 @@
           <GroupName>Driver</GroupName>
           <Files>
             <File>
-              <FileName>delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Driver\src\delay.c</FilePath>
-            </File>
-            <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Driver\src\gpio.c</FilePath>
@@ -406,11 +401,26 @@
               <FileType>1</FileType>
               <FilePath>.\Driver\src\uart.c</FilePath>
             </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\src\adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>iap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\src\iap.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Common</GroupName>
           <Files>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\src\delay.c</FilePath>
+            </File>
             <File>
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
@@ -430,6 +440,11 @@
               <FileName>outputdata.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Common\src\outputdata.c</FilePath>
+            </File>
+            <File>
+              <FileName>UltraSonic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Common\src\UltraSonic.c</FilePath>
             </File>
           </Files>
         </Group>

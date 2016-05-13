@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   UART                                                                  04/15/2016 10:09:58 PAGE 1   
+C51 COMPILER V9.00   UART                                                                  05/13/2016 20:14:36 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE UART
@@ -10,7 +10,7 @@ line level    source
 
    1          
    2          #include <uart.h>   
-   3          
+   3          #include "string.h"
    4          /***************************************************************
    5          ** 函数名称: Uart1Init
    6          ** 功能描述: UART1初始化函数
@@ -29,7 +29,7 @@ line level    source
   19   1              T2H = 0xFD;                     //设定定时初值
   20   1              AUXR |= 0x01;           //串口1选择定时器2为波特率发生器
   21   1              AUXR |= 0x10;           //启动定时器2
-  22   1      //      TI = 1;
+  22   1      //      TI = 1;                         
   23   1      }
   24          
   25          /***************************************************************
@@ -62,7 +62,7 @@ line level    source
   52          ** 淘  宝：  Http://miaowlabs.taobao.com
   53          ** 日　期:   2014年08月01日
   54          ***************************************************************/
-C51 COMPILER V9.00   UART                                                                  04/15/2016 10:09:58 PAGE 2   
+C51 COMPILER V9.00   UART                                                                  05/13/2016 20:14:36 PAGE 2   
 
   55          unsigned char UART1ReceiveByte(void)
   56          {
@@ -126,7 +126,7 @@ line level    source
  114          /***************************************************************
  115          ** 函数名称: UART2SendByte
  116          ** 功能描述: UART2发送函数
-C51 COMPILER V9.00   UART                                                                  04/15/2016 10:09:58 PAGE 3   
+C51 COMPILER V9.00   UART                                                                  05/13/2016 20:14:36 PAGE 3   
 
  117          ** 输　入:   
  118          ** 输　出:   
@@ -140,13 +140,33 @@ line level    source
  126   1          S2BUF=TxD2;  
  127   1          while ((S2CON & 0x02) == 0); //等待发送完成 
  128   1          S2CON &= 0xFD;    
- 129   1      }   
+ 129   1      }
+ 130          
+ 131          /***************************************************************
+ 132          ** 函数名称: UART2SendStr
+ 133          ** 功能描述: UART2发送字符串
+ 134          ** 输　入:   
+ 135          ** 输　出:   
+ 136          ** 全局变量: 
+ 137          ** 作　者:   喵呜实验室
+ 138          ** 淘  宝：  Http://miaowlabs.taobao.com
+ 139          ** 日　期:   2016年05月04日
+ 140          ***************************************************************/ 
+ 141          void UART2SendStr(char *str)
+ 142          {
+ 143   1              unsigned char len=0;
+ 144   1              unsigned char i=0;
+ 145   1      
+ 146   1              len = strlen(str);
+ 147   1              for(i=0; i<len; i++)
+ 148   1                      UART2SendByte(*(str+i));
+ 149   1      }   
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     76    ----
+   CODE SIZE        =    129    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
+   XDATA SIZE       =   ----       3
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----

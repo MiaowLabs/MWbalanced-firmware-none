@@ -1,0 +1,111 @@
+C51 COMPILER V9.00   ULTRASONIC                                                            05/13/2016 20:14:37 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE ULTRASONIC
+OBJECT MODULE PLACED IN .\Output\UltraSonic.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE Common\src\UltraSonic.c LARGE BROWSE INCDIR(.\Appcode;.\BSP;.\Common;.\Driv
+                    -er;.\Startup;.\Common\inc;.\Driver\inc) DEBUG OBJECTEXTEND PRINT(.\Listing\UltraSonic.lst) OBJECT(.\Output\UltraSonic.ob
+                    -j)
+
+line level    source
+
+   1          #include "includes.h"
+   2          
+   3          
+   4          sbit Trig  = P3^6;
+   5          sbit Echo  = P3^2;
+   6          
+   7          unsigned short  xdata T0Temp=0;
+   8          bit EchoFlag=0;
+   9          
+  10          /*
+  11          
+  12          * 模块说明 *
+  13          
+  14          * 该模块使用单片机 定时器0 和 外部中断0，因此其他模块不可重复使用
+  15          
+  16          * 使用方法: 1、 调用UltraInit()进行初始化
+  17                              2、 调用UltraTrig()触发一次测距动作。两次调用时间间隔60毫秒以上，
+  18                                  防止发射信号对上次回响影响
+  19                              3、 调用UltraDis()读取测距结果，结果为一字节十六进制数，单位为厘米。
+  20                                      返回0xff则测距未完成或失败。
+  21          
+  22          * 为保证读取数据成功，请在触发动作后间隔60ms以上再读取测距结果
+  23          */
+  24          
+  25          
+  26          void UltraInit(void)
+  27          {
+  28   1              Trig = 0;
+  29   1              IT0  = 0;//上升沿或下降沿触发
+  30   1              EX0 = 0;
+  31   1      }
+  32          
+  33          void UltraTrig(void)
+  34          {
+  35   1              //发送一个触发信号
+  36   1              Trig = 1;
+  37   1              Delay10us();
+  38   1              Delay10us();
+  39   1              Trig = 0;
+  40   1      
+  41   1              EX0 = 1; 
+  42   1              EchoFlag=0;
+  43   1      }
+  44          
+  45          unsigned char  UltraDis(void) //返回距离 单位：厘米  最大255厘米
+  46          {
+  47   1              unsigned char  Distance=0;
+  48   1              unsigned long temp=0;
+  49   1      
+  50   1              if(EchoFlag==1)
+  51   1              {
+  52   2                      temp = T0Temp; // 必须先转化为4字节变量，否则计算过程中可能丢失高字节
+  53   2                      Distance = (temp*6*170)/100000;  // c * T * 340 / 2 , T = 0.0000006 s 
+C51 COMPILER V9.00   ULTRASONIC                                                            05/13/2016 20:14:37 PAGE 2   
+
+  54   2              }
+  55   1              else
+  56   1                      return 0xFF;//超声波测距失败
+  57   1      
+  58   1              return Distance;
+  59   1      }
+  60                  
+  61          void Int0Pro(void) interrupt 0
+  62          {
+  63   1              if(Echo==1)//检测到上升沿，定时器清零并启动
+  64   1              {
+  65   2                      TL0=0;
+  66   2                      TH0=0;
+  67   2                      TR0 = 1;
+  68   2                      EchoFlag=0;
+  69   2              }
+  70   1              else //检测到下降沿，停止计时并保存计数器值，置位检测完成标志位 EchoFlag
+  71   1              {
+  72   2                      TR0=0;
+  73   2                      T0Temp  = TH0;
+  74   2                      T0Temp  <<= 8;
+  75   2                      T0Temp  += TL0;
+  76   2                      EchoFlag = 1;
+  77   2              }
+  78   1      }
+  79          
+  80          
+  81          
+  82          
+  83          
+  84          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    178    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      2       4
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

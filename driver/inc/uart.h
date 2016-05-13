@@ -10,6 +10,6 @@ unsigned char UART1ReceiveByte(void);
 unsigned char UART2ReceiveByte(void);
 void UART1SendByte(unsigned char TxD1); 
 void UART2SendByte(unsigned char TxD2); 
-
+void UART2SendStr(char *str);
 
 #endif  

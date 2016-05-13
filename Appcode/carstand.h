@@ -15,7 +15,7 @@
 #define	GYROSCOPE_ANGLE_RATIO 30.5		        //陀螺仪比例因子
 /******速度控制相关宏定义******/
 #define CAR_POSITION_SET  0						//路程预设值
-#define CAR_SPEED_SET     g_iCarSpeedSet	    //速度预设值
+#define CAR_SPEED_SET     g_iCarSpeedSet	    //速度期望值
 #define MOTOR_LEFT_SPEED_POSITIVE  ((int)g_fLeftMotorOut >0)   //左轮速度方向判断
 #define MOTOR_RIGHT_SPEED_POSITIVE ((int)g_fRightMotorOut>0)   //右轮速度方向判断
 #define SPEED_CONTROL_OUT_MAX	MOTOR_OUT_MAX 	
@@ -48,6 +48,9 @@ extern float g_fLeftMotorOut;
 extern float g_fPower;
 extern unsigned char xdata g_ucRxd2;
 extern unsigned char xdata g_ucUart2Flag;
+extern unsigned char xdata g_ucUltraDis;
+extern unsigned char xdata g_ucUltraDis;
+extern unsigned char xdata g_ucUltraDisLast;
 
 void DirectionControl(void);
 void EliminateDirectionDeviation(void);
@@ -61,5 +64,7 @@ void GetMotorPulse(void);
 void GetGyroRevise(void);
 void MotorOutput(void);
 void BatteryChecker();
+void UltraControl();
+int DataSynthesis(unsigned char REG_Address);
 
 #endif

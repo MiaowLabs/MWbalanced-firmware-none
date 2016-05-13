@@ -1,0 +1,49 @@
+C51 COMPILER V9.00   IAP                                                                   05/13/2016 20:11:33 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE IAP
+OBJECT MODULE PLACED IN .\Output\iap.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE Driver\src\iap.c LARGE BROWSE INCDIR(.\Appcode;.\BSP;.\Common;.\Driver;.\St
+                    -artup;.\Common\inc;.\Driver\inc) DEBUG OBJECTEXTEND PRINT(.\Listing\iap.lst) OBJECT(.\Output\iap.obj)
+
+line level    source
+
+   1          
+   2          #include "iap.h"
+   3          
+   4          
+   5          /***************************************************************
+   6          ** 函数名称: STC_ISP
+   7          ** 功能描述: STC12C5A60S2免断电烧录程序
+   8          ** 输　入:   
+   9          ** 输　出:   
+  10          ** 全局变量: 
+  11          ** 作　者:   喵呜实验室
+  12          ** 淘  宝：  Http://miaowlab.taobao.com
+  13          ** 日　期:   2014年08月01日
+  14          ***************************************************************/
+  15           void STC_ISP()
+  16           {
+  17   1          
+  18   1              IN_OFF=1; 
+  19   1      
+  20   1          if(!IN_OFF){
+  21   2              IAP_CONTR=0x60;} //判断串口是否有数据过来，然后软件复位，系统重新从ISP代码区开始运行程序
+  22   1        
+  23   1       }
+  24          
+  25          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      9    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
