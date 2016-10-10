@@ -13,6 +13,8 @@
 ".\Output\mpu6050.obj",
 ".\Output\outputdata.obj",
 ".\Output\UltraSonic.obj",
+".\Output\servo.obj",
 ".\Output\STARTUP.obj" 
 TO ".\Output\MWbalanced" 
 PRINT(".\Listing\MWbalanced.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

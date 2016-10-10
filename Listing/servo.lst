@@ -1,0 +1,79 @@
+C51 COMPILER V9.00   SERVO                                                                 10/10/2016 22:37:17 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE SERVO
+OBJECT MODULE PLACED IN .\Output\servo.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE Common\src\servo.c LARGE BROWSE INCDIR(.\Appcode;.\BSP;.\Common;.\Driver;.\
+                    -Startup;.\Common\inc;.\Driver\inc) DEBUG OBJECTEXTEND PRINT(.\Listing\servo.lst) OBJECT(.\Output\servo.obj)
+
+line level    source
+
+   1          #include "includes.h"
+   2          
+   3          
+   4          
+   5          
+   6          void ServoInit(void)
+   7          {
+   8   1              //定时器0 16位自动重装，1T模式，78us定时中断
+   9   1              AUXR |= 0x80;   
+  10   1              TMOD &= 0xF0;   
+  11   1              TL0 = 0xE5;             
+  12   1              TH0 = 0xF9;             
+  13   1              TF0 = 0;                
+  14   1              TR0 = 1;                                  
+  15   1      
+  16   1              //两路8位PWM输出，定时器0 溢出中断作为时钟源
+  17   1              CMOD    |=  0x04;       // choose T0 output as source clk
+  18   1              CCAPM0  |=  0x42;       // PWM mode
+  19   1              CCAPM1  |=  0x42;       //
+  20   1      
+  21   1              PCA_PWM0 |=0x00;        // 8bit PWM mode 
+  22   1              PCA_PWM1 |=0x00;
+  23   1      
+  24   1              CCAP0H=CCAP0L = ~0x13;
+  25   1              CCAP1H=CCAP1L = ~0x13;
+  26   1      
+  27   1              AUXR1 |= 0x20;          // P2.5/CCP0  P2.6/CCP1
+  28   1      
+  29   1              CCON  |= 0x40;          //start PAC module
+  30   1      
+  31   1      }
+  32          
+  33          
+  34          
+  35          /*
+  36          
+  37          * speed: 
+  38                  0x06: 0°，0x0d: 45°，0x13: 90°，0x19: 135°，0x20: 180° 。
+  39          * channel:
+  40                  0: 通道1，1: 通道2
+  41                  
+  42          */ 
+  43          
+  44           void ServoCtr(unsigned char speed,unsigned char channel)
+  45           {
+  46   1              if((speed<0x06)||(speed>0x20))return;
+  47   1              
+  48   1              if(channel==0)CCAP0H=CCAP0L = ~speed;// 
+  49   1              if(channel==1)CCAP1H=CCAP1L = ~speed;// 
+  50   1       }
+  51          
+  52          
+  53                  
+
+C51 COMPILER V9.00   SERVO                                                                 10/10/2016 22:37:17 PAGE 2   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     76    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

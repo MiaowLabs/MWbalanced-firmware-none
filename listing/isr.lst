@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   ISR                                                                   05/13/2016 20:14:35 PAGE 1   
+C51 COMPILER V9.00   ISR                                                                   10/10/2016 22:37:16 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE ISR
@@ -37,15 +37,15 @@ line level    source
   27   1                      GetMotorPulse();                        //采集脉冲函数
   28   1                      
   29   1                      /*该定时中断周期8ms，前面部分函数运行约3ms，因此两次中断之间间隔约5ms，最大稳定测距距离约70cm*/
-  30   1                      TrigCnt++;
-  31   1                      if(TrigCnt>=10) //每中断10次触发一次超声波测距动作，触发间隔80ms
-  32   1                      {
-  33   2                              TrigCnt = 0;
-  34   2                              UltraTrig();
-  35   2                      }
-  36   1      
-  37   1                  UltraControl();     //红外控制
-  38   1      
+  30   1      #if ULTRA_EN
+                              TrigCnt++;
+                              if(TrigCnt>=10) //每中断10次触发一次超声波测距动作，触发间隔80ms
+                              {                                               
+                                      TrigCnt = 0;
+                                      UltraTrig();
+                              }
+                          UltraFollow();      //超声波跟随
+              #endif
   39   1                      g_ucSpeedControlCount++;
   40   1                      if(g_ucSpeedControlCount>=10) 
   41   1                              {       
@@ -62,7 +62,7 @@ line level    source
   52   1                      
   53   1                      g_ucLEDCount++;
   54   1                      if(g_ucLEDCount >=125)                    //指示灯1秒交替闪烁
-C51 COMPILER V9.00   ISR                                                                   05/13/2016 20:14:35 PAGE 2   
+C51 COMPILER V9.00   ISR                                                                   10/10/2016 22:37:16 PAGE 2   
 
   55   1                      {
   56   2                              g_ucLEDCount=0;
@@ -77,7 +77,7 @@ line level    source
   65          {
   66   1          
   67   1      }
-  68                                           
+  68                                   
   69          /*----------------------------
   70          UART2 中断服务程序
   71          -----------------------------*/
@@ -86,27 +86,48 @@ line level    source
   74   1          if (S2CON & 0x01)
   75   1          {
   76   2              S2CON &= ~0x01;         //清除S2RI位
-  77   2              g_ucRxd2 = S2BUF;              
-  78   2          }
-  79   1              g_ucUart2Flag = 1;
-  80   1              
-  81   1              /*
-  82   1          if (S2CON & S2TI)
-  83   1          {
-  84   1              S2CON &= ~S2TI;         //清除S2TI位
-  85   1              busy = 0;               //清忙标志
-  86   1          }
-  87   1              */
-  88   1      }
+  77   2                      if(S2BUF=='C'){                 //接到帧头就清空缓存区，防止处理不完整的数据
+  78   3                              g_ucUart2Flag = 0;
+  79   3                              g_ucUart2Count =0;
+  80   3                      }
+  81   2                      g_ucUart2Count++;
+  82   2                      if(g_ucUart2Count>=UART2_DATA){    //防止溢出
+  83   3                              g_ucUart2Count=UART2_DATA;
+  84   3                      }
+  85   2                      g_cUart2Buffer[g_ucUart2Count-1] = S2BUF;  //压栈
+  86   2                      
+  87   2                      if(g_cUart2Buffer[g_ucUart2Count-1]==';')  //接到帧尾后标记
+  88   2                      {                       
+  89   3                              //g_ucUart2Flag=g_ucUart2Count-1;               
+  90   3                              g_ucUart2Flag = 1;
+  91   3                              return;         
+  92   3                      }
+  93   2                                      
+  94   2                                 
+  95   2          }
+  96   1              
+  97   1              
+  98   1              //
+  99   1              
+ 100   1              /*
+ 101   1          if (S2CON & S2TI)
+ 102   1          {
+ 103   1              S2CON &= ~S2TI;         //清除S2TI位
+ 104   1              busy = 0;               //清忙标志
+ 105   1          }
+ 106   1              */
+ 107   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    171    ----
+   CODE SIZE        =    212    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
+C51 COMPILER V9.00   ISR                                                                   10/10/2016 22:37:16 PAGE 3   
+
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 

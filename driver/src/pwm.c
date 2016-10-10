@@ -14,29 +14,27 @@
 void PWMInit()
 {	
 
-	P_SW2|=0x80;    //使能访问XSFR
+	P_SW2|=0x80;   					//使能访问XSFR
 
 	PWMCFG = 0x00;                  //配置PWM的输出初始电平为低电平
 	PWMCKS = 0x00;                  //选择PWM的时钟为Fosc/(0+1)=20M
 	PWMIF=0x00; 
 	PWMFDCR=0x00; 
 
-	PWMC = 1001;                   //单位：脉冲时钟 设置PWM周期(最大值为32767)	PWM频率=20M/1000=20k
+	PWMC = 1001;                    //单位：脉冲时钟 设置PWM周期(最大值为32767)	PWM频率=20M/1000=20k
 
-	PWM3T1 = 1000;                 //设置PWM3第1次反转的PWM计数
+	PWM3T1 = 1000;                  //设置PWM3第1次反转的PWM计数
     PWM3T2 = 1001;    			 	//设置PWM3第2次反转的PWM计数
 									//占空比为(PWM3T2-PWM3T1)/PWMC
-									//初始PWM3占空比为100%
+								
 
-	PWM4T1 = 1000;                 //设置PWM4第1次反转的PWM计数
+	PWM4T1 = 1000;                  //设置PWM4第1次反转的PWM计数
     PWM4T2 = 1001;    				//设置PWM4第2次反转的PWM计数
 									//占空比为(PWM4T2-PWM4T1)/PWMC
-									//初始PWM4占空比为100%
+								
 
-	//PWM2CR=0x00; 
 	PWM3CR=0x00;
 	PWM4CR=0x00; 
-	//PWM5CR=0x00; 
 
     PWMCR = 0x86;                   //使能PWM信号
    

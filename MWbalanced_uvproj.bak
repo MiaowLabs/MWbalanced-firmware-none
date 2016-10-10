@@ -407,9 +407,9 @@
               <FilePath>.\Driver\src\adc.c</FilePath>
             </File>
             <File>
-              <FileName>iap.c</FileName>
+              <FileName>isp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Driver\src\iap.c</FilePath>
+              <FilePath>.\Driver\src\isp.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -445,6 +445,11 @@
               <FileName>UltraSonic.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Common\src\UltraSonic.c</FilePath>
+            </File>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Common\src\servo.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   PWM                                                                   05/13/2016 20:14:36 PAGE 1   
+C51 COMPILER V9.00   PWM                                                                   10/10/2016 22:37:16 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE PWM
@@ -24,52 +24,50 @@ line level    source
   14          void PWMInit()
   15          {       
   16   1      
-  17   1              P_SW2|=0x80;    //使能访问XSFR
+  17   1              P_SW2|=0x80;                                    //使能访问XSFR
   18   1      
   19   1              PWMCFG = 0x00;                  //配置PWM的输出初始电平为低电平
   20   1              PWMCKS = 0x00;                  //选择PWM的时钟为Fosc/(0+1)=20M
   21   1              PWMIF=0x00; 
   22   1              PWMFDCR=0x00; 
   23   1      
-  24   1              PWMC = 1001;                   //单位：脉冲时钟 设置PWM周期(最大值为32767)      PWM频率=20M/1000=20k
+  24   1              PWMC = 1001;                    //单位：脉冲时钟 设置PWM周期(最大值为32767)     PWM频率=20M/1000=20k
   25   1      
-  26   1              PWM3T1 = 1000;                 //设置PWM3第1次反转的PWM计数
+  26   1              PWM3T1 = 1000;                  //设置PWM3第1次反转的PWM计数
   27   1          PWM3T2 = 1001;                              //设置PWM3第2次反转的PWM计数
   28   1                                                                              //占空比为(PWM3T2-PWM3T1)/PWMC
-  29   1                                                                              //初始PWM3占空比为100%
+  29   1                                                                      
   30   1      
-  31   1              PWM4T1 = 1000;                 //设置PWM4第1次反转的PWM计数
+  31   1              PWM4T1 = 1000;                  //设置PWM4第1次反转的PWM计数
   32   1          PWM4T2 = 1001;                              //设置PWM4第2次反转的PWM计数
   33   1                                                                              //占空比为(PWM4T2-PWM4T1)/PWMC
-  34   1                                                                              //初始PWM4占空比为100%
+  34   1                                                                      
   35   1      
-  36   1              //PWM2CR=0x00; 
-  37   1              PWM3CR=0x00;
-  38   1              PWM4CR=0x00; 
-  39   1              //PWM5CR=0x00; 
-  40   1      
-  41   1          PWMCR = 0x86;                   //使能PWM信号
-  42   1         
-  43   1              //P_SW2 &= ~0x80;
-  44   1       }
-  45          
-  46          void PCAInit()
-  47          {
-  48   1              CMOD = 0x04;//选择定时器0的溢出脉冲作为计数源
-  49   1              AUXR1 |= 0x20;  //切换引脚
-  50   1              PCA_PWM0 = 0x00 ;//8位PWM,无中断
-  51   1              PCA_PWM1= 0x00;
-  52   1              CL = 0;         //自由递增计数的16位PCA定时器的值,初始化为0
-  53   1              CH = 0;
-  54   1              CCAP0H = CCAP0L = 0x00; //用于控制占空比，占空比=(255-CCAPnL)/255*100%
-C51 COMPILER V9.00   PWM                                                                   05/13/2016 20:14:36 PAGE 2   
+  36   1              PWM3CR=0x00;
+  37   1              PWM4CR=0x00; 
+  38   1      
+  39   1          PWMCR = 0x86;                   //使能PWM信号
+  40   1         
+  41   1              //P_SW2 &= ~0x80;
+  42   1       }
+  43          
+  44          void PCAInit()
+  45          {
+  46   1              CMOD = 0x04;//选择定时器0的溢出脉冲作为计数源
+  47   1              AUXR1 |= 0x20;  //切换引脚
+  48   1              PCA_PWM0 = 0x00 ;//8位PWM,无中断
+  49   1              PCA_PWM1= 0x00;
+  50   1              CL = 0;         //自由递增计数的16位PCA定时器的值,初始化为0
+  51   1              CH = 0;
+  52   1              CCAP0H = CCAP0L = 0x00; //用于控制占空比，占空比=(255-CCAPnL)/255*100%
+  53   1              CCAP1H = CCAP1L = 0x00; //初始化占空比为50%
+  54   1              CR = 1; //PCA计数器阵列开始                                                                              
+C51 COMPILER V9.00   PWM                                                                   10/10/2016 22:37:16 PAGE 2   
 
-  55   1              CCAP1H = CCAP1L = 0x00; //初始化占空比为50%
-  56   1              CR = 1; //PCA计数器阵列开始                                                                              
-  57   1               //PWM的频率=PCA时钟输入源频率/256
-  58   1      }
-  59          
-  60          
+  55   1               //PWM的频率=PCA时钟输入源频率/256
+  56   1      }
+  57          
+  58          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

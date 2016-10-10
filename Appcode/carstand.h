@@ -24,8 +24,21 @@
 /******电机控制相关宏定义******/
 #define MOTOR_OUT_DEAD_VAL       0	   //死区值
 #define MOTOR_OUT_MAX           1000   //占空比正最大值
-#define MOTOR_OUT_MIN         (-1000)  //占空比负最大值		   
+#define MOTOR_OUT_MIN         (-1000)  //占空比负最大值	
+#define UART2_DATA	   	  32
 
+/* Used to make commands more readable */
+
+enum Command {
+  stop,
+  forward,
+  backward,
+  left,
+  right,
+  imu,
+  joystick,
+} ; // This is used set a new targetPosition
+														   
 extern unsigned char xdata g_ucIRFlag;
 extern unsigned int xdata g_uiStartCount;
 extern unsigned char xdata g_ucLEDCount;
@@ -49,9 +62,12 @@ extern float g_fPower;
 extern unsigned char xdata g_ucRxd2;
 extern unsigned char xdata g_ucUart2Flag;
 extern unsigned char xdata g_ucUltraDis;
-extern unsigned char xdata g_ucUltraDis;
-extern unsigned char xdata g_ucUltraDisLast;
+extern char xdata g_cUart2Buffer[UART2_DATA];
+extern unsigned char xdata g_ucUart2MoveIndex;
+extern unsigned char g_ucUart2Count;
 
+
+void setValues(char *dataInput);
 void DirectionControl(void);
 void EliminateDirectionDeviation(void);
 void DriversInit(void);
@@ -64,7 +80,7 @@ void GetMotorPulse(void);
 void GetGyroRevise(void);
 void MotorOutput(void);
 void BatteryChecker();
-void UltraControl();
+void UltraFollow();
 int DataSynthesis(unsigned char REG_Address);
 
 #endif

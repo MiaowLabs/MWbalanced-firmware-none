@@ -6,9 +6,11 @@
 /********************************************************************/
 #include "includes.h"
 
+
 unsigned int xdata g_uiStartCount;
 unsigned char xdata g_ucLEDCount;
 unsigned char xdata g_ucIRFlag = 0;
+
 /******电机控制参数******/
 int   g_iCarSpeedSet;
 float g_fSpeedControlOut;
@@ -55,14 +57,14 @@ float xdata g_fDirectionControlOut;
 float xdata g_fPower;
 
 unsigned char xdata g_ucRxd2;
-unsigned char xdata g_ucUart2Flag;
+unsigned char xdata g_ucUart2Flag=0;
+char xdata g_cUart2Buffer[UART2_DATA];
+unsigned char xdata g_ucUart2MoveIndex;
+unsigned char g_ucUart2Count=0;	
 
 unsigned char xdata g_ucUltraDis;
-unsigned char xdata g_ucUltraDisLast;
 float xdata g_fUltraSpeed;
-
-static unsigned char backFlag=0;
-unsigned char UltraControlMode=0;
+float sppData1,sppData2;
 
 /***************************************************************
 ** 作　  者: Songyimiao
@@ -127,10 +129,10 @@ void CarStandInit()
 	g_fDirectionDeviation = g_fDirectionControlOut = 0;
 
 	g_fPower = 0;
-
+	g_fDeltaOld = 0;
 	g_ucRxd2 = g_ucUart2Flag = 0;
 	g_fUltraSpeed = 0;
-	g_ucUltraDisLast = 0;
+
 
 	UART2SendStr("AT+NAMEMWBalanced\r\n");//设置蓝牙设备名称为 MWBalanced
 }
@@ -252,7 +254,7 @@ void SetMotorVoltageAndDirection(int iLeftVoltage,int iRightVoltage)
   	PWM3T1 = iLeftMotorValue  ;  
    	PWM4T1 = iRighttMotorValue;  
 
-#if 1//IF_CAR_FALL		 /*判断车辆是否跌倒，调试用*/
+#if IF_CAR_FALL		 /*判断车辆是否跌倒，调试用*/
 
 	if((int)g_fCarAngle > 25 || (int)g_fCarAngle < (-25))
 	{
@@ -290,7 +292,7 @@ void MotorOutput(void)
 	if(g_fRightMotorOut>0)      g_fRightMotorOut += MOTOR_OUT_DEAD_VAL;
 	else if(g_fRightMotorOut<0) g_fRightMotorOut -= MOTOR_OUT_DEAD_VAL;
 
-	/*输出饱和处理是保证输出量不会超出PWM的满量程范围。*/	
+	/*输出饱和处理是保证输出量不会超出PWM的满量程范围*/	
 	if(g_fLeftMotorOut  > MOTOR_OUT_MAX)	g_fLeftMotorOut  = MOTOR_OUT_MAX;
 	if(g_fLeftMotorOut  < MOTOR_OUT_MIN)	g_fLeftMotorOut  = MOTOR_OUT_MIN;
 	if(g_fRightMotorOut > MOTOR_OUT_MAX)	g_fRightMotorOut = MOTOR_OUT_MAX;
@@ -342,10 +344,10 @@ void GetMotorPulse(void)
 ***************************************************************/
 void SpeedControl(void)
 {  
-	float fDelta;//fDeriv;
+	float fDelta;//,fDeriv;
 	float fP, fI;//, fD;
 	
-	g_fCarSpeed = (float)(g_iLeftMotorPulseSigma  + g_iRightMotorPulseSigma ) * 0.5f;
+	g_fCarSpeed = (float)(g_iLeftMotorPulseSigma  +  g_iRightMotorPulseSigma ) * 0.5f;
     g_iLeftMotorPulseSigma = g_iRightMotorPulseSigma = 0;	  //全局变量 注意及时清零
 
 	/*低通滤波*/
@@ -354,20 +356,21 @@ void SpeedControl(void)
 	   														 
 	fDelta = CAR_SPEED_SET;
 	fDelta -= g_fCarSpeed;
-	//fDeriv = fDelta - g_fDeltaOld;
+//	fDeriv = fDelta - g_fDeltaOld;
 	fP = fDelta * g_fcSpeed_P;
 	fI = fDelta * g_fcSpeed_I;
 	g_fCarPosition += fI;
-	//fD = fDeriv * g_fcSpeed_D;
-	//g_fDeltaOld = fDelta;
-
-	g_fCarPosition += g_fBluetoothSpeed;
+//	fD = fDeriv * g_fcSpeed_D;
+//	g_fDeltaOld = fDelta;
+	
 	g_fCarPosition += g_fUltraSpeed;
 
 	/*积分上限设限*/			  
 	if((int)g_fCarPosition > SPEED_CONTROL_OUT_MAX)    g_fCarPosition = SPEED_CONTROL_OUT_MAX;
-	if((int)g_fCarPosition < SPEED_CONTROL_OUT_MIN)    g_fCarPosition = SPEED_CONTROL_OUT_MIN;	
-	
+	if((int)g_fCarPosition < SPEED_CONTROL_OUT_MIN)    g_fCarPosition = SPEED_CONTROL_OUT_MIN;
+		
+	g_fCarPosition += g_fBluetoothSpeed;
+
 	g_fSpeedControlOut = fP + g_fCarPosition;//+ fD;
 
 }
@@ -429,15 +432,33 @@ void BluetoothControl(void)
 	{
 
 	  case 0x02 : g_fBluetoothSpeed =   50 ;  break;//后退
-	  case 0x01 : g_fBluetoothSpeed = (-50);  break;//前进	  
+	  case 0x01 : g_fBluetoothSpeed = (-50);  break;//前进
+//	  case 0x02 : g_iCarSpeedSet =   30 ;  break;//后退
+//	  case 0x01 : g_iCarSpeedSet = (-30);  break;//前进	  
 	  case 0x03 : g_fBluetoothDirection =   200 ;  break;//左转
 	  case 0x04 : g_fBluetoothDirection = (-200);  break;//右转
-	  case 0x05 : g_iCarSpeedSet =   20 ; break ;
-	  case 0x06 : g_iCarSpeedSet = (-20); break ;
+	  case 0x05 : 
+	  {	//舵机正转
+	   	ServoCtr(0x19, 0);
+		ServoCtr(0x0d, 1); 
+	  }break ;
+	  case 0x06 :
+	  {//舵机反转	
+	  	ServoCtr(0x0d, 0);
+		ServoCtr(0x19, 1);
+	  }break ;
 	  case 0x07 : g_fBluetoothDirection =   400 ;  break;
 	  case 0x08 : g_fBluetoothDirection = (-400);  break;
-	  case 0x0D : g_iCarSpeedSet = 8;  break;	   //巡线启动
-	  default : g_fBluetoothSpeed = 0; g_fBluetoothDirection = 0;g_iCarSpeedSet=0;break;
+	  case 0x0D : g_iCarSpeedSet = 8; g_ucIRFlag = 1; break;	   //巡线启动
+	  default :
+	  {
+	   g_fBluetoothSpeed = 0; 
+	   g_fBluetoothDirection = 0;
+	   g_iCarSpeedSet=0;
+	   ServoCtr(0x13, 0);
+	   ServoCtr(0x13, 1);
+	   g_ucIRFlag = 0;
+	  }break;
 	}
 }
 
@@ -534,7 +555,7 @@ void BatteryChecker()
 ** 淘    宝：http://miaowlabs.taobao.com
 ** 日　  期: 20160415
 ** 函数名称: BatteryChecker
-** 功能描述: 超声波跟随（设成0.5m范围，最大可设成2.5m）           
+** 功能描述: 超声波跟随           
 ** 输　  入:   
 ** 输　  出:   
 ** 备    注: 
@@ -542,58 +563,88 @@ void BatteryChecker()
 ***************************************************************/
 void UltraFollow(void)
 {
-	//g_ucUltraDis = g_ucUltraDis * 0.3 + g_ucUltraDisLast * 0.7;
-	if(25>g_ucUltraDis>0)
-	{
-		if(g_ucUltraDisLast>g_ucUltraDis)	
-		{
-		 	g_iCarSpeedSet=(-8);
-			//g_fUltraSpeed=20;
-		}
-		else if(g_ucUltraDisLast<g_ucUltraDis)	
-		{
-		 	g_iCarSpeedSet=8;
-			//g_fUltraSpeed=(-20);
-		}
-		else
-		{
-			g_iCarSpeedSet=0;
-			//g_fUltraSpeed=0;
-		}
+	if((g_ucUltraDis>=0)&&(g_ucUltraDis<=10))
+	{//距离小于10cm则后退，后退速度与距离成反比，且后退最大速度40、最小为20
+		g_fUltraSpeed = -(10-g_ucUltraDis)*10;
+		if(g_fUltraSpeed > -20)g_fUltraSpeed = -20; 
+		else if(g_fUltraSpeed < -40)g_fUltraSpeed = -40;
 	}
-	else 
-	{
-		g_iCarSpeedSet=0;
-		g_fUltraSpeed=0;	
+	else if((g_ucUltraDis>20)&&(g_ucUltraDis<=30))	
+	{//距离大于20cm且小于30则前进，前进速度与距离成正比，且前进最大速度40、最小为20
+		g_fUltraSpeed =  (g_ucUltraDis-20)*10;
+		if(g_fUltraSpeed < 20)g_fUltraSpeed = 20; 
+		else if(g_fUltraSpeed > 40)g_fUltraSpeed = 40;
 	}
-	g_ucUltraDisLast = g_ucUltraDis;
+	else
+		g_fUltraSpeed = 0;
 }
 
-void UltraControl()
+float scale(float input, float inputMin, float inputMax, float outputMin, float outputMax) { 
+  float output;
+  if (inputMin < inputMax)
+    output = (input - inputMin) / ((inputMax - inputMin) / (outputMax - outputMin));
+  else
+    output = (inputMin - input) / ((inputMin - inputMax) / (outputMax - outputMin));
+  if (output > outputMax)
+    output = outputMax;
+  else if (output < outputMin)
+    output = outputMin;
+  return output;
+}
+
+void steer(enum Command command){
+	if(command == stop){
+		g_fBluetoothSpeed = 0;
+		g_fBluetoothDirection = 0;
+	}
+	else if(command == joystick){
+		if(sppData2>0)//前进
+		g_fBluetoothSpeed = scale(sppData2, 0, 1, 0, 50);
+		else if(sppData2<0)//后退
+		g_fBluetoothSpeed = -scale(sppData2, 0, -1, 0, 50);
+		if (sppData1 > 0) // 右转
+      	g_fBluetoothDirection = scale(sppData1, 0, 1, 0, 400);
+    	else if (sppData1 < 0) // 左转
+      	g_fBluetoothDirection = -scale(sppData1, 0, -1, 0, 400);						
+	}else if(command == imu){
+		if(sppData1>0)//前进
+		g_fBluetoothSpeed = scale(sppData1, 0, 20, 0, 50);
+		else if(sppData1<0)//后退
+		g_fBluetoothSpeed = -scale(sppData1, 0, -20, 0, 50);
+		if (sppData2 > 0) // 右转
+      	g_fBluetoothDirection = scale(sppData2, 0, 40, 0, 400);
+    	else if (sppData2 < 0) // 左转
+      	g_fBluetoothDirection = -scale(sppData2, 0, -40, 0, 400);
+		}
+}
+
+
+void setValues(char *dataInput)
 {
-	if(UltraControlMode==0){		
-	if((g_ucUltraDis<=20)&&(g_fBluetoothSpeed>=20))
-	{
-		g_fBluetoothSpeed = 0;
+
+	if(g_ucUart2Flag == 0) return;
+ 			   			
+	if(dataInput[0] == 'C'){		   
+			if(dataInput[1] == 'J'){
+				strtok(dataInput,",");
+				sppData1 = atof(strtok(NULL,","));//X轴坐标
+				sppData2 = atof(strtok(NULL,";"));//Y轴坐标
+				steer(joystick);
+			  	
+			}
+			else if(dataInput[1] == 'M') {
+				strtok(dataInput, ","); 
+      			sppData1 = atof(strtok(NULL, ",")); // Pitch
+      			sppData2 = atof(strtok(NULL, ";")); // Roll
+      			steer(imu);
+
+			}
+			else if(dataInput[1] == 'S'){
+				steer(stop);
+			}
 	}
-	
-	else if((g_ucUltraDis<=15)&&(g_fBluetoothSpeed>0))
-	{
-		g_fBluetoothSpeed = 0;
-	}
-	else if(g_ucUltraDis<=10)
-	{
-		backFlag=1;
-		g_fBluetoothSpeed = -30;
-	}
-	else if(backFlag==1)
-	{
-		backFlag=0;
-		g_fBluetoothSpeed=0;
-	}
-	}
-	if(UltraControlMode==1)
-	{
-	
-	}
+
+	g_ucUart2Flag = 0;
+	g_ucUart2Count =0;
+
 }

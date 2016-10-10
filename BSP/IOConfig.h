@@ -21,6 +21,8 @@ MCU硬件相关
 
 #define IF_CAR_FALL 1
 
+#define ULTRA_EN	0	  	//0：舵机驱动使能，1：超声波模块使能 
+
 //#define CLK_DIV_1() CLK_DIV &= 0x38 /*主时钟频率/1，不分频，等于外部晶振频率@20M*/
 
 

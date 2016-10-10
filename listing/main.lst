@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   MAIN                                                                  05/13/2016 20:14:35 PAGE 1   
+C51 COMPILER V9.00   MAIN                                                                  10/10/2016 22:37:16 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
@@ -35,46 +35,54 @@ line level    source
   25   1              DriversInit();    //MCU底层驱动初始化
   26   1              MPU6050Init();    //MPU6050配置初始化
   27   1              CarStandInit();   //应用程序变量初始化
-  28   1              UltraInit();      //超声波配置初始化
-  29   1              Delaynms(50);     //延时50ms 
-  30   1              ON_LED0;                  //指示灯亮起，表示初始化完毕
-  31   1              
-  32   1              EnableInterrupts; //使能总中断   
-  33   1      
-  34   1              while(1)
-  35   1              { 
-  36   2                      STC_ISP();
-  37   2                      Delaynms(50);           //延时50ms 
-  38   2                      if(g_ucUart2Flag>=1)
-  39   2                      {
-  40   3                              BluetoothControl();     //蓝牙遥控函数
-  41   3                              g_ucUart2Flag = 0;
-  42   3                      }
-  43   2                      BatteryChecker();               //电池电量检测（电量不足时，亮红灯）
-  44   2                      if(EchoFlag)                    //判断是否测距完成
-  45   2                      { 
-  46   3                              g_ucUltraDis=UltraDis();//读取超声波测距结果
-  47   3                      }
-  48   2      
-  49   2      #if DEBUG_UART  //调试启用 预编译命令 
+  28   1      
+  29   1      #if ULTRA_EN //超声波和舵机驱动公用 定时器0，因此不能同时使用两个模块
+                      UltraInit();      //超声波配置初始化
+              #else
+  32   1              ServoInit();      //舵机驱动初始化
+  33   1      #endif
+  34   1      
+  35   1              Delaynms(50);     //延时50ms 
+  36   1              ON_LED0;                  //指示灯亮起，表示初始化完毕
+  37   1              
+  38   1              EnableInterrupts; //使能总中断   
+  39   1      
+  40   1              while(1)
+  41   1              {                                       
+  42   2              
+  43   2                      STC_ISP();
+  44   2                      
+  45   2                      Delaynms(5);            //延时5ms 
+  46   2                      if(g_ucUart2Flag>=1)
+  47   2                      {
+  48   3                              setValues(g_cUart2Buffer);      //蓝牙遥控函数
+  49   3                              g_ucUart2Flag = 0;
+  50   3                      }
+  51   2                      BatteryChecker();               //电池电量检测（电量不足时，亮红灯）
+  52   2                      if(EchoFlag)                    //判断是否测距完成
+  53   2                      { 
+  54   3                              g_ucUltraDis=UltraDis();//读取超声波测距结果
+C51 COMPILER V9.00   MAIN                                                                  10/10/2016 22:37:16 PAGE 2   
+
+  55   3                      }
+  56   2                       
+  57   2      #if DEBUG_UART  //调试启用 预编译命令 
               //若要观察波形进行调试，需将DEBUG_UART设置成1，该版本不需要注释蓝牙控制函数
                       
                               OutData[0] = g_fCarAngle;
                               OutData[1] = g_fGyroAngleSpeed;
-                              OutData[2] = g_fLeftMotorOut ;
-C51 COMPILER V9.00   MAIN                                                                  05/13/2016 20:14:35 PAGE 2   
-
+                              OutData[2] = g_fGravityAngle;
                               OutData[3] = g_fAngleControlOut;
                               OutPut_Data();          
                                         
               #endif                  
-  59   2                                              
-  60   2              }
-  61   1      }
+  67   2                                              
+  68   2              }
+  69   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     68    ----
+   CODE SIZE        =     74    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

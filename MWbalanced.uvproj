@@ -318,7 +318,7 @@
             <DataOverlaying>1</DataOverlaying>
             <OverlayString></OverlayString>
             <MiscControls></MiscControls>
-            <DisableWarningNumbers></DisableWarningNumbers>
+            <DisableWarningNumbers>16</DisableWarningNumbers>
             <LinkerCmdFile></LinkerCmdFile>
             <Assign></Assign>
             <ReserveString></ReserveString>
@@ -445,6 +445,11 @@
               <FileName>UltraSonic.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Common\src\UltraSonic.c</FilePath>
+            </File>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Common\src\servo.c</FilePath>
             </File>
           </Files>
         </Group>

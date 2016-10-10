@@ -11,6 +11,8 @@
 #include <math.h>    
 #include <stdio.h>  
 #include <intrins.h> 
+#include <stdlib.h>
+#include <string.h>
 
 //芯片头文件
 #include "IOConfig.h"
@@ -29,7 +31,8 @@
 #include "i2c.h"
 #include "led.h"
 #include "outputdata.h"
-#include "ultrasonic.h"
+#include "ultrasonic.h"	  
+#include "servo.h"
 
 //程序头文件
 #include "carstand.h"
