@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 1   
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE CARSTAND
@@ -62,7 +62,7 @@ line level    source
   52          float xdata g_fBluetoothDirection;
   53          
   54          float xdata g_fDirectionDeviation;
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 2   
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 2   
 
   55          float xdata g_fDirectionControlOut;
   56          
@@ -126,7 +126,7 @@ line level    source
  114   1              g_fCarSpeedOld = 0;
  115   1              g_fCarPosition = 0;
  116   1              g_fCarAngle    = 0;
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 3   
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 3   
 
  117   1              g_fGyroAngleSpeed = 0;
  118   1              g_fGravityAngle   = 0;
@@ -190,7 +190,7 @@ line level    source
  176          {       
  177   1      
  178   1              g_iGyroInputVoltage_Y_Axis   = DataSynthesis(GYRO_YOUT_H) ; //陀螺仪Y轴
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 4   
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 4   
 
  179   1          g_iAccelInputVoltage_X_Axis  = DataSynthesis(ACCEL_XOUT_H); //加速度X轴             
  180   1              g_iGyroInputVoltage_Z_Axis   = DataSynthesis(GYRO_ZOUT_H) ; //陀螺仪Y轴 
@@ -254,7 +254,7 @@ line level    source
  238   1              if(iRightVoltage<0)
  239   1          {   
  240   2            BIN1 = 1;                               //左电机前进  角度为负  速度为正
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 5   
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 5   
 
  241   2            BIN2 = 0;
  242   2            iRighttMotorValue = (-iRightVoltage);
@@ -318,7 +318,7 @@ line level    source
  298   1              if(g_fRightMotorOut > MOTOR_OUT_MAX)    g_fRightMotorOut = MOTOR_OUT_MAX;
  299   1              if(g_fRightMotorOut < MOTOR_OUT_MIN)    g_fRightMotorOut = MOTOR_OUT_MIN;
  300   1      
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 6   
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 6   
 
  301   1          SetMotorVoltageAndDirection(g_fLeftMotorOut,g_fRightMotorOut);
  302   1      }
@@ -382,7 +382,7 @@ line level    source
  360   1              fP = fDelta * g_fcSpeed_P;
  361   1              fI = fDelta * g_fcSpeed_I;
  362   1              g_fCarPosition += fI;
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 7   
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 7   
 
  363   1      //      fD = fDeriv * g_fcSpeed_D;
  364   1      //      g_fDeltaOld = fDelta;
@@ -446,7 +446,7 @@ line level    source
  422          ** 淘  宝：  Http://miaowlabs.taobao.com
  423          ** 日　期:   2014年08月01日
  424          ***************************************************************/
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 8   
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 8   
 
  425          void BluetoothControl(void)      
  426          {
@@ -510,7 +510,7 @@ line level    source
  484   1              g_fDirectionDeviation = Delta * g_fcEliminate_P * (-1);
  485   1      
  486   1      
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 9   
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 9   
 
  487   1      }
  488          
@@ -574,7 +574,7 @@ line level    source
  546   2                      ON_LED1;
  547   2              }
  548   1      
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 10  
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 10  
 
  549   1      }
  550          
@@ -638,7 +638,7 @@ line level    source
  608   2              g_fBluetoothDirection = -scale(sppData1, 0, -1, 0, 400);                                                
  609   2              }else if(command == imu){
  610   2                      if(sppData1>0)//前进
-C51 COMPILER V9.00   CARSTAND                                                              10/10/2016 22:37:16 PAGE 11  
+C51 COMPILER V9.00   CARSTAND                                                              10/12/2016 13:49:47 PAGE 11  
 
  611   2                      g_fBluetoothSpeed = scale(sppData1, 0, 20, 0, 50);
  612   2                      else if(sppData1<0)//后退
@@ -653,39 +653,42 @@ line level    source
  621          
  622          void setValues(char *dataInput)
  623          {
- 624   1      
+ 624   1              char i;
  625   1              if(g_ucUart2Flag == 0) return;
- 626   1                                                      
- 627   1              if(dataInput[0] == 'C'){                   
- 628   2                              if(dataInput[1] == 'J'){
- 629   3                                      strtok(dataInput,",");
- 630   3                                      sppData1 = atof(strtok(NULL,","));//X轴坐标
- 631   3                                      sppData2 = atof(strtok(NULL,";"));//Y轴坐标
- 632   3                                      steer(joystick);
- 633   3                                      
- 634   3                              }
- 635   2                              else if(dataInput[1] == 'M') {
- 636   3                                      strtok(dataInput, ","); 
- 637   3                              sppData1 = atof(strtok(NULL, ",")); // Pitch
- 638   3                              sppData2 = atof(strtok(NULL, ";")); // Roll
- 639   3                              steer(imu);
- 640   3      
- 641   3                              }
- 642   2                              else if(dataInput[1] == 'S'){
- 643   3                                      steer(stop);
+ 626   1              for(i=0;i<g_ucUart2Count;i++)
+ 627   1              {
+ 628   2                      UART1SendByte(dataInput[i]);
+ 629   2              }                                                               
+ 630   1              if(dataInput[0] == 'C'){                   
+ 631   2                              if(dataInput[1] == 'J'){
+ 632   3                                      strtok(dataInput,",");
+ 633   3                                      sppData1 = atof(strtok(NULL,","));//X轴坐标
+ 634   3                                      sppData2 = atof(strtok(NULL,";"));//Y轴坐标
+ 635   3                                      steer(joystick);
+ 636   3                                      
+ 637   3                              }
+ 638   2                              else if(dataInput[1] == 'M') {
+ 639   3                                      strtok(dataInput, ","); 
+ 640   3                              sppData1 = atof(strtok(NULL, ",")); // Pitch
+ 641   3                              sppData2 = atof(strtok(NULL, ";")); // Roll
+ 642   3                              steer(imu);
+ 643   3      
  644   3                              }
- 645   2              }
- 646   1      
- 647   1              g_ucUart2Flag = 0;
- 648   1              g_ucUart2Count =0;
+ 645   2                              else if(dataInput[1] == 'S'){
+ 646   3                                      steer(stop);
+ 647   3                              }
+ 648   2              }
  649   1      
- 650   1      }
+ 650   1              g_ucUart2Flag = 0;
+ 651   1              g_ucUart2Count =0;
+ 652   1      
+ 653   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   4276    ----
+   CODE SIZE        =   4341    ----
    CONSTANT SIZE    =     48    ----
-   XDATA SIZE       =    141      55
+   XDATA SIZE       =    141      56
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----       2

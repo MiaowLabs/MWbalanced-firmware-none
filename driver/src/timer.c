@@ -32,6 +32,7 @@ void Timer1Init(void)	//8毫秒@20.000MHz
 	TMOD &= 0x0F;		//设置定时器模式
 	TL1 = 0xEB;		//设置定时初值
 	TH1 = 0xCB;		//设置定时初值
+	IP &= 0xF7;
 	TF1 = 0;			//清除TF1标志
 	TR1 = 1;			//定时器1开始计时
 	ET1 = 1;        	//允许定时器T1中断	  

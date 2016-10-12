@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   ISR                                                                   10/10/2016 22:37:16 PAGE 1   
+C51 COMPILER V9.00   ISR                                                                   10/12/2016 13:49:47 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE ISR
@@ -62,7 +62,7 @@ line level    source
   52   1                      
   53   1                      g_ucLEDCount++;
   54   1                      if(g_ucLEDCount >=125)                    //÷∏ æµ∆1√ÎΩªÃÊ…¡À∏
-C51 COMPILER V9.00   ISR                                                                   10/10/2016 22:37:16 PAGE 2   
+C51 COMPILER V9.00   ISR                                                                   10/12/2016 13:49:47 PAGE 2   
 
   55   1                      {
   56   2                              g_ucLEDCount=0;
@@ -126,7 +126,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
-C51 COMPILER V9.00   ISR                                                                   10/10/2016 22:37:16 PAGE 3   
+C51 COMPILER V9.00   ISR                                                                   10/12/2016 13:49:47 PAGE 3   
 
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

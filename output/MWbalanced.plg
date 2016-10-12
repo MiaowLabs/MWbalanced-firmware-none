@@ -32,6 +32,6 @@ linking...
     SEGMENT: ?PR?_I2C_SENDBYTE?I2C
     CALLER1: ?PR?TIMER1_UPDATE?ISR
     CALLER2: ?C_C51STARTUP
-Program Size: data=24.7 xdata=244 code=9001
+Program Size: data=24.7 xdata=245 code=9069
 creating hex file from ".\Output\MWbalanced"...
 ".\Output\MWbalanced" - 0 Error(s), 1 Warning(s).

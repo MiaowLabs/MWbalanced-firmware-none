@@ -41,12 +41,13 @@ void main()
 	{ 					
 	
 		STC_ISP();
-		
-		Delaynms(5);	        //延时5ms 
+		//UART1SendByte(0x22);
+		Delaynms(1);	        //延时5ms 
 		if(g_ucUart2Flag>=1)
 		{
 			setValues(g_cUart2Buffer);	//蓝牙遥控函数
 			g_ucUart2Flag = 0;
+		//	UART1SendByte(0x11);
 		}
 		BatteryChecker();		//电池电量检测（电量不足时，亮红灯）
 		if(EchoFlag)			//判断是否测距完成

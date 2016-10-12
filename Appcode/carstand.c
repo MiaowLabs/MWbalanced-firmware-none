@@ -621,9 +621,12 @@ void steer(enum Command command){
 
 void setValues(char *dataInput)
 {
-
+	char i;
 	if(g_ucUart2Flag == 0) return;
- 			   			
+ 	for(i=0;i<g_ucUart2Count;i++)
+	{
+		UART1SendByte(dataInput[i]);
+	}  			 		   			
 	if(dataInput[0] == 'C'){		   
 			if(dataInput[1] == 'J'){
 				strtok(dataInput,",");
