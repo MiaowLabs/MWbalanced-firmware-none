@@ -1,34 +1,27 @@
-# MWbalanced-firmware-none
+### 简介
 
-MWbalancedSTC15 control source code with no RTOS.
+MWbalanced 8051 开源两轮自平衡小车官方Git,由MiaowLabs喵呜实验室强力持续维护,改版本未使用任何实时操作系统。
 
-这是MWbalancedSTC15两轮自平衡小车控制代码，未使用实时操作系统。
+### 声明
 
-本代码对于喵呜实验室MWbalancedSTC15第二版硬件。
+使用GPL协议。
 
-### 愿景
+您可以 Fork 本代码，代码的开源/免费使用和引用/修改/衍生代码的开源/免费使用，但不允许修改后和衍生的代码做为闭源的商业软件发布和销售，未经许可 **禁止** 使用将本代码应用于任何商业用途。
 
-希望有更多的人参与到代码的开发和维护中来。
+### 编译环境
 
-Hope to have more people involved in the development and maintenance of the code fo MWbalanced.
+    Windows 系统
+    Keil C51 IDE
 
-### 开源项目
+### 相关网站
 
-**MWbalanced2.0为初学而生，选用8051内核单片机（型号STC(IAP)15W4K61S2）作为控制芯片,使用Keil C51进行编译开发。**
+喵呜实验室：[http://www.miaowlabs.com](http://www.miaowlabs.com)
 
-MWbalanced是喵呜实验室的开源项目之一，更详细的开发操作，见[喵呜百科](http://miaowlabs.com/wiki-MWbalanced.html)。
+喵呜论坛：[http://bbs.miaowlabs.com/](http://bbs.miaowlabs.com/)
 
-MWbalanced两轮自平衡小车对应的控制代码@外部晶振20M, 其他硬件版本可能需要重新调整PID参数。
+### 讨论群
 
-角度环PD调试指南视频：[http://v.qq.com/page/p/3/e/p0192qldm3e.html](http://v.qq.com/page/p/3/e/p0192qldm3e.html)
-
-速度环PI调试指南视频：[http://v.qq.com/page/g/3/m/g0193e9aj3m.html](http://v.qq.com/page/g/3/m/g0193e9aj3m.html)
-
-**更多教程详见喵呜百科**：[http://miaowlabs.com/wiki-MWbalanced.html](http://miaowlabs.com/wiki-MWbalanced.html)
-
-问答论坛：[http://bbs.miaowlabs.com/](http://bbs.miaowlabs.com/)
-
-气氛良好的技术交流**Q群**：喵呜实验室自平衡小车 153337261
+平衡小车Mwbalanced 8051/STM32 Q群：**153337261**
 
 ### 更新记录
 
